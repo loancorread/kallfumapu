@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe Interactivo de Jefatura de Curso</title>
+    <!-- Chosen Palette: Calm Harmony -->
+    <!-- Application Structure Plan: A dashboard-style single-page application is used instead of a linear document. A left-side navigation bar allows users to switch between key domains: 'Resumen' (a central dashboard with a holistic radar chart and key metrics), 'Detalle Académico y Social' (deeper dive into academic performance, coexistence, and parent communication with specific charts and inputs), and 'Plan de Acción' (a dynamic list for challenges and future actions). This structure was chosen to transform the static report into a dynamic tool for both data entry and immediate analysis, allowing the teacher to see the impact of their inputs in real-time and better understand the connections between different areas. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Overall course status -> Goal: Synthesize -> Viz: Radar Chart (Chart.js) -> Interaction: Sliders for key metrics (Performance, Climate, etc.) update the chart instantly. Justification: Provides a powerful, at-a-glance holistic view of the course's state.
+        - Report Info: Student Academic Performance -> Goal: Compare/Analyze -> Viz: Donut Chart (Chart.js) -> Interaction: Number inputs for student counts in performance tiers dynamically update the donut chart. Justification: Translates a qualitative description into a clear quantitative distribution for better analysis.
+        - Report Info: Challenges and Actions -> Goal: Organize -> Viz: HTML/CSS list -> Interaction: Dynamic 'Add' buttons for challenges and actions. Justification: More structured and actionable than a single text block.
+        - Report Info: Qualitative descriptions (Strengths, Strategies, etc.) -> Goal: Inform -> Viz: Styled text areas (HTML/CSS) -> Interaction: Standard text input. Justification: Preserves the necessary space for rich, qualitative reflection.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-link.active {
+            background-color: #4a5568;
+            color: white;
+            font-weight: 600;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            margin: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #3b82f6;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #3b82f6;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Navigation Sidebar -->
+        <aside class="w-full md:w-64 bg-slate-800 text-white p-4 md:p-6 space-y-4">
+            <h1 class="text-2xl font-bold text-center">Informe de Curso</h1>
+            <nav id="mainNav" class="space-y-2">
+                <a href="#resumen" class="nav-link active flex items-center p-3 rounded-lg hover:bg-slate-700">
+                    <span class="mr-3">📊</span> Resumen General
+                </a>
+                <a href="#detalle" class="nav-link flex items-center p-3 rounded-lg hover:bg-slate-700">
+                    <span class="mr-3">🔍</span> Detalle Académico y Social
+                </a>
+                <a href="#plan" class="nav-link flex items-center p-3 rounded-lg hover:bg-slate-700">
+                    <span class="mr-3">🎯</span> Plan de Acción
+                </a>
+            </nav>
+            <div class="pt-6 text-xs text-slate-400 text-center">
+                <p>Una herramienta de reflexión y seguimiento para la Jefatura de Curso.</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-4 sm:p-6 md:p-8">
+            <!-- Section: Resumen General -->
+            <section id="resumen" class="content-section active">
+                <h2 class="text-3xl font-bold mb-6 text-slate-700">Resumen General del Curso</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div class="card">
+                        <label class="font-semibold text-slate-600">Docente (Jefe de Curso)</label>
+                        <input type="text" placeholder="Nombre completo del Docente" class="mt-1 block w-full border-slate-300 rounded-md shadow-sm p-2">
+                    </div>
+                    <div class="card">
+                        <label class="font-semibold text-slate-600">Curso y Semestre</label>
+                        <div class="flex gap-2">
+                            <input type="text" placeholder="Ej: 7° Básico A" class="mt-1 block w-full border-slate-300 rounded-md shadow-sm p-2">
+                            <input type="text" placeholder="Ej: 1er Semestre 2025" class="mt-1 block w-full border-slate-300 rounded-md shadow-sm p-2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="card">
+                        <h3 class="text-xl font-bold mb-4 text-center text-blue-600">Fotografía del Curso</h3>
+                        <p class="text-sm text-center text-slate-500 mb-4">Ajusta los selectores para reflejar tu percepción sobre el curso. El gráfico se actualizará automáticamente.</p>
+                        <div class="chart-container">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card space-y-4">
+                         <h3 class="text-xl font-bold mb-2 text-center text-blue-600">Dimensiones Clave</h3>
+                         <div>
+                            <label for="rendimientoSlider" class="flex justify-between font-medium text-slate-700">Rendimiento Académico <span id="rendimientoValue" class="font-bold">3</span></label>
+                            <input id="rendimientoSlider" type="range" min="1" max="5" value="3" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                        <div>
+                            <label for="climaSlider" class="flex justify-between font-medium text-slate-700">Clima de Aula <span id="climaValue" class="font-bold">3</span></label>
+                            <input id="climaSlider" type="range" min="1" max="5" value="3" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                        <div>
+                            <label for="participacionSlider" class="flex justify-between font-medium text-slate-700">Participación Apoderados <span id="participacionValue" class="font-bold">3</span></label>
+                            <input id="participacionSlider" type="range" min="1" max="5" value="3" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                        <div>
+                            <label for="autonomiaSlider" class="flex justify-between font-medium text-slate-700">Autonomía del Grupo <span id="autonomiaValue" class="font-bold">3</span></label>
+                            <input id="autonomiaSlider" type="range" min="1" max="5" value="3" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                        <div>
+                            <label for="motivacionSlider" class="flex justify-between font-medium text-slate-700">Motivación General <span id="motivacionValue" class="font-bold">3</span></label>
+                            <input id="motivacionSlider" type="range" min="1" max="5" value="3" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="card">
+                        <h3 class="text-lg font-bold text-green-600 mb-2">✅ Fortalezas del Grupo</h3>
+                        <textarea class="w-full h-32 p-2 border border-slate-300 rounded-md" placeholder="Describa los aspectos positivos generales que observa en el curso (ej. buena convivencia, alto nivel de participación, solidaridad entre pares)..."></textarea>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-lg font-bold text-amber-600 mb-2">🔍 Áreas a Mejorar</h3>
+                        <textarea class="w-full h-32 p-2 border border-slate-300 rounded-md" placeholder="Identifique los principales desafíos del curso (ej. necesidad de mejorar la motivación general, dificultades en la organización, bajo rendimiento en ciertas asignaturas)..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Detalle Académico y Social -->
+            <section id="detalle" class="content-section">
+                <h2 class="text-3xl font-bold mb-6 text-slate-700">Detalle Académico y Social</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+                    <div class="lg:col-span-3 card">
+                        <h3 class="text-xl font-bold text-blue-600 mb-2">Acompañamiento Académico</h3>
+                        <p class="text-sm text-slate-500 mb-4">Ingresa el número de estudiantes en cada nivel de desempeño para visualizar la distribución del curso.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-3">
+                                <h4 class="font-semibold">Niveles de Desempeño</h4>
+                                <div class="flex items-center justify-between">
+                                    <label>Logro Destacado</label>
+                                    <input type="number" value="5" class="w-20 p-1 border border-slate-300 rounded-md text-center performance-input">
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <label>Logro Adecuado</label>
+                                    <input type="number" value="15" class="w-20 p-1 border border-slate-300 rounded-md text-center performance-input">
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <label>En Desarrollo</label>
+                                    <input type="number" value="8" class="w-20 p-1 border border-slate-300 rounded-md text-center performance-input">
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <label>Requiere Apoyo</label>
+                                    <input type="number" value="4" class="w-20 p-1 border border-slate-300 rounded-md text-center performance-input">
+                                </div>
+                                 <p class="text-right font-bold">Total Estudiantes: <span id="totalEstudiantes">32</span></p>
+                            </div>
+                            <div class="chart-container h-64 md:h-auto">
+                                <canvas id="rendimientoChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <h4 class="font-semibold text-slate-600 mb-2">Estrategias de Apoyo Implementadas</h4>
+                            <textarea class="w-full h-24 p-2 border border-slate-300 rounded-md" placeholder="Ej: implementación de talleres de estudio, derivación a psicopedagoga, seguimiento individual..."></textarea>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 card">
+                        <h3 class="text-xl font-bold text-blue-600 mb-4">Convivencia y Vínculo Familiar</h3>
+                         <div>
+                            <h4 class="font-semibold text-slate-600 mb-2">Estrategias de Convivencia y Desarrollo Socioemocional</h4>
+                            <textarea class="w-full h-24 p-2 border border-slate-300 rounded-md" placeholder="Ej: charlas sobre resolución de conflictos, actividades de integración, promoción de la empatía..."></textarea>
+                        </div>
+                         <div class="mt-4">
+                            <h4 class="font-semibold text-slate-600 mb-2">Vínculo y Comunicación con Apoderados</h4>
+                            <textarea class="w-full h-24 p-2 border border-slate-300 rounded-md" placeholder="Describe la frecuencia, modalidad de comunicación y nivel de participación de los apoderados..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Plan de Acción -->
+            <section id="plan" class="content-section">
+                <h2 class="text-3xl font-bold mb-6 text-slate-700">Plan de Acción</h2>
+                <p class="text-slate-600 mb-6">Basado en tu análisis, define los desafíos prioritarios y las acciones que implementarás el próximo semestre.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="card">
+                        <h3 class="text-xl font-bold text-amber-600 mb-4">Principales Desafíos</h3>
+                        <ul id="desafiosList" class="space-y-2">
+                           <li class="p-2 bg-amber-50 rounded-md">Falta de motivación en un subgrupo del curso.</li>
+                           <li class="p-2 bg-amber-50 rounded-md">Dificultad para contactar a algunos apoderados.</li>
+                        </ul>
+                        <div class="mt-4 flex gap-2">
+                            <input type="text" id="newDesafioInput" placeholder="Añadir nuevo desafío" class="w-full p-2 border border-slate-300 rounded-md">
+                            <button id="addDesafioBtn" class="bg-amber-500 text-white font-bold p-2 rounded-md hover:bg-amber-600">+</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                         <h3 class="text-xl font-bold text-green-600 mb-4">Acciones Propuestas</h3>
+                         <ul id="accionesList" class="space-y-2">
+                            <li class="p-2 bg-green-50 rounded-md">Implementar un plan de fomento lector con metas personalizadas.</li>
+                            <li class="p-2 bg-green-50 rounded-md">Establecer un calendario de llamados proactivos a apoderados.</li>
+                         </ul>
+                         <div class="mt-4 flex gap-2">
+                            <input type="text" id="newAccionInput" placeholder="Añadir nueva acción" class="w-full p-2 border border-slate-300 rounded-md">
+                            <button id="addAccionBtn" class="bg-green-500 text-white font-bold p-2 rounded-md hover:bg-green-600">+</button>
+                         </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // --- State & Initial Config ---
+    const radarChartCtx = document.getElementById('radarChart').getContext('2d');
+    const rendimientoChartCtx = document.getElementById('rendimientoChart').getContext('2d');
+    
+    let radarChart, rendimientoChart;
+    const performanceInputs = document.querySelectorAll('.performance-input');
+
+    const chartColors = {
+        destacado: 'rgba(54, 162, 235, 0.8)',
+        adecuado: 'rgba(75, 192, 192, 0.8)',
+        desarrollo: 'rgba(255, 206, 86, 0.8)',
+        apoyo: 'rgba(255, 99, 132, 0.8)'
+    };
+    
+    // --- Navigation Logic ---
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.content-section');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+            
+            sections.forEach(s => {
+                s.classList.remove('active');
+                if (s.id === targetId) {
+                    s.classList.add('active');
+                }
+            });
+        });
+    });
+
+    // --- Radar Chart Logic ---
+    const sliderIds = ['rendimiento', 'clima', 'participacion', 'autonomia', 'motivacion'];
+    const sliders = sliderIds.map(id => document.getElementById(`${id}Slider`));
+    const valueSpans = sliderIds.map(id => document.getElementById(`${id}Value`));
+
+    function getRadarData() {
+        return sliders.map(slider => slider.value);
+    }
+    
+    function createRadarChart() {
+        if (radarChart) {
+            radarChart.destroy();
+        }
+        radarChart = new Chart(radarChartCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Rendimiento', 'Clima', 'Participación Fam.', 'Autonomía', 'Motivación'],
+                datasets: [{
+                    label: 'Fotografía del Curso',
+                    data: getRadarData(),
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(59, 130, 246, 1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                        grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                        pointLabels: { font: { size: 12 } },
+                        suggestedMin: 1,
+                        suggestedMax: 5,
+                        ticks: {
+                            stepSize: 1,
+                            backdropColor: 'rgba(0,0,0,0)'
+                        }
+                    }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    }
+
+    function updateRadarChart() {
+        radarChart.data.datasets[0].data = getRadarData();
+        radarChart.update();
+    }
+
+    sliders.forEach((slider, index) => {
+        slider.addEventListener('input', () => {
+            valueSpans[index].textContent = slider.value;
+            updateRadarChart();
+        });
+    });
+
+    // --- Rendimiento (Donut) Chart Logic ---
+    function getRendimientoData() {
+        return Array.from(performanceInputs).map(input => parseInt(input.value) || 0);
+    }
+
+    function updateTotalEstudiantes() {
+        const total = getRendimientoData().reduce((sum, val) => sum + val, 0);
+        document.getElementById('totalEstudiantes').textContent = total;
+    }
+
+    function createRendimientoChart() {
+        if (rendimientoChart) {
+            rendimientoChart.destroy();
+        }
+        rendimientoChart = new Chart(rendimientoChartCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Logro Destacado', 'Logro Adecuado', 'En Desarrollo', 'Requiere Apoyo'],
+                datasets: [{
+                    label: 'Estudiantes',
+                    data: getRendimientoData(),
+                    backgroundColor: [
+                        chartColors.destacado,
+                        chartColors.adecuado,
+                        chartColors.desarrollo,
+                        chartColors.apoyo
+                    ],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed + ' estudiantes';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function updateRendimientoChart() {
+        rendimientoChart.data.datasets[0].data = getRendimientoData();
+        rendimientoChart.update();
+        updateTotalEstudiantes();
+    }
+
+    performanceInputs.forEach(input => {
+        input.addEventListener('input', updateRendimientoChart);
+    });
+    
+    // --- Plan de Acción Logic ---
+    const addDesafioBtn = document.getElementById('addDesafioBtn');
+    const newDesafioInput = document.getElementById('newDesafioInput');
+    const desafiosList = document.getElementById('desafiosList');
+    
+    const addAccionBtn = document.getElementById('addAccionBtn');
+    const newAccionInput = document.getElementById('newAccionInput');
+    const accionesList = document.getElementById('accionesList');
+
+    function addItem(list, input, itemClass) {
+        const text = input.value.trim();
+        if (text) {
+            const li = document.createElement('li');
+            li.textContent = text;
+            li.className = `p-2 ${itemClass} rounded-md`;
+            list.appendChild(li);
+            input.value = '';
+        }
+    }
+
+    addDesafioBtn.addEventListener('click', () => addItem(desafiosList, newDesafioInput, 'bg-amber-50'));
+    newDesafioInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addItem(desafiosList, newDesafioInput, 'bg-amber-50');
+    });
+
+    addAccionBtn.addEventListener('click', () => addItem(accionesList, newAccionInput, 'bg-green-50'));
+    newAccionInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addItem(accionesList, newAccionInput, 'bg-green-50');
+    });
+    
+    // --- Initializers ---
+    createRadarChart();
+    createRendimientoChart();
+    updateTotalEstudiantes();
+});
+</script>
+</body>
+</html>
