@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Peligro de Repitencia — Escuela Intercultural Kallfü Mapu</title>
+<meta name="description" content="Monitoreo de criterios de riesgo de repitencia MINEDUC de la Escuela Intercultural Kallfü Mapu." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          'kallfu-blue': '#1c4587',
+          'kallfu-green': '#5bcb96',
+          'kallfu-blue-light': '#eef2f9',
+          'kallfu-green-light': '#e6f7ef',
+        }
+      }
+    }
+  }
+</script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="con-sidebar text-gray-800 dark:text-slate-100 antialiased">
+<div id="sidebar-mount"></div>
+
+<main class="contenido-principal">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+    <div class="mb-2">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-300 text-xs font-bold uppercase tracking-wider border border-red-100 dark:border-red-500/30">
+        <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i> Peligro de Repitencia
+      </span>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-2 flex gap-3">
+<button id="tab-btn-actual" class="tab-btn active flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm">
+      <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Diagnóstico Actual
+    </button>
+    <button id="tab-btn-traza" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm">
+      <i data-lucide="git-compare-arrows" class="w-4 h-4"></i> Trazabilidad y Evolución
+    </button>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+<!-- ======================= TAB 1: DIAGNOSTICO ACTUAL ======================= -->
+<section id="panel-actual" class="tab-panel active fade-in">
+
+  <div class="mb-8">
+    <h2 class="text-2xl font-bold text-kallfu-blue dark:text-blue-300">Ficha de Estudiantes &mdash; Registro Vigente</h2>
+    <p class="text-gray-500 mt-1 dark:text-slate-400">Monitoreo de criterios de repitencia MINEDUC, estudiantes PIE y estadísticas académicas del establecimiento.</p>
+  </div>
+
+  <!-- KPI Criterios -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+    <div class="kpi-crit kpi-clickable bg-white rounded-xl shadow-sm border border-gray-100 p-5 border-l-4 border-l-red-500 hover:shadow-md transition-all dark:bg-slate-800 dark:border-slate-700" data-crit="1">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 dark:text-slate-400">Criterio 1</p>
+          <h3 class="text-sm font-semibold text-gray-800 leading-tight dark:text-slate-100">Reprobar 3 o más asignaturas</h3>
+        </div>
+        <div class="bg-red-50 p-2 rounded-lg dark:bg-red-500/10"><i data-lucide="book-x" class="w-5 h-5 text-red-500"></i></div>
+      </div>
+      <div class="mt-4 flex items-baseline gap-2">
+        <span class="text-3xl font-bold text-kallfu-blue dark:text-blue-300" id="count-crit-1">0</span>
+        <span class="text-sm text-gray-500 font-medium dark:text-slate-400">alumnos</span>
+      </div>
+    </div>
+    <div class="kpi-crit kpi-clickable bg-white rounded-xl shadow-sm border border-gray-100 p-5 border-l-4 border-l-orange-500 hover:shadow-md transition-all dark:bg-slate-800 dark:border-slate-700" data-crit="2">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 dark:text-slate-400">Criterio 2</p>
+          <h3 class="text-sm font-semibold text-gray-800 leading-tight dark:text-slate-100">1 asignatura &lt; 4.0 y prom. &lt; 4.5</h3>
+        </div>
+        <div class="bg-orange-50 p-2 rounded-lg dark:bg-orange-500/10"><i data-lucide="trending-down" class="w-5 h-5 text-orange-500"></i></div>
+      </div>
+      <div class="mt-4 flex items-baseline gap-2">
+        <span class="text-3xl font-bold text-kallfu-blue dark:text-blue-300" id="count-crit-2">0</span>
+        <span class="text-sm text-gray-500 font-medium dark:text-slate-400">alumnos</span>
+      </div>
+    </div>
+    <div class="kpi-crit kpi-clickable bg-white rounded-xl shadow-sm border border-gray-100 p-5 border-l-4 border-l-yellow-500 hover:shadow-md transition-all dark:bg-slate-800 dark:border-slate-700" data-crit="3">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 dark:text-slate-400">Criterio 3</p>
+          <h3 class="text-sm font-semibold text-gray-800 leading-tight dark:text-slate-100">2 asignaturas &lt; 4.0 y prom. &lt; 5.0</h3>
+        </div>
+        <div class="bg-yellow-50 p-2 rounded-lg dark:bg-yellow-500/10"><i data-lucide="alert-triangle" class="w-5 h-5 text-yellow-500"></i></div>
+      </div>
+      <div class="mt-4 flex items-baseline gap-2">
+        <span class="text-3xl font-bold text-kallfu-blue dark:text-blue-300" id="count-crit-3">0</span>
+        <span class="text-sm text-gray-500 font-medium dark:text-slate-400">alumnos</span>
+      </div>
+    </div>
+    <div class="kpi-crit kpi-clickable bg-white rounded-xl shadow-sm border border-gray-100 p-5 border-l-4 border-l-kallfu-blue hover:shadow-md transition-all dark:bg-slate-800 dark:border-slate-700" data-crit="4">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 dark:text-slate-400">Criterio 4</p>
+          <h3 class="text-sm font-semibold text-gray-800 leading-tight dark:text-slate-100">Asistencia menor al 85%</h3>
+        </div>
+        <div class="bg-blue-50 p-2 rounded-lg dark:bg-blue-500/10"><i data-lucide="user-x" class="w-5 h-5 text-kallfu-blue dark:text-blue-300"></i></div>
+      </div>
+      <div class="mt-4 flex items-baseline gap-2">
+        <span class="text-3xl font-bold text-kallfu-blue dark:text-blue-300" id="count-crit-4">0</span>
+        <span class="text-sm text-gray-500 font-medium dark:text-slate-400">alumnos</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI Generales -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 border-l-4 border-l-kallfu-green dark:bg-slate-800 dark:border-slate-700">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 dark:text-slate-400">Matrícula con Criterio MINEDUC</p>
+          <h3 class="text-sm font-semibold text-gray-800 dark:text-slate-100">Estudiantes registrados</h3>
+        </div>
+        <div class="bg-kallfu-green-light p-2 rounded-lg dark:bg-emerald-500/10"><i data-lucide="users" class="w-5 h-5 text-kallfu-green"></i></div>
+      </div>
+      <div class="mt-4 text-3xl font-bold text-kallfu-blue dark:text-blue-300" id="stat-total">0</div>
+    </div>
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 border-l-4 border-l-purple-500 dark:bg-slate-800 dark:border-slate-700">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 dark:text-slate-400">Estudiantes PIE</p>
+          <h3 class="text-sm font-semibold text-gray-800 dark:text-slate-100">Transitorio + Permanente</h3>
+        </div>
+        <div class="bg-purple-50 p-2 rounded-lg dark:bg-purple-500/10"><i data-lucide="heart-handshake" class="w-5 h-5 text-purple-500 dark:text-purple-300"></i></div>
+      </div>
+      <div class="mt-4 text-3xl font-bold text-kallfu-blue dark:text-blue-300" id="stat-pie">0</div>
+    </div>
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 border-l-4 border-l-cyan-500 dark:bg-slate-800 dark:border-slate-700">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 dark:text-slate-400">Asistencia Promedio</p>
+          <h3 class="text-sm font-semibold text-gray-800 dark:text-slate-100">De estudiantes registrados</h3>
+        </div>
+        <div class="bg-cyan-50 p-2 rounded-lg dark:bg-cyan-500/10"><i data-lucide="calendar-check" class="w-5 h-5 text-cyan-500"></i></div>
+      </div>
+      <div class="mt-4 text-3xl font-bold text-kallfu-blue dark:text-blue-300" id="stat-asistencia">0%</div>
+    </div>
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 border-l-4 border-l-emerald-500 dark:bg-slate-800 dark:border-slate-700">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 dark:text-slate-400">Promedio General</p>
+          <h3 class="text-sm font-semibold text-gray-800 dark:text-slate-100">De estudiantes con notas</h3>
+        </div>
+        <div class="bg-emerald-50 p-2 rounded-lg dark:bg-emerald-500/10"><i data-lucide="award" class="w-5 h-5 text-emerald-500"></i></div>
+      </div>
+      <div class="mt-4 text-3xl font-bold text-kallfu-blue dark:text-blue-300" id="stat-promedio">0.0</div>
+    </div>
+  </div>
+
+  <!-- Distribución y críticos -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+    <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between dark:bg-slate-800 dark:border-slate-700">
+      <div>
+        <h3 class="text-sm font-bold text-kallfu-blue uppercase tracking-wider mb-4 flex items-center gap-2 dark:text-blue-300">
+          <i data-lucide="bar-chart-2" class="w-4 h-4 text-kallfu-green"></i>
+          Distribución de Matrícula en Riesgo por Curso
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3" id="course-distribution-container"></div>
+      </div>
+    </div>
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 border-t-4 border-t-red-500 flex flex-col justify-between dark:bg-slate-800 dark:border-slate-700">
+      <div>
+        <h3 class="text-sm font-bold text-red-700 uppercase tracking-wider mb-4 flex items-center gap-2 dark:text-red-300">
+          <i data-lucide="alert-octagon" class="w-4 h-4 text-red-500"></i>
+          Casos Prioritarios (Top 4)
+        </h3>
+        <div class="space-y-3" id="critical-students-container"></div>
+      </div>
+      <div class="mt-4 pt-3 border-t border-gray-100 text-[11px] text-gray-400 italic dark:text-slate-500 dark:border-slate-700">
+        * Priorizados por índice combinado de inasistencia y asignaturas bajo 4.0.
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 mb-6 dark:bg-slate-800 dark:border-slate-700">
+    <h3 class="text-sm font-semibold text-kallfu-blue uppercase tracking-wider mb-4 flex items-center gap-2 dark:text-blue-300">
+      <i data-lucide="sliders-horizontal" class="w-4 h-4"></i> Herramientas de Filtrado
+    </h3>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-slate-200">Buscar Estudiante</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i data-lucide="search" class="h-4 w-4 text-gray-400 dark:text-slate-500"></i>
+          </div>
+          <input type="text" id="search" placeholder="Nombre o Apellido..." class="pl-10 w-full border border-gray-300 rounded-lg py-2 focus:ring-kallfu-blue focus:border-kallfu-blue sm:text-sm dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100">
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-slate-200">Curso</label>
+        <select id="filter-curso" class="w-full border border-gray-300 rounded-lg py-2 pl-3 pr-10 focus:ring-kallfu-blue focus:border-kallfu-blue sm:text-sm dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100">
+          <option value="ALL">Todos los cursos</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-slate-200">Estudiantes PIE</label>
+        <select id="filter-pie" class="w-full border border-gray-300 rounded-lg py-2 pl-3 pr-10 focus:ring-kallfu-blue focus:border-kallfu-blue sm:text-sm dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100">
+          <option value="ALL">Todos</option>
+          <option value="No PIE">No PIE</option>
+          <option value="PIE transitorio">PIE Transitorio</option>
+          <option value="PIE permanente">PIE Permanente</option>
+        </select>
+      </div>
+      <div>
+        <button id="reset-filters" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 border border-gray-200 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-700 dark:hover:bg-slate-600">
+          <i data-lucide="filter-x" class="w-4 h-4"></i> Limpiar Filtros
+        </button>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 dark:text-slate-400">Criterio MINEDUC (selección múltiple)</label>
+      <div class="flex flex-wrap gap-2" id="criterio-chips">
+        <button data-crit="1" class="chip chip-crit-1 px-3 py-1.5 rounded-full text-xs font-semibold border border-red-300 text-red-600 bg-red-50 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/40">Criterio 1</button>
+        <button data-crit="2" class="chip chip-crit-2 px-3 py-1.5 rounded-full text-xs font-semibold border border-orange-300 text-orange-600 bg-orange-50 dark:bg-orange-500/10 dark:border-orange-500/40">Criterio 2</button>
+        <button data-crit="3" class="chip chip-crit-3 px-3 py-1.5 rounded-full text-xs font-semibold border border-yellow-300 text-yellow-700 bg-yellow-50 dark:bg-yellow-500/10 dark:text-yellow-300 dark:border-yellow-500/40">Criterio 3</button>
+        <button data-crit="4" class="chip chip-crit-4 px-3 py-1.5 rounded-full text-xs font-semibold border border-blue-300 text-kallfu-blue bg-blue-50 dark:bg-blue-500/10 dark:text-blue-300 dark:border-blue-500/40">Criterio 4</button>
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 dark:text-slate-400">Otras Estadísticas</label>
+      <div class="flex flex-wrap gap-2" id="stat-chips">
+        <button data-stat="asist85" class="chip px-3 py-1.5 rounded-full text-xs font-semibold border border-gray-300 text-gray-600 bg-gray-50 dark:bg-slate-900/40 dark:text-slate-300 dark:border-slate-600">Asistencia &lt; 85%</button>
+        <button data-stat="prom45" class="chip px-3 py-1.5 rounded-full text-xs font-semibold border border-gray-300 text-gray-600 bg-gray-50 dark:bg-slate-900/40 dark:text-slate-300 dark:border-slate-600">Promedio &lt; 4.5</button>
+        <button data-stat="prom50" class="chip px-3 py-1.5 rounded-full text-xs font-semibold border border-gray-300 text-gray-600 bg-gray-50 dark:bg-slate-900/40 dark:text-slate-300 dark:border-slate-600">Promedio &lt; 5.0</button>
+        <button data-stat="asig" class="chip px-3 py-1.5 rounded-full text-xs font-semibold border border-gray-300 text-gray-600 bg-gray-50 dark:bg-slate-900/40 dark:text-slate-300 dark:border-slate-600">Con asignaturas reprobadas</button>
+        <button data-stat="atrasos" class="chip px-3 py-1.5 rounded-full text-xs font-semibold border border-gray-300 text-gray-600 bg-gray-50 dark:bg-slate-900/40 dark:text-slate-300 dark:border-slate-600">Con atrasos</button>
+        <button data-stat="retiros" class="chip px-3 py-1.5 rounded-full text-xs font-semibold border border-gray-300 text-gray-600 bg-gray-50 dark:bg-slate-900/40 dark:text-slate-300 dark:border-slate-600">Con retiros de sala</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla -->
+  <div class="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden flex flex-col dark:bg-slate-800 dark:border-slate-700">
+    <div class="overflow-x-auto custom-scrollbar">
+      <table class="min-w-full divide-y divide-gray-200 dark:divide-slate-700">
+        <thead class="bg-gray-50 border-b border-gray-200 dark:bg-slate-900/40 dark:border-slate-700">
+          <tr>
+            <th class="px-4 py-3.5 text-left text-xs font-bold text-kallfu-blue uppercase tracking-wider dark:text-blue-300">Nombre Completo</th>
+            <th class="px-4 py-3.5 text-left text-xs font-bold text-kallfu-blue uppercase tracking-wider dark:text-blue-300">Curso</th>
+            <th class="px-4 py-3.5 text-center text-xs font-bold text-kallfu-blue uppercase tracking-wider dark:text-blue-300">PIE</th>
+            <th class="px-4 py-3.5 text-center text-xs font-bold text-kallfu-blue uppercase tracking-wider dark:text-blue-300">Asist. %</th>
+            <th class="px-4 py-3.5 text-center text-xs font-bold text-kallfu-blue uppercase tracking-wider dark:text-blue-300">Criterio</th>
+            <th class="px-4 py-3.5 text-center text-xs font-bold text-kallfu-blue uppercase tracking-wider dark:text-blue-300">Promedio</th>
+            <th class="px-4 py-3.5 text-center text-xs font-bold text-kallfu-blue uppercase tracking-wider dark:text-blue-300">Asig. &lt;4</th>
+            <th class="px-4 py-3.5 text-center text-xs font-bold text-kallfu-blue uppercase tracking-wider dark:text-blue-300">Atrasos</th>
+            <th class="px-4 py-3.5 text-center text-xs font-bold text-kallfu-blue uppercase tracking-wider dark:text-blue-300">Retiros</th>
+          </tr>
+        </thead>
+        <tbody id="table-body" class="bg-white divide-y divide-gray-200 dark:bg-slate-800 dark:divide-slate-700"></tbody>
+      </table>
+    </div>
+    <div id="empty-state" class="hidden flex-col items-center justify-center py-16 px-4 text-center">
+      <div class="bg-gray-100 rounded-full p-4 mb-4 dark:bg-slate-700"><i data-lucide="search-x" class="w-8 h-8 text-gray-400 dark:text-slate-500"></i></div>
+      <h3 class="text-lg font-semibold text-gray-950 dark:text-slate-50">No se encontraron estudiantes</h3>
+      <p class="text-sm text-gray-500 mt-1 max-w-md dark:text-slate-400">No existen registros que coincidan con los criterios de búsqueda o filtros seleccionados.</p>
+    </div>
+    <div class="bg-gray-50 px-6 py-4 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-2 text-sm text-gray-600 dark:bg-slate-900/40 dark:text-slate-300 dark:border-slate-700">
+      <span class="font-medium">Total: <span id="showing-count" class="font-bold text-kallfu-blue dark:text-blue-300">0</span> estudiantes listados.</span>
+      <span class="text-xs text-gray-400 dark:text-slate-500">Escuela Kallfü Mapu - Chile</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= TAB 2: TRAZABILIDAD ======================= -->
+<section id="panel-traza" class="tab-panel fade-in">
+
+  <div class="mb-6">
+    <h2 class="text-2xl font-bold text-kallfu-blue dark:text-blue-300">Trazabilidad y Evolución de Estudiantes</h2>
+    <p class="text-gray-500 mt-1 dark:text-slate-400">Cruce entre el registro anterior publicado y el registro actual (<span id="fecha-registro-traza">04-08-2026</span>), estudiante por estudiante.</p>
+  </div>
+
+  <div class="bg-kallfu-blue-light border border-blue-100 rounded-xl p-4 mb-8 flex gap-3 items-start dark:bg-slate-800 dark:border-slate-700">
+    <i data-lucide="info" class="w-5 h-5 text-kallfu-blue mt-0.5 flex-shrink-0 dark:text-blue-300"></i>
+    <p class="text-sm text-kallfu-blue leading-relaxed dark:text-blue-300">
+      La comparación se realiza cruzando un <strong>identificador anónimo</strong> de cada estudiante entre ambos registros. Se considera <strong>Mejora</strong> cuando baja la severidad del criterio MINEDUC activo o la asistencia sube 3 puntos o más; <strong>Retroceso</strong> cuando sube la severidad del criterio o la asistencia cae 3 puntos o más; y <strong>Estable</strong> cuando no hay cambios relevantes. Los estudiantes sin registro anterior son ingresos nuevos o no figuraban antes en la ficha de riesgo; los sin registro actual pueden corresponder a egresos, retiros o cambios de establecimiento.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 border-l-4 border-l-kallfu-blue dark:bg-slate-800 dark:border-slate-700">
+      <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 dark:text-slate-400">Con Historial</p>
+      <div class="text-3xl font-bold text-kallfu-blue dark:text-blue-300" id="traza-total">0</div>
+    </div>
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 border-l-4 border-l-kallfu-green dark:bg-slate-800 dark:border-slate-700">
+      <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 flex items-center gap-1 dark:text-slate-400"><i data-lucide="trending-up" class="w-3.5 h-3.5"></i> Mejoraron</p>
+      <div class="text-3xl font-bold text-kallfu-green" id="traza-mejora">0</div>
+    </div>
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 border-l-4 border-l-red-500 dark:bg-slate-800 dark:border-slate-700">
+      <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 flex items-center gap-1 dark:text-slate-400"><i data-lucide="trending-down" class="w-3.5 h-3.5"></i> Retrocedieron</p>
+      <div class="text-3xl font-bold text-red-500" id="traza-retroceso">0</div>
+    </div>
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 border-l-4 border-l-gray-400 dark:bg-slate-800 dark:border-slate-700">
+      <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 dark:text-slate-400">Estables</p>
+      <div class="text-3xl font-bold text-gray-500 dark:text-slate-400" id="traza-estable">0</div>
+    </div>
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 border-l-4 border-l-purple-400 dark:bg-slate-800 dark:border-slate-700">
+      <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 dark:text-slate-400">Sin Historial Previo</p>
+      <div class="text-3xl font-bold text-purple-500 dark:text-purple-300" id="traza-nuevos">0</div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 mb-6 dark:bg-slate-800 dark:border-slate-700">
+    <h3 class="text-sm font-semibold text-kallfu-blue uppercase tracking-wider mb-4 flex items-center gap-2 dark:text-blue-300">
+      <i data-lucide="sliders-horizontal" class="w-4 h-4"></i> Filtrar Comparativa
+    </h3>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-slate-200">Buscar Estudiante</label>
+        <input type="text" id="traza-search" placeholder="Nombre o Apellido..." class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:ring-kallfu-blue focus:border-kallfu-blue sm:text-sm dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-slate-200">Curso Actual</label>
+        <select id="traza-curso" class="w-full border border-gray-300 rounded-lg py-2 pl-3 pr-10 focus:ring-kallfu-blue focus:border-kallfu-blue sm:text-sm dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100">
+          <option value="ALL">Todos los cursos</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1.5 dark:text-slate-200">Estado</label>
+        <select id="traza-estado" class="w-full border border-gray-300 rounded-lg py-2 pl-3 pr-10 focus:ring-kallfu-blue focus:border-kallfu-blue sm:text-sm dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100">
+          <option value="ALL">Todos</option>
+          <option value="Mejora">Mejora</option>
+          <option value="Retroceso">Retroceso</option>
+          <option value="Estable">Estable</option>
+        </select>
+      </div>
+      <div>
+        <button id="traza-reset" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 border border-gray-200 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-700 dark:hover:bg-slate-600">
+          <i data-lucide="filter-x" class="w-4 h-4"></i> Limpiar Filtros
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden flex flex-col mb-8 dark:bg-slate-800 dark:border-slate-700">
+    <div class="overflow-x-auto custom-scrollbar">
+      <table class="min-w-full divide-y divide-gray-200 dark:divide-slate-700">
+        <thead class="bg-gray-50 border-b border-gray-200 dark:bg-slate-900/40 dark:border-slate-700">
+          <tr>
+            <th class="px-4 py-3.5 text-left text-xs font-bold text-kallfu-blue uppercase tracking-wider dark:text-blue-300">Nombre Completo</th>
+            <th class="px-4 py-3.5 text-left text-xs font-bold text-kallfu-blue uppercase tracking-wider dark:text-blue-300">Curso Actual</th>
+            <th class="px-4 py-3.5 text-center text-xs font-bold text-kallfu-blue uppercase tracking-wider dark:text-blue-300">Asistencia (Ant. &rarr; Act.)</th>
+            <th class="px-4 py-3.5 text-center text-xs font-bold text-kallfu-blue uppercase tracking-wider dark:text-blue-300">Criterio (Ant. &rarr; Act.)</th>
+            <th class="px-4 py-3.5 text-center text-xs font-bold text-kallfu-blue uppercase tracking-wider dark:text-blue-300">Evolución</th>
+          </tr>
+        </thead>
+        <tbody id="traza-table-body" class="bg-white divide-y divide-gray-200 dark:bg-slate-800 dark:divide-slate-700"></tbody>
+      </table>
+    </div>
+    <div id="traza-empty-state" class="hidden flex-col items-center justify-center py-16 px-4 text-center">
+      <div class="bg-gray-100 rounded-full p-4 mb-4 dark:bg-slate-700"><i data-lucide="search-x" class="w-8 h-8 text-gray-400 dark:text-slate-500"></i></div>
+      <h3 class="text-lg font-semibold text-gray-950 dark:text-slate-50">No se encontraron estudiantes</h3>
+      <p class="text-sm text-gray-500 mt-1 max-w-md dark:text-slate-400">No existen registros que coincidan con los filtros seleccionados.</p>
+    </div>
+    <div class="bg-gray-50 px-6 py-4 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-2 text-sm text-gray-600 dark:bg-slate-900/40 dark:text-slate-300 dark:border-slate-700">
+      <span class="font-medium">Total: <span id="traza-showing-count" class="font-bold text-kallfu-blue dark:text-blue-300">0</span> estudiantes con historial comparable.</span>
+      <span class="text-xs text-gray-400 dark:text-slate-500">Escuela Kallfü Mapu - Chile</span>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 dark:bg-slate-800 dark:border-slate-700">
+      <h3 class="text-sm font-bold text-kallfu-blue uppercase tracking-wider mb-3 flex items-center gap-2 dark:text-blue-300">
+        <i data-lucide="user-plus" class="w-4 h-4 text-kallfu-green"></i> Sin Registro Previo
+      </h3>
+      <p class="text-sm text-gray-500 mb-3 dark:text-slate-400">Estudiantes del registro actual que no figuraban en la ficha de riesgo anterior (ingresos nuevos o no priorizados antes).</p>
+      <div class="text-2xl font-bold text-kallfu-blue dark:text-blue-300" id="solo-actual-count">0</div>
+    </div>
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 dark:bg-slate-800 dark:border-slate-700">
+      <h3 class="text-sm font-bold text-kallfu-blue uppercase tracking-wider mb-3 flex items-center gap-2 dark:text-blue-300">
+        <i data-lucide="user-minus" class="w-4 h-4 text-red-500"></i> Sin Registro Actual
+      </h3>
+      <p class="text-sm text-gray-500 mb-3 dark:text-slate-400">Estudiantes del registro anterior que ya no figuran (posibles egresos, retiros o cambio de establecimiento).</p>
+      <div class="text-2xl font-bold text-kallfu-blue dark:text-blue-300" id="solo-previo-count">0</div>
+    </div>
+  </div>
+
+</section>
+
+</div>
+
+  <footer class="text-center text-xs text-gray-400 dark:text-slate-500 py-8 border-t border-gray-100 dark:border-slate-800 mt-2">
+    Escuela Intercultural Kallfü Mapu — Monitoreo de riesgo de repitencia conforme a criterios MINEDUC.
+  </footer>
+</main>
+
+<div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-3"></div>
+
+<script>window.PAGINA_ACTUAL = "riesgo";</script>
+<script src="js/config.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/aviso-privacidad.js"></script>
+<script src="js/riesgo.js"></script>
+</body>
+</html>

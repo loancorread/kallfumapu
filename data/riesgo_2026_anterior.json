@@ -1,0 +1,974 @@
+{
+  "estudiantes": [
+    {
+      "apellidos": "Ampuero Segovia",
+      "nombres": "Joshua Izan",
+      "curso": "1° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "id": "57bd46c1b407"
+    },
+    {
+      "apellidos": "Cabrera Reyes",
+      "nombres": "Juan David",
+      "curso": "1° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 79,
+      "id": "0f783e5019bd"
+    },
+    {
+      "apellidos": "Concha Pereira",
+      "nombres": "Mateo Amaru",
+      "curso": "1° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "id": "d63745ec56f9"
+    },
+    {
+      "apellidos": "Davalillo Peña",
+      "nombres": "Juan Jatniel",
+      "curso": "1° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "id": "f8902a1c9172"
+    },
+    {
+      "apellidos": "Espinoza Avila",
+      "nombres": "Ismael Narciso",
+      "curso": "1° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "id": "abedcbf329c9"
+    },
+    {
+      "apellidos": "Faria Cardenas",
+      "nombres": "Joseph Enrique",
+      "curso": "1° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 75,
+      "id": "3dba69fee942"
+    },
+    {
+      "apellidos": "Fuller Suegart",
+      "nombres": "Germano Alessandro",
+      "curso": "1° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "id": "38ce3f9f3f26"
+    },
+    {
+      "apellidos": "Garcia Tovar",
+      "nombres": "Ana Martina",
+      "curso": "1° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "id": "58a13c98053a"
+    },
+    {
+      "apellidos": "Gomez Oyarce",
+      "nombres": "Miranda Valerie",
+      "curso": "1° A",
+      "criterios": [
+        1
+      ],
+      "asistencia": 87,
+      "id": "0b816f01b2c2"
+    },
+    {
+      "apellidos": "Lopez Quintero",
+      "nombres": "Jade Valentina",
+      "curso": "1° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "id": "727f43d2d4ff"
+    },
+    {
+      "apellidos": "Mendoza Yanez",
+      "nombres": "Diannys Azucena del Valle",
+      "curso": "1° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "id": "b0d346d6605f"
+    },
+    {
+      "apellidos": "Moreno González",
+      "nombres": "Alexander Arturo",
+      "curso": "1° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "id": "31dd41804f83"
+    },
+    {
+      "apellidos": "Paulini Reyes",
+      "nombres": "Alessandra Guadalupe",
+      "curso": "1° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 74,
+      "id": "a9f57ff6538a"
+    },
+    {
+      "apellidos": "Romani Fuentealba",
+      "nombres": "Anastasia Pascal",
+      "curso": "1° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 74,
+      "id": "78d00f6866be"
+    },
+    {
+      "apellidos": "Silva Quinteros",
+      "nombres": "Ignacia Pascal",
+      "curso": "1° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 79,
+      "id": "443b9e61fda3"
+    },
+    {
+      "apellidos": "Venegas Valero",
+      "nombres": "Mateo Zacarias",
+      "curso": "1° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 50,
+      "id": "e2f3ce9ba163"
+    },
+    {
+      "apellidos": "AGUILAR GAVIDIA",
+      "nombres": "MIRANDA",
+      "curso": "2° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 74,
+      "id": "bd037a04449a"
+    },
+    {
+      "apellidos": "Alarcón Malebrán",
+      "nombres": "Tomás Ignacio",
+      "curso": "2° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 20,
+      "id": "9e52ac6f5225"
+    },
+    {
+      "apellidos": "Bobadilla Calfio",
+      "nombres": "Leandro Agustin",
+      "curso": "2° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 66,
+      "id": "1c5550f4a5ef"
+    },
+    {
+      "apellidos": "CUELLAR ARAUZ",
+      "nombres": "MATÍAS EMILIANO",
+      "curso": "2° A",
+      "criterios": [
+        3
+      ],
+      "asistencia": 88,
+      "id": "c146139ade13"
+    },
+    {
+      "apellidos": "GARCÍA CURÍN",
+      "nombres": "MILAN BENJAMIN",
+      "curso": "2° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 74,
+      "id": "9db20c91aa15"
+    },
+    {
+      "apellidos": "INFANTE CORREDOR",
+      "nombres": "FIORELLA VALENTINA",
+      "curso": "2° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "id": "2e7cf2011be9"
+    },
+    {
+      "apellidos": "Isla Fuentes",
+      "nombres": "Helena Salomina",
+      "curso": "2° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "id": "546c42d95b62"
+    },
+    {
+      "apellidos": "Leal Araneda",
+      "nombres": "Gaspar Fernando",
+      "curso": "2° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "id": "5aa866e14498"
+    },
+    {
+      "apellidos": "Mogollon Roca",
+      "nombres": "Luz Almendra",
+      "curso": "2° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 74,
+      "id": "237630192ffc"
+    },
+    {
+      "apellidos": "Monsalve Osorio",
+      "nombres": "Sanyher Josue",
+      "curso": "2° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "id": "3bb9bf0eb9b8"
+    },
+    {
+      "apellidos": "Monsalve Osorio",
+      "nombres": "Sanyherlin Ester",
+      "curso": "2° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "id": "d453988ca054"
+    },
+    {
+      "apellidos": "PISCHIUTTA ESPINOZA",
+      "nombres": "LUCIANA",
+      "curso": "2° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "id": "53786110b9ac"
+    },
+    {
+      "apellidos": "PORTO CAMPOS",
+      "nombres": "ISABELLA IGNACIA",
+      "curso": "2° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 70,
+      "id": "17d9b92f4488"
+    },
+    {
+      "apellidos": "Salazar Molina",
+      "nombres": "Victoria Belen",
+      "curso": "2° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 68,
+      "id": "5540ce1ee8be"
+    },
+    {
+      "apellidos": "Yupanqui Zurita",
+      "nombres": "Ambar Yamilet",
+      "curso": "2° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "id": "10dcb5306750"
+    },
+    {
+      "apellidos": "BUSTAMANTE MANZANO",
+      "nombres": "DAVID MATEO",
+      "curso": "3° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 62,
+      "id": "bc5b9966395f"
+    },
+    {
+      "apellidos": "Cartagena Cabrera",
+      "nombres": "León Gaspar",
+      "curso": "3° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 64,
+      "id": "54bfdd7c2b8d"
+    },
+    {
+      "apellidos": "Coronel Torres",
+      "nombres": "John Taylor",
+      "curso": "3° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 51,
+      "id": "1da600d13ec6"
+    },
+    {
+      "apellidos": "Garcia Perdomo",
+      "nombres": "Alana Isabel",
+      "curso": "3° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "id": "00c2b70c1e59"
+    },
+    {
+      "apellidos": "Montero Linarez",
+      "nombres": "Skarleth Isabella",
+      "curso": "3° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "id": "591625141eef"
+    },
+    {
+      "apellidos": "Morán Arancibia",
+      "nombres": "Milan del Piero",
+      "curso": "3° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 66,
+      "id": "99a14ad24e41"
+    },
+    {
+      "apellidos": "RODRIGUEZ FLORES",
+      "nombres": "FRANCISCO JAVIER",
+      "curso": "3° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "id": "10d48c8b4034"
+    },
+    {
+      "apellidos": "Saavedra Mutis",
+      "nombres": "Gael",
+      "curso": "3° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 75,
+      "id": "bdf069fb7420"
+    },
+    {
+      "apellidos": "Vergara Andrades",
+      "nombres": "Valentina Sofía",
+      "curso": "3° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 37,
+      "id": "2c82ceae97bb"
+    },
+    {
+      "apellidos": "Villalba González",
+      "nombres": "Luis Fernando",
+      "curso": "3° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "id": "b10dab755d1e"
+    },
+    {
+      "apellidos": "Aguilar Gavidia",
+      "nombres": "Anastasia",
+      "curso": "4° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 75,
+      "id": "bd40c94f886e"
+    },
+    {
+      "apellidos": "ARAYA URRUTIA",
+      "nombres": "AMARU BENJAMÍN",
+      "curso": "4° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 75,
+      "id": "05a86833bd5d"
+    },
+    {
+      "apellidos": "ARRIETA PEÑALOZA",
+      "nombres": "FRENCY ANDRES",
+      "curso": "4° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "id": "c7071a46827c"
+    },
+    {
+      "apellidos": "Bello Leiva",
+      "nombres": "Isidora Antonia",
+      "curso": "4° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "id": "f07b14ea8339"
+    },
+    {
+      "apellidos": "Bescanza Mujica",
+      "nombres": "Abraham Alexis",
+      "curso": "4° A",
+      "criterios": [
+        3
+      ],
+      "asistencia": 77,
+      "id": "2a6adf6bada0"
+    },
+    {
+      "apellidos": "Castillo Hidalgo",
+      "nombres": "Charles Valentino",
+      "curso": "4° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 50,
+      "id": "20ccf321705c"
+    },
+    {
+      "apellidos": "Mendoza De La Cruz",
+      "nombres": "Jayden Emiliano",
+      "curso": "4° A",
+      "criterios": [
+        1
+      ],
+      "asistencia": 88,
+      "id": "c0d963233a58"
+    },
+    {
+      "apellidos": "MORALES BRICEÑO",
+      "nombres": "WILLIAM NICOLAS",
+      "curso": "4° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 29,
+      "id": "a3797329fb89"
+    },
+    {
+      "apellidos": "RAMIREZ PEROZO",
+      "nombres": "LUCIA VICTORIA",
+      "curso": "4° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "id": "554c32bc739c"
+    },
+    {
+      "apellidos": "RIVERA GARCIA",
+      "nombres": "LUCIANO ANDRES",
+      "curso": "4° A",
+      "criterios": [
+        1
+      ],
+      "asistencia": 94,
+      "id": "7dfdd93c0081"
+    },
+    {
+      "apellidos": "ROMERO GIL",
+      "nombres": "Hassam Caleb",
+      "curso": "4° A",
+      "criterios": [
+        3
+      ],
+      "asistencia": 94,
+      "id": "215196f906f8"
+    },
+    {
+      "apellidos": "SAN MARTÍN ÁVILA",
+      "nombres": "ANTONELLA ISIDORA",
+      "curso": "4° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 75,
+      "id": "329ff72d08a4"
+    },
+    {
+      "apellidos": "SIESQUEN ARMAS",
+      "nombres": "LÍA GENESIS",
+      "curso": "4° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 75,
+      "id": "ac9b3873fa4f"
+    },
+    {
+      "apellidos": "VALDENEGRO ARIAS",
+      "nombres": "MAITE MONSERRAT",
+      "curso": "4° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "id": "ec1f04b35380"
+    },
+    {
+      "apellidos": "Arrieta Peñaloza",
+      "nombres": "Claudia Virginia",
+      "curso": "5° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 79,
+      "id": "3edfbeb2fa43"
+    },
+    {
+      "apellidos": "DIAZ ORELLANA",
+      "nombres": "ORION JESÚS",
+      "curso": "5° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "id": "477e6987859f"
+    },
+    {
+      "apellidos": "FULDA FELIBERT",
+      "nombres": "NICOLE VALENTINA",
+      "curso": "5° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "id": "a7d0b1da0fe7"
+    },
+    {
+      "apellidos": "JEREZ CAMPOS",
+      "nombres": "EMILIA PAZ",
+      "curso": "5° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 42,
+      "id": "64cc43e16b92"
+    },
+    {
+      "apellidos": "MORALES BERNAL",
+      "nombres": "RODRIGO HUMBERTO",
+      "curso": "5° A",
+      "criterios": [
+        3
+      ],
+      "asistencia": 92,
+      "id": "6e1f76f194c1"
+    },
+    {
+      "apellidos": "Peraza Flores",
+      "nombres": "Abdel Francisco",
+      "curso": "5° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 79,
+      "id": "46f102979200"
+    },
+    {
+      "apellidos": "Arancibia Rojas",
+      "nombres": "Almendra",
+      "curso": "6° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 9,
+      "id": "33146c70f034"
+    },
+    {
+      "apellidos": "Araya Urrutia",
+      "nombres": "Pascale Antonella",
+      "curso": "6° A",
+      "criterios": [
+        1
+      ],
+      "asistencia": 85,
+      "id": "26b3d55251af"
+    },
+    {
+      "apellidos": "BUSTAMANTE MANZANO",
+      "nombres": "JUAN PABLO",
+      "curso": "6° A",
+      "criterios": [
+        3
+      ],
+      "asistencia": 77,
+      "id": "78012b835753"
+    },
+    {
+      "apellidos": "Camus Urbina",
+      "nombres": "Patricio Andrés",
+      "curso": "6° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 72,
+      "id": "a848d6c8f801"
+    },
+    {
+      "apellidos": "DIAZ ACOSTA",
+      "nombres": "ROSMARY ALEXANDRA",
+      "curso": "6° A",
+      "criterios": [
+        3
+      ],
+      "asistencia": 94,
+      "id": "bfdd800aeea6"
+    },
+    {
+      "apellidos": "Fuller Suegart",
+      "nombres": "Arantza Victoria",
+      "curso": "6° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "id": "03d29358bfba"
+    },
+    {
+      "apellidos": "GARCIA GALANTON",
+      "nombres": "PEDRO PABLO",
+      "curso": "6° A",
+      "criterios": [
+        1
+      ],
+      "asistencia": 74,
+      "id": "9da1ba56f451"
+    },
+    {
+      "apellidos": "León Torres",
+      "nombres": "Julián Andrés",
+      "curso": "6° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 74,
+      "id": "d59d487f3639"
+    },
+    {
+      "apellidos": "López Moreno",
+      "nombres": "Lennyberth Alejandra",
+      "curso": "6° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 80,
+      "id": "6e958d5e022e"
+    },
+    {
+      "apellidos": "Pais Campos",
+      "nombres": "Isaías Emiliano",
+      "curso": "6° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 74,
+      "id": "e408bd50cd13"
+    },
+    {
+      "apellidos": "VARGAS GARRIDO",
+      "nombres": "MATEO AMARU",
+      "curso": "6° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "id": "f762f78f6193"
+    },
+    {
+      "apellidos": "AEDO CONCHA",
+      "nombres": "ANDRÉS NICOLÁS",
+      "curso": "7° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 74,
+      "id": "70d89ec3f2ca"
+    },
+    {
+      "apellidos": "ALLENDE GÓMEZ",
+      "nombres": "MIGUEL ANGEL",
+      "curso": "7° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 79,
+      "id": "f9b8d7205d9d"
+    },
+    {
+      "apellidos": "CAMACHO MEJIAS",
+      "nombres": "LUIS ENRIQUE",
+      "curso": "7° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 79,
+      "id": "f259a49bce60"
+    },
+    {
+      "apellidos": "CONCHA PEÑALOZA",
+      "nombres": "SAVID ALESSANDRO",
+      "curso": "7° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "id": "b438a1b1a4ed"
+    },
+    {
+      "apellidos": "Flores Mutis",
+      "nombres": "Agustín Jesús",
+      "curso": "7° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 64,
+      "id": "22c7f9387b3d"
+    },
+    {
+      "apellidos": "GONZALEZ CASTRO",
+      "nombres": "SOPHIA DE LOS ANGELES",
+      "curso": "7° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "id": "96f12a6193c0"
+    },
+    {
+      "apellidos": "HERNANDEZ FARIÑES",
+      "nombres": "YVANNA DANIELA",
+      "curso": "7° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "id": "d2b00e3a0632"
+    },
+    {
+      "apellidos": "Marquez Bedoya",
+      "nombres": "Jheyner Gabriel",
+      "curso": "7° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 75,
+      "id": "73ddcc1ecbdb"
+    },
+    {
+      "apellidos": "Milhomme George",
+      "nombres": "Marvens",
+      "curso": "7° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 64,
+      "id": "b98eb3860a2a"
+    },
+    {
+      "apellidos": "MORENO GONZÁLEZ",
+      "nombres": "ERIC EDUARDO",
+      "curso": "7° A",
+      "criterios": [
+        3
+      ],
+      "asistencia": 79,
+      "id": "178a3bd4e26c"
+    },
+    {
+      "apellidos": "NÚÑEZ ARAYA",
+      "nombres": "EMILIO IGNACIO",
+      "curso": "7° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "id": "6621600a08e6"
+    },
+    {
+      "apellidos": "PEREZ HERNANDEZ",
+      "nombres": "JUAN DAVID",
+      "curso": "7° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 75,
+      "id": "56286eeaeaf6"
+    },
+    {
+      "apellidos": "Rauseo Guariman",
+      "nombres": "Sophia Alejandra",
+      "curso": "7° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "id": "763d85958681"
+    },
+    {
+      "apellidos": "Rodriguez Alcon",
+      "nombres": "Mauricio Dodannis",
+      "curso": "7° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "id": "d4f969f04302"
+    },
+    {
+      "apellidos": "Rodríguez Meléndez",
+      "nombres": "Manuel Luis Antoni",
+      "curso": "7° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 70,
+      "id": "2f4844f80e51"
+    },
+    {
+      "apellidos": "Saavedra Mutis",
+      "nombres": "Giovanni Fernando",
+      "curso": "7° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 72,
+      "id": "9899af5a7804"
+    },
+    {
+      "apellidos": "Sellao Velásquez",
+      "nombres": "Maximilano",
+      "curso": "7° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 70,
+      "id": "bb5bf32523ad"
+    },
+    {
+      "apellidos": "ÁGUILA OLGUÍN",
+      "nombres": "JORDÁN ANDRÉS",
+      "curso": "8° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 75,
+      "id": "741a0bb5b0ce"
+    },
+    {
+      "apellidos": "Camus Poblete",
+      "nombres": "Diddier Nicolás Fredy",
+      "curso": "8° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "id": "c6010050392a"
+    },
+    {
+      "apellidos": "Dor",
+      "nombres": "Edwensly",
+      "curso": "8° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 50,
+      "id": "884a2cd0d1b3"
+    },
+    {
+      "apellidos": "ESCARAY ESCARAY",
+      "nombres": "LUIS ALEJANDRO",
+      "curso": "8° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "id": "8273c8362fd9"
+    },
+    {
+      "apellidos": "Maras Serrudo",
+      "nombres": "Wilian",
+      "curso": "8° A",
+      "criterios": [
+        1
+      ],
+      "asistencia": 95,
+      "id": "9a2fcf4ab5aa"
+    },
+    {
+      "apellidos": "Nava Andrade",
+      "nombres": "Sophia Victoria",
+      "curso": "8° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 66,
+      "id": "6c627153c52d"
+    },
+    {
+      "apellidos": "PIÑA DE LA ROSA",
+      "nombres": "FERNANDO ALONSSO",
+      "curso": "8° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "id": "f8c23fc28194"
+    },
+    {
+      "apellidos": "RODRÍGUEZ MELÉNDEZ",
+      "nombres": "MADELINNE MARTINA",
+      "curso": "8° A",
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "id": "dcc422b4f32e"
+    }
+  ]
+}

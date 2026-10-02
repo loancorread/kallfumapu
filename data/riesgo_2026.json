@@ -1,0 +1,2678 @@
+{
+  "fecha_registro": "2026-08-04",
+  "estudiantes": [
+    {
+      "apellidos": "Berrocal Vidal",
+      "nombres": "María Victoria",
+      "curso": "NT1 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "diasAusentes": 17,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 8,
+      "retiros": 5,
+      "id": "589b6e2b93b8"
+    },
+    {
+      "apellidos": "Carrasco Carrasco",
+      "nombres": "Sara Agustina",
+      "curso": "NT1 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 79,
+      "diasAusentes": 19,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 0,
+      "retiros": 6,
+      "id": "2708593e9fba"
+    },
+    {
+      "apellidos": "Castro Guardamino",
+      "nombres": "Santiago",
+      "curso": "NT1 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 79,
+      "diasAusentes": 19,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 22,
+      "retiros": 1,
+      "id": "8148953393cd"
+    },
+    {
+      "apellidos": "Chacare Molina",
+      "nombres": "Rohan",
+      "curso": "NT1 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 75,
+      "diasAusentes": 23,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 0,
+      "retiros": 2,
+      "id": "935195b4cb88"
+    },
+    {
+      "apellidos": "Colonia Armas",
+      "nombres": "Elizabeth Arely",
+      "curso": "NT1 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 10,
+      "retiros": 5,
+      "id": "6128e00f934f"
+    },
+    {
+      "apellidos": "Coronel Torres",
+      "nombres": "Amy Nicole",
+      "curso": "NT1 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 50,
+      "diasAusentes": 46,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 48,
+      "retiros": 2,
+      "id": "a3e78e483153"
+    },
+    {
+      "apellidos": "Del Pino Martínez",
+      "nombres": "Mia Antonella Esterlinda",
+      "curso": "NT1 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 63,
+      "diasAusentes": 34,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 23,
+      "retiros": 0,
+      "id": "31a3a3d6f02c"
+    },
+    {
+      "apellidos": "Gallardo Correa",
+      "nombres": "Alexandra Victoria",
+      "curso": "NT1 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 24,
+      "retiros": 4,
+      "id": "b41bada05d1d"
+    },
+    {
+      "apellidos": "Gutierrez Peñaloza",
+      "nombres": "Bastián Mateo",
+      "curso": "NT1 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "diasAusentes": 21,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 1,
+      "retiros": 2,
+      "id": "dedee55f7a31"
+    },
+    {
+      "apellidos": "Gutierrez Ruedas",
+      "nombres": "Violeth Elaine",
+      "curso": "NT1 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 46,
+      "diasAusentes": 50,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 1,
+      "retiros": 1,
+      "id": "fad4a230e61e"
+    },
+    {
+      "apellidos": "Isla Pérez",
+      "nombres": "Isaac Abraham",
+      "curso": "NT1 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 80,
+      "diasAusentes": 18,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 0,
+      "retiros": 2,
+      "id": "450a6f5fa77e"
+    },
+    {
+      "apellidos": "Medina Linares",
+      "nombres": "Thiago Nicolás",
+      "curso": "NT1 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 73,
+      "diasAusentes": 25,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 11,
+      "retiros": 16,
+      "id": "313dce1cc536"
+    },
+    {
+      "apellidos": "Veliz Rivero",
+      "nombres": "Elaisa Nicoll",
+      "curso": "NT1 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 5,
+      "retiros": 48,
+      "id": "282c15a79c19"
+    },
+    {
+      "apellidos": "Agrinzones Millares",
+      "nombres": "Alanna Sofía",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 0,
+      "retiros": 3,
+      "id": "012bb321971a"
+    },
+    {
+      "apellidos": "Bescanza Mujica",
+      "nombres": "Aram Josue",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "diasAusentes": 17,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 0,
+      "retiros": 1,
+      "id": "a334c7b06eee"
+    },
+    {
+      "apellidos": "Caraballo Gamboa",
+      "nombres": "Pablo Jesús",
+      "curso": "NT2 A",
+      "pie": "PIE transitorio",
+      "nee": "Trastorno específico del lenguaje",
+      "criterios": [
+        4
+      ],
+      "asistencia": 67,
+      "diasAusentes": 30,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 30,
+      "retiros": 8,
+      "id": "3ead2eaba522"
+    },
+    {
+      "apellidos": "Carrasco Carrasco",
+      "nombres": "Alonso Esteban",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 1,
+      "retiros": 6,
+      "id": "566c747841ea"
+    },
+    {
+      "apellidos": "Gallardo Riquelme",
+      "nombres": "Emilia Millaray",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 14,
+      "retiros": 12,
+      "id": "f760c13e471e"
+    },
+    {
+      "apellidos": "Galleguillo Cancino",
+      "nombres": "Emma Grabrielle",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 54,
+      "diasAusentes": 42,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 21,
+      "retiros": 2,
+      "id": "1530024fa732"
+    },
+    {
+      "apellidos": "Guzmán Campos",
+      "nombres": "Antonella Pascal",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 72,
+      "diasAusentes": 25,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 12,
+      "retiros": 5,
+      "id": "ca384cb56b21"
+    },
+    {
+      "apellidos": "León Torres",
+      "nombres": "Ana Shaiel",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "diasAusentes": 21,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 0,
+      "retiros": 1,
+      "id": "cf5d0eff8034"
+    },
+    {
+      "apellidos": "Lobos Vicencio",
+      "nombres": "Trinidad Constanza",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 61,
+      "diasAusentes": 32,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 0,
+      "retiros": 1,
+      "id": "d6318cf98ad8"
+    },
+    {
+      "apellidos": "Materan Aldana",
+      "nombres": "Renata Isabella",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 78,
+      "diasAusentes": 20,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 12,
+      "retiros": 19,
+      "id": "1eacdc755188"
+    },
+    {
+      "apellidos": "Pereira Granado",
+      "nombres": "Emma Sofía",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 48,
+      "diasAusentes": 47,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 7,
+      "retiros": 1,
+      "id": "12f36e5ad83b"
+    },
+    {
+      "apellidos": "Pinto Muñoz",
+      "nombres": "Emilia Antonella",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 63,
+      "diasAusentes": 34,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 47,
+      "retiros": 1,
+      "id": "d03a497890aa"
+    },
+    {
+      "apellidos": "Rodriguez Alcon",
+      "nombres": "Liam Jesús",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 76,
+      "diasAusentes": 20,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 12,
+      "retiros": 0,
+      "id": "6d272f2def37"
+    },
+    {
+      "apellidos": "Rodríguez Orellana",
+      "nombres": "Leah Victoria",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 56,
+      "diasAusentes": 39,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 29,
+      "retiros": 2,
+      "id": "99e34a52e2ec"
+    },
+    {
+      "apellidos": "Saavedra Flores",
+      "nombres": "Samuel Eduardo",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "diasAusentes": 15,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 59,
+      "retiros": 4,
+      "id": "95b9e0c90fc6"
+    },
+    {
+      "apellidos": "Salazar Molina",
+      "nombres": "Violeta Irina",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 67,
+      "diasAusentes": 30,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 19,
+      "retiros": 1,
+      "id": "ffd20d8055e0"
+    },
+    {
+      "apellidos": "Sosa Urdaneta",
+      "nombres": "Benjamin Jose",
+      "curso": "NT2 A",
+      "pie": "PIE transitorio",
+      "nee": "Trastorno específico del lenguaje",
+      "criterios": [
+        4
+      ],
+      "asistencia": 82,
+      "diasAusentes": 16,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 3,
+      "retiros": 3,
+      "id": "f618bc31856a"
+    },
+    {
+      "apellidos": "Suarez Cardenas",
+      "nombres": "Sophia Ariadna",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 67,
+      "diasAusentes": 30,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 6,
+      "retiros": 0,
+      "id": "fa5be47cd85c"
+    },
+    {
+      "apellidos": "Trapen Hueraleo",
+      "nombres": "Celeste Ignacia",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 24,
+      "retiros": 0,
+      "id": "ba4a8fb44edb"
+    },
+    {
+      "apellidos": "Valdés Fuentes",
+      "nombres": "Amaia Luna",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 52,
+      "diasAusentes": 44,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 40,
+      "retiros": 3,
+      "id": "1eef47a27471"
+    },
+    {
+      "apellidos": "Villegas Hernández",
+      "nombres": "Carlota Alejandra",
+      "curso": "NT2 A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 80,
+      "diasAusentes": 18,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 0,
+      "retiros": 3,
+      "id": "686ba7418061"
+    },
+    {
+      "apellidos": "Aguila Hormazábal",
+      "nombres": "Ismael José Francisco",
+      "curso": "1° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": 6.0,
+      "asigBajo4": 0,
+      "atrasos": 17,
+      "retiros": 3,
+      "id": "87e74e38563d"
+    },
+    {
+      "apellidos": "Araque Lopez",
+      "nombres": "Amir Alejandro",
+      "curso": "1° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 44,
+      "diasAusentes": 5,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 2,
+      "retiros": 2,
+      "id": "561f060b9926"
+    },
+    {
+      "apellidos": "Cabrera Reyes",
+      "nombres": "Juan David",
+      "curso": "1° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 82,
+      "diasAusentes": 16,
+      "promedio": 6.6,
+      "asigBajo4": 0,
+      "atrasos": 19,
+      "retiros": 4,
+      "id": "0f783e5019bd"
+    },
+    {
+      "apellidos": "Concha Pereira",
+      "nombres": "Mateo Amaru",
+      "curso": "1° A",
+      "pie": "PIE permanente",
+      "nee": "Autismo",
+      "criterios": [
+        4
+      ],
+      "asistencia": 80,
+      "diasAusentes": 18,
+      "promedio": 6.4,
+      "asigBajo4": 0,
+      "atrasos": 40,
+      "retiros": 2,
+      "id": "d63745ec56f9"
+    },
+    {
+      "apellidos": "Davalillo Peña",
+      "nombres": "Juan Jatniel",
+      "curso": "1° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 72,
+      "diasAusentes": 26,
+      "promedio": 6.5,
+      "asigBajo4": 0,
+      "atrasos": 0,
+      "retiros": 3,
+      "id": "f8902a1c9172"
+    },
+    {
+      "apellidos": "Diaz Marcano",
+      "nombres": "Rodrigo Luciano",
+      "curso": "1° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "diasAusentes": 11,
+      "promedio": 6.2,
+      "asigBajo4": 0,
+      "atrasos": 0,
+      "retiros": 1,
+      "id": "6854ca6bae1f"
+    },
+    {
+      "apellidos": "Espinoza Avila",
+      "nombres": "Ismael Narciso",
+      "curso": "1° A",
+      "pie": "PIE transitorio",
+      "nee": "Trastorno específico del lenguaje",
+      "criterios": [
+        4
+      ],
+      "asistencia": 67,
+      "diasAusentes": 30,
+      "promedio": 6.4,
+      "asigBajo4": 0,
+      "atrasos": 5,
+      "retiros": 8,
+      "id": "abedcbf329c9"
+    },
+    {
+      "apellidos": "Faria Cardenas",
+      "nombres": "Joseph Enrique",
+      "curso": "1° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 79,
+      "diasAusentes": 19,
+      "promedio": 6.6,
+      "asigBajo4": 0,
+      "atrasos": 6,
+      "retiros": 7,
+      "id": "3dba69fee942"
+    },
+    {
+      "apellidos": "Fuller Suegart",
+      "nombres": "Germano Alessandro",
+      "curso": "1° A",
+      "pie": "PIE transitorio",
+      "nee": "Trastorno específico del lenguaje",
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": 5.6,
+      "asigBajo4": 0,
+      "atrasos": 33,
+      "retiros": 1,
+      "id": "38ce3f9f3f26"
+    },
+    {
+      "apellidos": "Garcia Tovar",
+      "nombres": "Ana Martina",
+      "curso": "1° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 69,
+      "diasAusentes": 28,
+      "promedio": 6.7,
+      "asigBajo4": 0,
+      "atrasos": 5,
+      "retiros": 22,
+      "id": "58a13c98053a"
+    },
+    {
+      "apellidos": "Gomez Oyarce",
+      "nombres": "Miranda Valerie",
+      "curso": "1° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": 5.7,
+      "asigBajo4": 0,
+      "atrasos": 13,
+      "retiros": 8,
+      "id": "0b816f01b2c2"
+    },
+    {
+      "apellidos": "Lopez Quintero",
+      "nombres": "Jade Valentina",
+      "curso": "1° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 76,
+      "diasAusentes": 22,
+      "promedio": 6.4,
+      "asigBajo4": 0,
+      "atrasos": 1,
+      "retiros": 3,
+      "id": "727f43d2d4ff"
+    },
+    {
+      "apellidos": "Mendoza Yanez",
+      "nombres": "Diannys Azucena Del Valle",
+      "curso": "1° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 72,
+      "diasAusentes": 26,
+      "promedio": 6.1,
+      "asigBajo4": 0,
+      "atrasos": 11,
+      "retiros": 2,
+      "id": "b0d346d6605f"
+    },
+    {
+      "apellidos": "Moreno González",
+      "nombres": "Alexander Arturo",
+      "curso": "1° A",
+      "pie": "PIE permanente",
+      "nee": "Autismo",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "diasAusentes": 17,
+      "promedio": 5.2,
+      "asigBajo4": 1,
+      "atrasos": 17,
+      "retiros": 17,
+      "id": "31dd41804f83"
+    },
+    {
+      "apellidos": "Paulini Reyes",
+      "nombres": "Alessandra Guadalupe",
+      "curso": "1° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 78,
+      "diasAusentes": 20,
+      "promedio": 5.9,
+      "asigBajo4": 0,
+      "atrasos": 18,
+      "retiros": 3,
+      "id": "a9f57ff6538a"
+    },
+    {
+      "apellidos": "Romani Fuentealba",
+      "nombres": "Anastasia Pascal",
+      "curso": "1° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 76,
+      "diasAusentes": 22,
+      "promedio": 5.7,
+      "asigBajo4": 0,
+      "atrasos": 24,
+      "retiros": 2,
+      "id": "78d00f6866be"
+    },
+    {
+      "apellidos": "Silva Quinteros",
+      "nombres": "Ignacia Pascal",
+      "curso": "1° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 80,
+      "diasAusentes": 18,
+      "promedio": 6.0,
+      "asigBajo4": 0,
+      "atrasos": 22,
+      "retiros": 18,
+      "id": "443b9e61fda3"
+    },
+    {
+      "apellidos": "Venegas Valero",
+      "nombres": "Mateo Zacarias",
+      "curso": "1° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 32,
+      "diasAusentes": 48,
+      "promedio": 4.9,
+      "asigBajo4": 1,
+      "atrasos": 16,
+      "retiros": 1,
+      "id": "e2f3ce9ba163"
+    },
+    {
+      "apellidos": "Aguilar Gavidia",
+      "nombres": "Miranda",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 60,
+      "diasAusentes": 37,
+      "promedio": 6.3,
+      "asigBajo4": 0,
+      "atrasos": 46,
+      "retiros": 0,
+      "id": "bd037a04449a"
+    },
+    {
+      "apellidos": "Alarcón Malebrán",
+      "nombres": "Tomás Ignacio",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 0,
+      "diasAusentes": 93,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 0,
+      "retiros": 0,
+      "id": "9e52ac6f5225"
+    },
+    {
+      "apellidos": "Berrocal Vidal",
+      "nombres": "Liam Arturo",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "diasAusentes": 21,
+      "promedio": 6.4,
+      "asigBajo4": 0,
+      "atrasos": 5,
+      "retiros": 5,
+      "id": "b57177c74ea9"
+    },
+    {
+      "apellidos": "Bobadilla Calfio",
+      "nombres": "Leandro Agustin",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 64,
+      "diasAusentes": 33,
+      "promedio": 5.7,
+      "asigBajo4": 0,
+      "atrasos": 43,
+      "retiros": 7,
+      "id": "1c5550f4a5ef"
+    },
+    {
+      "apellidos": "Concha Peñaloza",
+      "nombres": "Saúl Maximiliano",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": 6.5,
+      "asigBajo4": 0,
+      "atrasos": 4,
+      "retiros": 9,
+      "id": "2f8eea233386"
+    },
+    {
+      "apellidos": "Fulda Felibert",
+      "nombres": "Marcela Valentina",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 80,
+      "diasAusentes": 18,
+      "promedio": 6.4,
+      "asigBajo4": 0,
+      "atrasos": 4,
+      "retiros": 2,
+      "id": "82774787b03a"
+    },
+    {
+      "apellidos": "García Curín",
+      "nombres": "Milan Benjamin",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "diasAusentes": 21,
+      "promedio": 6.5,
+      "asigBajo4": 0,
+      "atrasos": 3,
+      "retiros": 16,
+      "id": "9db20c91aa15"
+    },
+    {
+      "apellidos": "Infante Corredor",
+      "nombres": "Fiorella Valentina",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "diasAusentes": 21,
+      "promedio": 6.1,
+      "asigBajo4": 0,
+      "atrasos": 29,
+      "retiros": 2,
+      "id": "2e7cf2011be9"
+    },
+    {
+      "apellidos": "Leal Araneda",
+      "nombres": "Gaspar Fernando",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "diasAusentes": 17,
+      "promedio": 6.4,
+      "asigBajo4": 0,
+      "atrasos": 13,
+      "retiros": 4,
+      "id": "5aa866e14498"
+    },
+    {
+      "apellidos": "Mogollon Roca",
+      "nombres": "Luz Almendra",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "diasAusentes": 17,
+      "promedio": 5.9,
+      "asigBajo4": 0,
+      "atrasos": 26,
+      "retiros": 2,
+      "id": "237630192ffc"
+    },
+    {
+      "apellidos": "Monsalve Osorio",
+      "nombres": "Sanyher Josue",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "diasAusentes": 17,
+      "promedio": 6.5,
+      "asigBajo4": 0,
+      "atrasos": 3,
+      "retiros": 1,
+      "id": "3bb9bf0eb9b8"
+    },
+    {
+      "apellidos": "Monsalve Osorio",
+      "nombres": "Sanyherlin Ester",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "diasAusentes": 17,
+      "promedio": 6.0,
+      "asigBajo4": 0,
+      "atrasos": 3,
+      "retiros": 2,
+      "id": "d453988ca054"
+    },
+    {
+      "apellidos": "Pavez Montecinos",
+      "nombres": "Juan Pablo",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "diasAusentes": 21,
+      "promedio": 6.9,
+      "asigBajo4": 0,
+      "atrasos": 13,
+      "retiros": 1,
+      "id": "b42a668e57d4"
+    },
+    {
+      "apellidos": "Pischiutta Espinoza",
+      "nombres": "Luciana",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "diasAusentes": 15,
+      "promedio": 6.3,
+      "asigBajo4": 0,
+      "atrasos": 27,
+      "retiros": 0,
+      "id": "53786110b9ac"
+    },
+    {
+      "apellidos": "Porto Campos",
+      "nombres": "Isabella Ignacia",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 67,
+      "diasAusentes": 30,
+      "promedio": 5.6,
+      "asigBajo4": 0,
+      "atrasos": 18,
+      "retiros": 3,
+      "id": "17d9b92f4488"
+    },
+    {
+      "apellidos": "Salazar Molina",
+      "nombres": "Victoria Belen",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 72,
+      "diasAusentes": 26,
+      "promedio": 5.7,
+      "asigBajo4": 0,
+      "atrasos": 19,
+      "retiros": 1,
+      "id": "5540ce1ee8be"
+    },
+    {
+      "apellidos": "Torres Escalona",
+      "nombres": "Matias Alejandro",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 78,
+      "diasAusentes": 20,
+      "promedio": 6.7,
+      "asigBajo4": 0,
+      "atrasos": 2,
+      "retiros": 1,
+      "id": "d3f2b825faaa"
+    },
+    {
+      "apellidos": "Velásquez García",
+      "nombres": "Agustín Emiliano",
+      "curso": "2° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": 6.0,
+      "asigBajo4": 0,
+      "atrasos": 4,
+      "retiros": 4,
+      "id": "a4deda4751fd"
+    },
+    {
+      "apellidos": "Yupanqui Zurita",
+      "nombres": "Ambar Yamilet",
+      "curso": "2° A",
+      "pie": "PIE transitorio",
+      "nee": "Trastorno específico del lenguaje",
+      "criterios": [
+        4
+      ],
+      "asistencia": 79,
+      "diasAusentes": 19,
+      "promedio": 5.5,
+      "asigBajo4": 0,
+      "atrasos": 5,
+      "retiros": 6,
+      "id": "10dcb5306750"
+    },
+    {
+      "apellidos": "Alvarez Gonzalez",
+      "nombres": "Santiago Andres",
+      "curso": "3° A",
+      "pie": "PIE transitorio",
+      "nee": "Trastorno específico del lenguaje",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "diasAusentes": 15,
+      "promedio": 5.8,
+      "asigBajo4": 0,
+      "atrasos": 37,
+      "retiros": 3,
+      "id": "0d2bfd79ec07"
+    },
+    {
+      "apellidos": "Bustamante Manzano",
+      "nombres": "David Mateo",
+      "curso": "3° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 71,
+      "diasAusentes": 26,
+      "promedio": 5.4,
+      "asigBajo4": 1,
+      "atrasos": 11,
+      "retiros": 0,
+      "id": "bc5b9966395f"
+    },
+    {
+      "apellidos": "Cartagena Cabrera",
+      "nombres": "León Gaspar",
+      "curso": "3° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 64,
+      "diasAusentes": 33,
+      "promedio": 6.5,
+      "asigBajo4": 0,
+      "atrasos": 9,
+      "retiros": 2,
+      "id": "54bfdd7c2b8d"
+    },
+    {
+      "apellidos": "Cerda Moraga",
+      "nombres": "Daniela Trinidad",
+      "curso": "3° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 80,
+      "diasAusentes": 18,
+      "promedio": 5.8,
+      "asigBajo4": 0,
+      "atrasos": 1,
+      "retiros": 6,
+      "id": "d7611cddd34d"
+    },
+    {
+      "apellidos": "Coronel Torres",
+      "nombres": "John Taylor",
+      "curso": "3° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 51,
+      "diasAusentes": 45,
+      "promedio": 5.7,
+      "asigBajo4": 0,
+      "atrasos": 48,
+      "retiros": 0,
+      "id": "1da600d13ec6"
+    },
+    {
+      "apellidos": "Garcia Perdomo",
+      "nombres": "Alana Isabel",
+      "curso": "3° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 70,
+      "diasAusentes": 27,
+      "promedio": 6.2,
+      "asigBajo4": 0,
+      "atrasos": 15,
+      "retiros": 1,
+      "id": "00c2b70c1e59"
+    },
+    {
+      "apellidos": "Montero Linarez",
+      "nombres": "Nicole Valentina",
+      "curso": "3° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 75,
+      "diasAusentes": 22,
+      "promedio": 5.8,
+      "asigBajo4": 0,
+      "atrasos": 24,
+      "retiros": 3,
+      "id": "078dcc096151"
+    },
+    {
+      "apellidos": "Montero Linarez",
+      "nombres": "Skarleth Isabella",
+      "curso": "3° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 74,
+      "diasAusentes": 23,
+      "promedio": 6.2,
+      "asigBajo4": 0,
+      "atrasos": 25,
+      "retiros": 3,
+      "id": "591625141eef"
+    },
+    {
+      "apellidos": "Robles Grajales",
+      "nombres": "Joshua Mateo",
+      "curso": "3° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "diasAusentes": 15,
+      "promedio": 5.9,
+      "asigBajo4": 0,
+      "atrasos": 1,
+      "retiros": 1,
+      "id": "634cebf9a1a1"
+    },
+    {
+      "apellidos": "Rodriguez Flores",
+      "nombres": "Francisco Javier",
+      "curso": "3° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 78,
+      "diasAusentes": 20,
+      "promedio": 6.9,
+      "asigBajo4": 0,
+      "atrasos": 2,
+      "retiros": 0,
+      "id": "10d48c8b4034"
+    },
+    {
+      "apellidos": "Romero Marcella",
+      "nombres": "Jesus Antonio",
+      "curso": "3° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "diasAusentes": 15,
+      "promedio": 6.6,
+      "asigBajo4": 0,
+      "atrasos": 4,
+      "retiros": 5,
+      "id": "9a2d2a612152"
+    },
+    {
+      "apellidos": "Saavedra Mutis",
+      "nombres": "Gael",
+      "curso": "3° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 69,
+      "diasAusentes": 28,
+      "promedio": 5.4,
+      "asigBajo4": 1,
+      "atrasos": 45,
+      "retiros": 6,
+      "id": "bdf069fb7420"
+    },
+    {
+      "apellidos": "Sangronis Briceño",
+      "nombres": "Thiago Andres",
+      "curso": "3° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 82,
+      "diasAusentes": 16,
+      "promedio": 6.5,
+      "asigBajo4": 0,
+      "atrasos": 6,
+      "retiros": 1,
+      "id": "10a266447cba"
+    },
+    {
+      "apellidos": "Semprun Rosas",
+      "nombres": "Santiago Uziel",
+      "curso": "3° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 63,
+      "diasAusentes": 4,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 4,
+      "retiros": 1,
+      "id": "e79b0e228344"
+    },
+    {
+      "apellidos": "Villalba González",
+      "nombres": "Luis Fernando",
+      "curso": "3° A",
+      "pie": "PIE permanente",
+      "nee": "Deficiencia intelectual leve",
+      "criterios": [
+        4
+      ],
+      "asistencia": 75,
+      "diasAusentes": 23,
+      "promedio": 6.1,
+      "asigBajo4": 0,
+      "atrasos": 35,
+      "retiros": 2,
+      "id": "b10dab755d1e"
+    },
+    {
+      "apellidos": "Aguilar Gavidia",
+      "nombres": "Anastasia",
+      "curso": "4° A",
+      "pie": "PIE permanente",
+      "nee": "Autismo",
+      "criterios": [
+        4
+      ],
+      "asistencia": 59,
+      "diasAusentes": 38,
+      "promedio": 5.2,
+      "asigBajo4": 0,
+      "atrasos": 46,
+      "retiros": 0,
+      "id": "bd40c94f886e"
+    },
+    {
+      "apellidos": "Araya Urrutia",
+      "nombres": "Amaru Benjamín",
+      "curso": "4° A",
+      "pie": "PIE transitorio",
+      "nee": "Dificultad específica del aprendizaje",
+      "criterios": [
+        4
+      ],
+      "asistencia": 68,
+      "diasAusentes": 29,
+      "promedio": 5.4,
+      "asigBajo4": 1,
+      "atrasos": 54,
+      "retiros": 3,
+      "id": "05a86833bd5d"
+    },
+    {
+      "apellidos": "Arrieta Peñaloza",
+      "nombres": "Frency Andres",
+      "curso": "4° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 79,
+      "diasAusentes": 19,
+      "promedio": 6.3,
+      "asigBajo4": 0,
+      "atrasos": 28,
+      "retiros": 2,
+      "id": "c7071a46827c"
+    },
+    {
+      "apellidos": "Bello Leiva",
+      "nombres": "Isidora Antonia",
+      "curso": "4° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": 6.0,
+      "asigBajo4": 0,
+      "atrasos": 33,
+      "retiros": 3,
+      "id": "f07b14ea8339"
+    },
+    {
+      "apellidos": "Bescanza Mujica",
+      "nombres": "Abraham Alexis",
+      "curso": "4° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        1,
+        4
+      ],
+      "asistencia": 80,
+      "diasAusentes": 18,
+      "promedio": 4.3,
+      "asigBajo4": 3,
+      "atrasos": 0,
+      "retiros": 3,
+      "id": "2a6adf6bada0"
+    },
+    {
+      "apellidos": "Castillo Hidalgo",
+      "nombres": "Charles Valentino",
+      "curso": "4° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 25,
+      "diasAusentes": 41,
+      "promedio": 4.5,
+      "asigBajo4": 1,
+      "atrasos": 12,
+      "retiros": 2,
+      "id": "20ccf321705c"
+    },
+    {
+      "apellidos": "Flores Flores",
+      "nombres": "Tomás Emiliano",
+      "curso": "4° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 76,
+      "diasAusentes": 22,
+      "promedio": 5.7,
+      "asigBajo4": 0,
+      "atrasos": 63,
+      "retiros": 5,
+      "id": "6790aed1fda2"
+    },
+    {
+      "apellidos": "Guzman Garcia",
+      "nombres": "Isabella Cristina",
+      "curso": "4° A",
+      "pie": "PIE transitorio",
+      "nee": "Coeficiente intelectual en el rango límite",
+      "criterios": [
+        3,
+        4
+      ],
+      "asistencia": 82,
+      "diasAusentes": 16,
+      "promedio": 4.8,
+      "asigBajo4": 2,
+      "atrasos": 18,
+      "retiros": 8,
+      "id": "1d081ab2bd02"
+    },
+    {
+      "apellidos": "Martínez Romero",
+      "nombres": "Nicolás Alonso",
+      "curso": "4° A",
+      "pie": "PIE permanente",
+      "nee": "Autismo",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "diasAusentes": 15,
+      "promedio": 6.0,
+      "asigBajo4": 0,
+      "atrasos": 0,
+      "retiros": 8,
+      "id": "d42532e8266f"
+    },
+    {
+      "apellidos": "Mendoza De La Cruz",
+      "nombres": "Jayden Emiliano",
+      "curso": "4° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        1
+      ],
+      "asistencia": 87,
+      "diasAusentes": 12,
+      "promedio": 4.3,
+      "asigBajo4": 3,
+      "atrasos": 8,
+      "retiros": 7,
+      "id": "c0d963233a58"
+    },
+    {
+      "apellidos": "Morales Briceño",
+      "nombres": "William Nicolas",
+      "curso": "4° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 17,
+      "diasAusentes": 77,
+      "promedio": 4.5,
+      "asigBajo4": 1,
+      "atrasos": 12,
+      "retiros": 0,
+      "id": "a3797329fb89"
+    },
+    {
+      "apellidos": "Pavon Gelves",
+      "nombres": "Victoria Isabel",
+      "curso": "4° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 79,
+      "diasAusentes": 19,
+      "promedio": 6.0,
+      "asigBajo4": 0,
+      "atrasos": 21,
+      "retiros": 0,
+      "id": "b5bbecb4d8c8"
+    },
+    {
+      "apellidos": "Ramirez Perozo",
+      "nombres": "Lucia Victoria",
+      "curso": "4° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "diasAusentes": 17,
+      "promedio": 5.7,
+      "asigBajo4": 0,
+      "atrasos": 17,
+      "retiros": 1,
+      "id": "554c32bc739c"
+    },
+    {
+      "apellidos": "Romero Gil",
+      "nombres": "Hassam Caleb",
+      "curso": "4° A",
+      "pie": "PIE permanente",
+      "nee": "Deficiencia intelectual leve",
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": 5.5,
+      "asigBajo4": 0,
+      "atrasos": 20,
+      "retiros": 1,
+      "id": "215196f906f8"
+    },
+    {
+      "apellidos": "San Martín Ávila",
+      "nombres": "Antonella Isidora",
+      "curso": "4° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 72,
+      "diasAusentes": 26,
+      "promedio": 5.4,
+      "asigBajo4": 0,
+      "atrasos": 25,
+      "retiros": 6,
+      "id": "329ff72d08a4"
+    },
+    {
+      "apellidos": "Siesquen Armas",
+      "nombres": "Lía Genesis",
+      "curso": "4° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "diasAusentes": 15,
+      "promedio": 6.3,
+      "asigBajo4": 0,
+      "atrasos": 11,
+      "retiros": 3,
+      "id": "ac9b3873fa4f"
+    },
+    {
+      "apellidos": "Urbano",
+      "nombres": "Juan Esteban",
+      "curso": "4° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 80,
+      "diasAusentes": 18,
+      "promedio": 5.6,
+      "asigBajo4": 0,
+      "atrasos": 5,
+      "retiros": 1,
+      "id": "a9261d540c4e"
+    },
+    {
+      "apellidos": "Valdenegro Arias",
+      "nombres": "Maite Monserrat",
+      "curso": "4° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "diasAusentes": 15,
+      "promedio": 6.3,
+      "asigBajo4": 0,
+      "atrasos": 3,
+      "retiros": 2,
+      "id": "ec1f04b35380"
+    },
+    {
+      "apellidos": "Arrieta Peñaloza",
+      "nombres": "Claudia Virginia",
+      "curso": "5° A",
+      "pie": "PIE permanente",
+      "nee": "Discapacidad auditiva",
+      "criterios": [
+        4
+      ],
+      "asistencia": 76,
+      "diasAusentes": 22,
+      "promedio": 5.9,
+      "asigBajo4": 0,
+      "atrasos": 26,
+      "retiros": 2,
+      "id": "3edfbeb2fa43"
+    },
+    {
+      "apellidos": "Diaz Orellana",
+      "nombres": "Orion Jesús",
+      "curso": "5° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "diasAusentes": 17,
+      "promedio": 5.1,
+      "asigBajo4": 2,
+      "atrasos": 0,
+      "retiros": 3,
+      "id": "477e6987859f"
+    },
+    {
+      "apellidos": "Farias Huarcaya",
+      "nombres": "Heniz Kendrinck",
+      "curso": "5° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        3
+      ],
+      "asistencia": 93,
+      "diasAusentes": 6,
+      "promedio": 4.9,
+      "asigBajo4": 2,
+      "atrasos": 4,
+      "retiros": 3,
+      "id": "237974e7d11c"
+    },
+    {
+      "apellidos": "Fulda Felibert",
+      "nombres": "Nicole Valentina",
+      "curso": "5° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "diasAusentes": 21,
+      "promedio": 6.7,
+      "asigBajo4": 0,
+      "atrasos": 4,
+      "retiros": 1,
+      "id": "a7d0b1da0fe7"
+    },
+    {
+      "apellidos": "Jerez Campos",
+      "nombres": "Emilia Paz",
+      "curso": "5° A",
+      "pie": "PIE transitorio",
+      "nee": "Dificultad específica del aprendizaje",
+      "criterios": [
+        4
+      ],
+      "asistencia": 61,
+      "diasAusentes": 36,
+      "promedio": 5.8,
+      "asigBajo4": 0,
+      "atrasos": 8,
+      "retiros": 4,
+      "id": "64cc43e16b92"
+    },
+    {
+      "apellidos": "Marquez Ramirez",
+      "nombres": "Hillary Isabelle",
+      "curso": "5° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "diasAusentes": 15,
+      "promedio": 6.3,
+      "asigBajo4": 0,
+      "atrasos": 12,
+      "retiros": 2,
+      "id": "ced14ba0b31c"
+    },
+    {
+      "apellidos": "Martinez Soto",
+      "nombres": "Marco Antonio",
+      "curso": "5° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": 6.4,
+      "asigBajo4": 0,
+      "atrasos": 1,
+      "retiros": 0,
+      "id": "081fd1959f06"
+    },
+    {
+      "apellidos": "Peraza Flores",
+      "nombres": "Abdel Francisco",
+      "curso": "5° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 80,
+      "diasAusentes": 17,
+      "promedio": 5.6,
+      "asigBajo4": 0,
+      "atrasos": 1,
+      "retiros": 0,
+      "id": "46f102979200"
+    },
+    {
+      "apellidos": "Arancibia Rojas",
+      "nombres": "Almendra",
+      "curso": "6° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        2,
+        4
+      ],
+      "asistencia": 6,
+      "diasAusentes": 56,
+      "promedio": 4.3,
+      "asigBajo4": 1,
+      "atrasos": 0,
+      "retiros": 0,
+      "id": "33146c70f034"
+    },
+    {
+      "apellidos": "Araya Urrutia",
+      "nombres": "Pascale Antonella",
+      "curso": "6° A",
+      "pie": "No PIE",
+      "nee": "Deficiencia intelectual leve",
+      "criterios": [
+        4
+      ],
+      "asistencia": 74,
+      "diasAusentes": 24,
+      "promedio": 4.9,
+      "asigBajo4": 1,
+      "atrasos": 53,
+      "retiros": 0,
+      "id": "26b3d55251af"
+    },
+    {
+      "apellidos": "Bustamante Manzano",
+      "nombres": "Juan Pablo",
+      "curso": "6° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 75,
+      "diasAusentes": 23,
+      "promedio": 5.0,
+      "asigBajo4": 1,
+      "atrasos": 10,
+      "retiros": 2,
+      "id": "78012b835753"
+    },
+    {
+      "apellidos": "Camus Urbina",
+      "nombres": "Patricio Andrés",
+      "curso": "6° A",
+      "pie": "No PIE",
+      "nee": "Deficiencia intelectual leve",
+      "criterios": [
+        3,
+        4
+      ],
+      "asistencia": 67,
+      "diasAusentes": 30,
+      "promedio": 4.8,
+      "asigBajo4": 2,
+      "atrasos": 41,
+      "retiros": 0,
+      "id": "a848d6c8f801"
+    },
+    {
+      "apellidos": "Cardona Flores",
+      "nombres": "Isabella Del Carmen",
+      "curso": "6° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 80,
+      "diasAusentes": 18,
+      "promedio": 6.2,
+      "asigBajo4": 0,
+      "atrasos": 11,
+      "retiros": 3,
+      "id": "201abc65d115"
+    },
+    {
+      "apellidos": "Fuller Suegart",
+      "nombres": "Arantza Victoria",
+      "curso": "6° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "diasAusentes": 21,
+      "promedio": 6.6,
+      "asigBajo4": 0,
+      "atrasos": 33,
+      "retiros": 1,
+      "id": "6ab3e676739f"
+    },
+    {
+      "apellidos": "Garcia Galanton",
+      "nombres": "Pedro Pablo",
+      "curso": "6° A",
+      "pie": "PIE transitorio",
+      "nee": "Trastorno específico del aprendizaje",
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "diasAusentes": 15,
+      "promedio": 5.0,
+      "asigBajo4": 0,
+      "atrasos": 4,
+      "retiros": 13,
+      "id": "dcda90d259e2"
+    },
+    {
+      "apellidos": "Inostroza Villagrán",
+      "nombres": "Tomás Cristóbal",
+      "curso": "6° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "diasAusentes": 15,
+      "promedio": 5.5,
+      "asigBajo4": 1,
+      "atrasos": 22,
+      "retiros": 12,
+      "id": "5a4ffa49638b"
+    },
+    {
+      "apellidos": "Landaeta Durán",
+      "nombres": "Anaís Millaray",
+      "curso": "6° A",
+      "pie": "PIE transitorio",
+      "nee": "Trastorno específico del aprendizaje",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "diasAusentes": 17,
+      "promedio": 6.1,
+      "asigBajo4": 0,
+      "atrasos": 0,
+      "retiros": 8,
+      "id": "aa303784058a"
+    },
+    {
+      "apellidos": "León Torres",
+      "nombres": "Julián Andrés",
+      "curso": "6° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 78,
+      "diasAusentes": 20,
+      "promedio": 5.7,
+      "asigBajo4": 0,
+      "atrasos": 0,
+      "retiros": 1,
+      "id": "d59d487f3639"
+    },
+    {
+      "apellidos": "López Moreno",
+      "nombres": "Lennyberth Alejandra",
+      "curso": "6° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 78,
+      "diasAusentes": 15,
+      "promedio": 5.6,
+      "asigBajo4": 2,
+      "atrasos": 23,
+      "retiros": 0,
+      "id": "6e958d5e022e"
+    },
+    {
+      "apellidos": "Pais Campos",
+      "nombres": "Isaías Emiliano",
+      "curso": "6° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 68,
+      "diasAusentes": 29,
+      "promedio": 5.5,
+      "asigBajo4": 0,
+      "atrasos": 14,
+      "retiros": 6,
+      "id": "e408bd50cd13"
+    },
+    {
+      "apellidos": "Vargas Garrido",
+      "nombres": "Mateo Amaru",
+      "curso": "6° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 68,
+      "diasAusentes": 29,
+      "promedio": 6.0,
+      "asigBajo4": 0,
+      "atrasos": 26,
+      "retiros": 0,
+      "id": "f762f78f6193"
+    },
+    {
+      "apellidos": "Aedo Concha",
+      "nombres": "Andrés Nicolás",
+      "curso": "7° A",
+      "pie": "PIE transitorio",
+      "nee": "Dificultad específica del aprendizaje",
+      "criterios": [
+        4
+      ],
+      "asistencia": 75,
+      "diasAusentes": 23,
+      "promedio": 5.9,
+      "asigBajo4": 0,
+      "atrasos": 14,
+      "retiros": 1,
+      "id": "70d89ec3f2ca"
+    },
+    {
+      "apellidos": "Allende Gómez",
+      "nombres": "Miguel Angel",
+      "curso": "7° A",
+      "pie": "PIE transitorio",
+      "nee": "Dificultad específica del aprendizaje",
+      "criterios": [
+        4
+      ],
+      "asistencia": 78,
+      "diasAusentes": 20,
+      "promedio": 5.3,
+      "asigBajo4": 0,
+      "atrasos": 51,
+      "retiros": 13,
+      "id": "f9b8d7205d9d"
+    },
+    {
+      "apellidos": "Arrieta Jimenez",
+      "nombres": "Melissa Valentina",
+      "curso": "7° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": 6.3,
+      "asigBajo4": 0,
+      "atrasos": 0,
+      "retiros": 8,
+      "id": "80ba8bfa965a"
+    },
+    {
+      "apellidos": "Cabezas Salgado",
+      "nombres": "Alison Constanza",
+      "curso": "7° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "diasAusentes": 15,
+      "promedio": 6.7,
+      "asigBajo4": 0,
+      "atrasos": 35,
+      "retiros": 2,
+      "id": "b401f72e0750"
+    },
+    {
+      "apellidos": "Camacho Mejias",
+      "nombres": "Luis Enrique",
+      "curso": "7° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 80,
+      "diasAusentes": 18,
+      "promedio": 5.7,
+      "asigBajo4": 1,
+      "atrasos": 38,
+      "retiros": 1,
+      "id": "f259a49bce60"
+    },
+    {
+      "apellidos": "Concha Peñaloza",
+      "nombres": "Savid Alessandro",
+      "curso": "7° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 82,
+      "diasAusentes": 16,
+      "promedio": 6.1,
+      "asigBajo4": 0,
+      "atrasos": 3,
+      "retiros": 8,
+      "id": "b438a1b1a4ed"
+    },
+    {
+      "apellidos": "Flores Mutis",
+      "nombres": "Agustín Jesús",
+      "curso": "7° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 60,
+      "diasAusentes": 37,
+      "promedio": 4.9,
+      "asigBajo4": 1,
+      "atrasos": 40,
+      "retiros": 5,
+      "id": "22c7f9387b3d"
+    },
+    {
+      "apellidos": "Gonzalez Castro",
+      "nombres": "Sophia De Los Angeles",
+      "curso": "7° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "diasAusentes": 15,
+      "promedio": 6.3,
+      "asigBajo4": 0,
+      "atrasos": 15,
+      "retiros": 2,
+      "id": "96f12a6193c0"
+    },
+    {
+      "apellidos": "Marquez Bedoya",
+      "nombres": "Jheyner Gabriel",
+      "curso": "7° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 68,
+      "diasAusentes": 29,
+      "promedio": 5.1,
+      "asigBajo4": 1,
+      "atrasos": 39,
+      "retiros": 5,
+      "id": "73ddcc1ecbdb"
+    },
+    {
+      "apellidos": "Milhomme George",
+      "nombres": "Marvens",
+      "curso": "7° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 69,
+      "diasAusentes": 28,
+      "promedio": 5.3,
+      "asigBajo4": 0,
+      "atrasos": 77,
+      "retiros": 37,
+      "id": "b98eb3860a2a"
+    },
+    {
+      "apellidos": "Moreno González",
+      "nombres": "Eric Eduardo",
+      "curso": "7° A",
+      "pie": "PIE permanente",
+      "nee": "Autismo",
+      "criterios": [
+        4
+      ],
+      "asistencia": 76,
+      "diasAusentes": 22,
+      "promedio": 4.7,
+      "asigBajo4": 1,
+      "atrasos": 18,
+      "retiros": 17,
+      "id": "178a3bd4e26c"
+    },
+    {
+      "apellidos": "Núñez Araya",
+      "nombres": "Emilio Ignacio",
+      "curso": "7° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 82,
+      "diasAusentes": 16,
+      "promedio": 6.0,
+      "asigBajo4": 0,
+      "atrasos": 22,
+      "retiros": 1,
+      "id": "6621600a08e6"
+    },
+    {
+      "apellidos": "Perez Hernandez",
+      "nombres": "Juan David",
+      "curso": "7° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 78,
+      "diasAusentes": 20,
+      "promedio": 6.2,
+      "asigBajo4": 0,
+      "atrasos": 34,
+      "retiros": 1,
+      "id": "56286eeaeaf6"
+    },
+    {
+      "apellidos": "Ramirez Castro",
+      "nombres": "Amberly Isabella",
+      "curso": "7° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "diasAusentes": 15,
+      "promedio": 6.2,
+      "asigBajo4": 0,
+      "atrasos": 39,
+      "retiros": 5,
+      "id": "60925e4b1e29"
+    },
+    {
+      "apellidos": "Rauseo Guariman",
+      "nombres": "Sophia Alejandra",
+      "curso": "7° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 83,
+      "diasAusentes": 15,
+      "promedio": 6.3,
+      "asigBajo4": 0,
+      "atrasos": 18,
+      "retiros": 1,
+      "id": "763d85958681"
+    },
+    {
+      "apellidos": "Rodriguez Alcon",
+      "nombres": "Mauricio Dodannis",
+      "curso": "7° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 77,
+      "diasAusentes": 20,
+      "promedio": 5.6,
+      "asigBajo4": 0,
+      "atrasos": 15,
+      "retiros": 1,
+      "id": "d4f969f04302"
+    },
+    {
+      "apellidos": "Rodríguez Meléndez",
+      "nombres": "Manuel Luis Antoni",
+      "curso": "7° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 61,
+      "diasAusentes": 36,
+      "promedio": 5.4,
+      "asigBajo4": 0,
+      "atrasos": 47,
+      "retiros": 1,
+      "id": "2f4844f80e51"
+    },
+    {
+      "apellidos": "Saavedra Mutis",
+      "nombres": "Giovanni Fernando",
+      "curso": "7° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 66,
+      "diasAusentes": 31,
+      "promedio": 5.2,
+      "asigBajo4": 1,
+      "atrasos": 45,
+      "retiros": 6,
+      "id": "9899af5a7804"
+    },
+    {
+      "apellidos": "Sellao Velásquez",
+      "nombres": "Maximilano",
+      "curso": "7° A",
+      "pie": "PIE permanente",
+      "nee": "Autismo",
+      "criterios": [
+        4
+      ],
+      "asistencia": 59,
+      "diasAusentes": 38,
+      "promedio": 5.5,
+      "asigBajo4": 0,
+      "atrasos": 3,
+      "retiros": 17,
+      "id": "bb5bf32523ad"
+    },
+    {
+      "apellidos": "Águila Olguín",
+      "nombres": "Jordán Andrés",
+      "curso": "8° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 75,
+      "diasAusentes": 23,
+      "promedio": 5.6,
+      "asigBajo4": 0,
+      "atrasos": 34,
+      "retiros": 12,
+      "id": "741a0bb5b0ce"
+    },
+    {
+      "apellidos": "Camus Poblete",
+      "nombres": "Diddier Nicolás Fredy",
+      "curso": "8° A",
+      "pie": "PIE permanente",
+      "nee": "Deficiencia intelectual moderada",
+      "criterios": [
+        4
+      ],
+      "asistencia": 80,
+      "diasAusentes": 18,
+      "promedio": 6.2,
+      "asigBajo4": 0,
+      "atrasos": 10,
+      "retiros": 5,
+      "id": "c6010050392a"
+    },
+    {
+      "apellidos": "Cristi Lorca",
+      "nombres": "Nicolás Jesús",
+      "curso": "8° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 75,
+      "diasAusentes": 2,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 3,
+      "retiros": 1,
+      "id": "2c1fecc283a1"
+    },
+    {
+      "apellidos": "Dor",
+      "nombres": "Edwensly",
+      "curso": "8° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 41,
+      "diasAusentes": 53,
+      "promedio": null,
+      "asigBajo4": 0,
+      "atrasos": 4,
+      "retiros": 2,
+      "id": "884a2cd0d1b3"
+    },
+    {
+      "apellidos": "Escaray Escaray",
+      "nombres": "Luis Alejandro",
+      "curso": "8° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 76,
+      "diasAusentes": 22,
+      "promedio": 5.5,
+      "asigBajo4": 1,
+      "atrasos": 11,
+      "retiros": 6,
+      "id": "8273c8362fd9"
+    },
+    {
+      "apellidos": "González Fernández",
+      "nombres": "Jesus Moises",
+      "curso": "8° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": 6.0,
+      "asigBajo4": 0,
+      "atrasos": 6,
+      "retiros": 0,
+      "id": "cbdc4a62fcb7"
+    },
+    {
+      "apellidos": "Maras Serrudo",
+      "nombres": "Wilian",
+      "curso": "8° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        1
+      ],
+      "asistencia": 94,
+      "diasAusentes": 4,
+      "promedio": 4.2,
+      "asigBajo4": 5,
+      "atrasos": 5,
+      "retiros": 9,
+      "id": "9a2fcf4ab5aa"
+    },
+    {
+      "apellidos": "Michea Navarro",
+      "nombres": "Anthony Elías Maximiliano",
+      "curso": "8° A",
+      "pie": "PIE transitorio",
+      "nee": "Dificultad específica del aprendizaje",
+      "criterios": [
+        4
+      ],
+      "asistencia": 84,
+      "diasAusentes": 14,
+      "promedio": 5.4,
+      "asigBajo4": 0,
+      "atrasos": 31,
+      "retiros": 5,
+      "id": "868bd296f781"
+    },
+    {
+      "apellidos": "Nava Andrade",
+      "nombres": "Sophia Victoria",
+      "curso": "8° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 78,
+      "diasAusentes": 20,
+      "promedio": 6.5,
+      "asigBajo4": 0,
+      "atrasos": 12,
+      "retiros": 0,
+      "id": "6c627153c52d"
+    },
+    {
+      "apellidos": "Perez Mujica",
+      "nombres": "Johan Javier",
+      "curso": "8° A",
+      "pie": "PIE transitorio",
+      "nee": "Dificultad específica del aprendizaje",
+      "criterios": [
+        4
+      ],
+      "asistencia": 79,
+      "diasAusentes": 19,
+      "promedio": 5.5,
+      "asigBajo4": 0,
+      "atrasos": 0,
+      "retiros": 1,
+      "id": "1ebba75c58bc"
+    },
+    {
+      "apellidos": "Piña De La Rosa",
+      "nombres": "Fernando Alonsso",
+      "curso": "8° A",
+      "pie": "PIE permanente",
+      "nee": "Deficiencia intelectual leve",
+      "criterios": [
+        4
+      ],
+      "asistencia": 81,
+      "diasAusentes": 17,
+      "promedio": 5.2,
+      "asigBajo4": 1,
+      "atrasos": 39,
+      "retiros": 0,
+      "id": "f8c23fc28194"
+    },
+    {
+      "apellidos": "Rodríguez Meléndez",
+      "nombres": "Madelinne Martina",
+      "curso": "8° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        4
+      ],
+      "asistencia": 65,
+      "diasAusentes": 32,
+      "promedio": 5.3,
+      "asigBajo4": 0,
+      "atrasos": 51,
+      "retiros": 4,
+      "id": "dcc422b4f32e"
+    },
+    {
+      "apellidos": "Rodríguez Montano",
+      "nombres": "Xaimon Yasser",
+      "curso": "8° A",
+      "pie": "No PIE",
+      "nee": null,
+      "criterios": [
+        3
+      ],
+      "asistencia": 93,
+      "diasAusentes": 4,
+      "promedio": 4.3,
+      "asigBajo4": 2,
+      "atrasos": 7,
+      "retiros": 2,
+      "id": "a40e5cad83d4"
+    }
+  ]
+}

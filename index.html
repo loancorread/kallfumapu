@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Escuela Intercultural Kallfü Mapu — Rendimiento Académico</title>
+<meta name="description" content="Dashboard de rendimiento académico, asistencia e histórico de la Escuela Intercultural Kallfü Mapu." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          'kallfu-blue': '#1c4587',
+          'kallfu-green': '#5bcb96',
+          'kallfu-blue-light': '#eef2f9',
+          'kallfu-green-light': '#e6f7ef',
+        }
+      }
+    }
+  }
+</script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="con-sidebar text-gray-800 dark:text-slate-100 antialiased">
+<div id="sidebar-mount"></div>
+
+<main class="contenido-principal">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+
+    <section class="mb-10">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-kallfu-blue-light dark:bg-slate-800 text-kallfu-blue dark:text-blue-300 text-xs font-bold uppercase tracking-wider border border-blue-100 dark:border-slate-700">
+        <i data-lucide="route" class="w-3.5 h-3.5"></i> Trayectoria Educativa
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-bold text-kallfu-blue dark:text-blue-300 mt-4 leading-tight">
+        Panel de rendimiento académico
+      </h1>
+      <p class="text-gray-500 dark:text-slate-400 mt-2 max-w-2xl">
+        Seleccione un curso para ver el listado de estudiantes, su asistencia, resultados por asignatura y evolución histórica (2024–2026).
+      </p>
+      <div class="mt-5 flex flex-wrap items-center gap-3">
+        <span id="anio-actual-badge" class="inline-flex items-center gap-2 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg px-4 py-2 text-sm font-semibold text-gray-700 dark:text-slate-200 shadow-sm">
+          <i data-lucide="calendar" class="w-4 h-4 text-kallfu-green"></i> Año lectivo actual: 2026
+        </span>
+      </div>
+      <p class="mt-3 text-xs text-gray-400 dark:text-slate-500 max-w-2xl">
+        El año 2026 se encuentra en curso: los promedios, la asistencia y la situación de promoción son datos parciales (Periodos 1 y 2) y se actualizarán durante el año escolar.
+      </p>
+    </section>
+
+    <div id="grid-cursos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" aria-label="Listado de cursos"></div>
+
+  </div>
+
+  <footer class="text-center text-xs text-gray-400 dark:text-slate-500 py-8 border-t border-gray-100 dark:border-slate-800 mt-6">
+    Datos provenientes de los registros oficiales de rendimiento académico del establecimiento (2024–2026).
+  </footer>
+</main>
+
+<script>window.PAGINA_ACTUAL = "trayectoria";</script>
+<script src="js/config.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/aviso-privacidad.js"></script>
+<script src="js/data-loader.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    document.getElementById("anio-actual-badge").innerHTML =
+      `<i data-lucide="calendar" class="w-4 h-4 text-kallfu-green"></i> Año lectivo actual: ${CONFIG.anioActual}`;
+    lucide.createIcons();
+
+    let datosAnio;
+    try {
+      datosAnio = await DataLoader.cargarAnio(CONFIG.anioActual);
+    } catch (e) {
+      document.getElementById("grid-cursos").innerHTML =
+        `<p class="text-gray-500 dark:text-slate-400 col-span-full">No fue posible cargar los datos del año ${CONFIG.anioActual}.</p>`;
+      return;
+    }
+
+    const grid = document.getElementById("grid-cursos");
+    grid.innerHTML = "";
+    const ACCENTS = ["border-l-kallfu-blue", "border-l-kallfu-green", "border-l-cyan-500", "border-l-purple-500", "border-l-orange-500", "border-l-emerald-500", "border-l-amber-500", "border-l-rose-500"];
+    CONFIG.cursos.forEach((curso, i) => {
+      const info = datosAnio.cursos[curso];
+      const n = info ? info.estudiantes.length : 0;
+      const a = document.createElement("a");
+      a.href = `curso.html?curso=${encodeURIComponent(curso)}`;
+      a.className = `group bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-md border border-gray-100 dark:border-slate-700 border-l-4 ${ACCENTS[i % ACCENTS.length]} p-5 flex flex-col gap-3 transition-all hover:-translate-y-0.5`;
+      a.innerHTML = `
+        <div class="flex items-center justify-between">
+          <div class="w-11 h-11 rounded-lg bg-kallfu-blue-light dark:bg-slate-700 text-kallfu-blue dark:text-blue-300 flex items-center justify-center font-bold text-sm">${curso.replace(" A", "")}</div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-gray-300 dark:text-slate-600 group-hover:text-kallfu-green group-hover:translate-x-0.5 transition-all"></i>
+        </div>
+        <div class="text-lg font-bold text-gray-800 dark:text-slate-100">${curso.replace("°", "° Básico")}</div>
+        <div class="text-sm text-gray-500 dark:text-slate-400">${n} estudiante${n === 1 ? "" : "s"} matriculados</div>
+      `;
+      grid.appendChild(a);
+    });
+    lucide.createIcons();
+  });
+</script>
+</body>
+</html>
