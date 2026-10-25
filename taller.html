@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Taller Datos Kallfü Mapu</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app móvil de una columna (participantes) + modo proyección a pantalla completa (facilitador). Paleta institucional azul/verde Kallfü. */
+:root{
+  --bg:#f3f6fa; --surface:#ffffff; --sunk:#e9eef5; --ink:#132033; --muted:#566479; --line:#d6dee9;
+  --blue:#1c4587; --blue-ink:#ffffff; --blue-soft:#dfe8f7; --green:#227a55; --green-soft:#5bcb96; --green-tint:#dff4ea;
+  --n1:#c2410c; --n1-tint:#fbe5da; --n2:#b7862b; --n2-tint:#f6ecd6; --n3:#227a55;
+  --focus:#2563eb;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-data:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c1422; --surface:#132036; --sunk:#0f1a2c; --ink:#e6edf7; --muted:#9aa9bf; --line:#263752;
+  --blue:#7ea4ea; --blue-ink:#0c1422; --blue-soft:#1b2c4a; --green:#5bcb96; --green-soft:#5bcb96; --green-tint:#143528;
+  --n1:#f08a5d; --n1-tint:#3a2016; --n2:#e0b55e; --n2-tint:#352a14; --n3:#5bcb96; --focus:#93b4ff; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1422; --surface:#132036; --sunk:#0f1a2c; --ink:#e6edf7; --muted:#9aa9bf; --line:#263752;
+  --blue:#7ea4ea; --blue-ink:#0c1422; --blue-soft:#1b2c4a; --green:#5bcb96; --green-soft:#5bcb96; --green-tint:#143528;
+  --n1:#f08a5d; --n1-tint:#3a2016; --n2:#e0b55e; --n2-tint:#352a14; --n3:#5bcb96; --focus:#93b4ff; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{background:var(--bg)}
+body{color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--blue)}
+h1,h2,h3{font-family:var(--f-display);line-height:1.15;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:var(--blue)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.num{font-family:var(--f-data);font-variant-numeric:tabular-nums}
+.eyebrow{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* ---- franja tejida (ñimin geométrico) ---- */
+.weave{height:12px;background-color:var(--blue);
+  background-image:linear-gradient(135deg,var(--green-soft) 25%,transparent 25%),linear-gradient(225deg,var(--green-soft) 25%,transparent 25%),linear-gradient(315deg,var(--green-soft) 25%,transparent 25%),linear-gradient(45deg,var(--green-soft) 25%,transparent 25%);
+  background-size:12px 12px;background-position:0 0,6px 0,6px -6px,0 6px}
+
+/* ---- barra superior ---- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--blue);color:var(--blue-ink)}
+.top .wrap{display:flex;align-items:center;gap:12px;padding-block:10px}
+.top .brand{font-family:var(--f-display);font-weight:700;font-size:1rem;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top button{background:transparent;border:1px solid color-mix(in srgb,var(--blue-ink) 45%,transparent);color:var(--blue-ink);border-radius:999px;padding:4px 12px;font-size:.85rem;cursor:pointer}
+
+main{padding-block:20px 110px}
+section.view{display:grid;gap:18px}
+
+/* ---- inicio ---- */
+.hero{display:grid;gap:10px;padding-block:6px 4px}
+.hero h1{font-size:clamp(1.8rem,6vw,2.6rem);font-weight:800;letter-spacing:-.01em}
+.hero p{color:var(--muted);max-width:60ch}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{display:grid;gap:4px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;cursor:pointer;text-decoration:none;color:var(--ink)}
+.tile:hover{border-color:var(--blue)}
+.tile b{font-family:var(--f-display);font-size:1.25rem}
+.tile span{color:var(--muted);font-size:.9rem}
+.tile.wide{grid-column:1/-1}
+.tile.primary{background:var(--blue);color:var(--blue-ink);border-color:var(--blue)}
+.tile.primary span{color:inherit;opacity:.85}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:12px;min-width:0}
+.card h2{font-size:1.15rem}
+.card h3{font-size:1rem}
+.note{font-size:.88rem;color:var(--muted)}
+.callout{border-left:4px solid var(--blue);background:var(--blue-soft);padding:10px 12px;border-radius:0 8px 8px 0;font-size:.95rem}
+
+/* ---- tabs grupo ---- */
+.ghead{display:grid;gap:4px}
+.ghead h1{font-size:1.7rem;font-weight:800}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tabbar .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding-block:6px}
+.tabbar button{border:0;background:transparent;border-radius:8px;padding:8px 4px;font-weight:600;font-size:.85rem;color:var(--muted);cursor:pointer;display:grid;justify-items:center;gap:2px}
+.tabbar button i{font-style:normal;font-family:var(--f-data);font-size:.7rem}
+.tabbar button[aria-selected="true"]{background:var(--blue-soft);color:var(--blue)}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-weight:600;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--blue-ink)}
+
+/* ---- datos ---- */
+.src{display:grid;gap:12px}
+.src-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.src-h small{color:var(--muted);font-size:.8rem}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.kpi{background:var(--sunk);border-radius:8px;padding:10px;display:grid;gap:2px;min-width:0}
+.kpi .v{font-family:var(--f-data);font-size:1.3rem;font-weight:600;font-variant-numeric:tabular-nums}
+.kpi .l{font-size:.8rem;color:var(--muted);line-height:1.25}
+.kpi.alert{background:var(--n1-tint)} .kpi.alert .v{color:var(--n1)}
+.stack{display:flex;height:26px;border-radius:6px;overflow:hidden;background:var(--sunk)}
+.stack div{display:flex;align-items:center;justify-content:center;font-family:var(--f-data);font-size:.75rem;font-weight:600;color:#fff;min-width:0;overflow:hidden;white-space:nowrap}
+.stack .s1{background:var(--n1)} .stack .s2{background:var(--n2)} .stack .s3{background:var(--n3)}
+:root[data-theme="dark"] .stack div{color:#0c1422}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .stack div{color:#0c1422}}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px;background:var(--c)}
+.bars{display:grid;gap:7px}
+.bar{display:grid;grid-template-columns:minmax(0,1fr) 52px;gap:4px 10px;align-items:center;font-size:.88rem}
+.bar .t{grid-column:1/-1;display:flex;justify-content:space-between;gap:8px}
+.bar .track{height:8px;background:var(--sunk);border-radius:4px;overflow:hidden;grid-column:1/2}
+.bar .fill{height:100%;background:var(--blue);border-radius:4px}
+.bar.low .fill{background:var(--n1)}
+.bar .pv{font-family:var(--f-data);font-size:.85rem;text-align:right;font-variant-numeric:tabular-nums}
+.items{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.items li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:baseline;font-size:.9rem;padding:8px 10px;background:var(--sunk);border-radius:8px}
+.items .q{font-family:var(--f-data);font-size:.72rem;color:var(--muted);white-space:nowrap}
+.items .p{font-family:var(--f-data);font-weight:600;color:var(--n1)}
+.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.mini div{text-align:center;padding:8px 4px;border-radius:8px;background:var(--sunk)}
+.mini b{display:block;font-family:var(--f-data);font-size:1.15rem}
+.mini small{font-size:.72rem;color:var(--muted)}
+.mini .up b{color:var(--green)} .mini .down b{color:var(--n1)}
+.coh{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:.88rem}
+.coh span{background:var(--sunk);border-radius:6px;padding:3px 8px;font-family:var(--f-data);font-size:.8rem}
+.lnk{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:.9rem}
+.pistas{display:grid;gap:8px;margin:0;padding:0;list-style:none;counter-reset:p}
+.pistas li{counter-increment:p;display:grid;grid-template-columns:28px minmax(0,1fr);gap:8px;font-size:.95rem}
+.pistas li::before{content:counter(p);width:24px;height:24px;border-radius:50%;background:var(--blue);color:var(--blue-ink);font-family:var(--f-data);font-size:.8rem;display:grid;place-items:center}
+details.src-d{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+details.src-d>summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+details.src-d>summary::-webkit-details-marker{display:none}
+details.src-d>summary h3{font-size:1.02rem}
+details.src-d>summary .tag{font-size:.75rem;color:var(--muted)}
+details.src-d>summary::after{content:"+";font-family:var(--f-data);font-size:1.2rem;color:var(--muted)}
+details.src-d[open]>summary::after{content:"–"}
+details.src-d>.body{padding:0 16px 16px;display:grid;gap:12px}
+.na{font-size:.9rem;color:var(--muted);font-style:italic}
+
+/* ---- pauta ---- */
+.mom{display:grid;gap:10px}
+.mom-h{display:flex;align-items:center;gap:12px}
+.mom-h .badge{font-family:var(--f-data);font-weight:600;background:var(--blue);color:var(--blue-ink);border-radius:8px;padding:6px 10px;font-size:.85rem;white-space:nowrap}
+.mom-h h2{font-size:1.25rem;flex:1;min-width:0}
+.mom ol,.mom ul{margin:0;padding-left:1.2em;display:grid;gap:6px}
+.timer{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.timer .clock{font-family:var(--f-data);font-size:1.6rem;font-weight:600;min-width:5ch;font-variant-numeric:tabular-nums}
+.timer .clock.over{color:var(--n1)}
+.btn{border:1px solid var(--blue);background:var(--blue);color:var(--blue-ink);border-radius:8px;padding:9px 14px;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--blue)}
+.btn:disabled{opacity:.5;cursor:default}
+.roles{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.role{background:var(--sunk);border-radius:8px;padding:10px;font-size:.9rem}
+.role b{display:block;font-family:var(--f-display)}
+
+/* ---- insumo ---- */
+form{display:grid;gap:16px}
+fieldset{border:1px solid var(--line);border-radius:var(--r);padding:14px;margin:0;display:grid;gap:12px;background:var(--surface);min-width:0}
+legend{font-family:var(--f-display);font-weight:700;padding:0 6px;font-size:1.05rem}
+label{display:grid;gap:4px;font-weight:600;font-size:.92rem}
+label small{font-weight:400;color:var(--muted)}
+input[type=text],input[type=number],select,textarea{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:9px 10px;font-weight:400}
+textarea{min-height:72px;resize:vertical}
+.row2{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips label{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:.85rem;border:1px solid var(--line);border-radius:999px;padding:5px 10px;cursor:pointer;background:var(--bg)}
+.chips input{accent-color:var(--blue)}
+.sub{border-top:1px dashed var(--line);padding-top:12px;display:grid;gap:10px}
+.sub-h{font-family:var(--f-data);font-size:.78rem;color:var(--blue);font-weight:600;letter-spacing:.04em}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.status{font-size:.88rem;color:var(--muted)}
+.status.ok{color:var(--green)} .status.err{color:var(--n1)}
+.counter{font-family:var(--f-data);font-size:.75rem;color:var(--muted);justify-self:end}
+
+/* ---- plenario ---- */
+.plen{display:grid;gap:14px}
+.plen .big{font-family:var(--f-display);font-size:1.5rem;font-weight:700;line-height:1.2}
+.plen dl{margin:0;display:grid;gap:10px}
+.plen dt{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.plen dd{margin:0;font-size:1.05rem}
+
+/* ---- apuesta ---- */
+.bet{display:grid;gap:10px}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.opts button{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:12px 8px;font-family:var(--f-data);font-weight:600;font-size:1.05rem;cursor:pointer}
+.opts button[aria-pressed="true"]{border-color:var(--blue);background:var(--blue-soft);color:var(--blue)}
+.opts button.right{border-color:var(--green);background:var(--green-tint);color:var(--green)}
+.reveal{border-radius:8px;background:var(--green-tint);padding:10px 12px;font-size:.95rem}
+
+/* ---- proyección ---- */
+body.present{overflow:hidden}
+body.present .top,body.present main,body.present .tabbar{display:none}
+#deck{position:fixed;inset:0;display:none;background:var(--bg);z-index:20;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body.present #deck{display:grid;grid-template-rows:auto 1fr auto}
+.split{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(14px,2.2vw,28px);align-items:center}
+@media (max-width:700px){.split{grid-template-columns:1fr}}
+.slide{display:none;overflow:auto;padding:clamp(18px,3vw,44px) max(clamp(20px,5vw,72px),env(safe-area-inset-left,0px));gap:clamp(14px,2.2vw,28px);align-content:start}
+.slide.on{display:grid}
+.slide h1{font-size:clamp(2rem,5vw,4.2rem);font-weight:800;letter-spacing:-.015em;max-width:20ch}
+.slide h2{font-size:clamp(1.6rem,3.4vw,3rem);font-weight:800;max-width:26ch}
+.slide p.lead{font-size:clamp(1.05rem,1.8vw,1.6rem);color:var(--muted);max-width:52ch}
+.slide .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(10px,1.6vw,20px)}
+.slide .grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:clamp(10px,1.6vw,20px)}
+.pc{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:clamp(14px,1.8vw,24px);display:grid;gap:8px;align-content:start;min-width:0}
+.pc h3{font-size:clamp(1.1rem,1.7vw,1.5rem)}
+.pc p,.pc li{font-size:clamp(.95rem,1.25vw,1.15rem)}
+.pc ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+.pc .bignum{font-family:var(--f-data);font-size:clamp(1.7rem,3.2vw,2.9rem);font-weight:600;color:var(--blue);line-height:1}
+.pc.alert .bignum{color:var(--n1)}
+.deck-top{display:flex;align-items:center;gap:12px;padding:8px max(16px,env(safe-area-inset-left,0px)) 8px;background:var(--blue);color:var(--blue-ink)}
+.deck-top .brand{font-family:var(--f-display);font-weight:700;flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.deck-top .clockmini{font-family:var(--f-data);font-size:.95rem}
+.deck-nav{display:flex;align-items:center;gap:10px;padding:10px max(16px,env(safe-area-inset-left,0px));border-top:1px solid var(--line);background:var(--surface)}
+.deck-nav .dots{flex:1;display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.deck-nav .dots button{width:10px;height:10px;border-radius:50%;border:0;background:var(--line);padding:0;cursor:pointer}
+.deck-nav .dots button[aria-current="true"]{background:var(--blue);width:24px;border-radius:5px}
+.deck-nav .btn{padding:7px 14px}
+.qrs{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:clamp(10px,1.6vw,20px)}
+.qr{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:8px;justify-items:center;text-align:center}
+.qr .code{background:#fff;padding:10px;border-radius:8px;line-height:0}
+.qr .code img,.qr .code canvas{width:150px;height:150px}
+.qr b{font-family:var(--f-display);font-size:1.2rem}
+.qr small{color:var(--muted)}
+.bigtimer{font-family:var(--f-data);font-size:clamp(4rem,14vw,11rem);font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.phase{display:grid;grid-template-columns:10fr 8fr 12fr;gap:6px}
+.phase div{border-radius:8px;padding:12px;background:var(--sunk);display:grid;gap:2px}
+.phase div.on{background:var(--blue);color:var(--blue-ink)}
+.phase div b{font-family:var(--f-display);font-size:clamp(1rem,1.8vw,1.5rem)}
+.phase div span{font-family:var(--f-data);font-size:.85rem}
+.wall{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.wall .pc .who{font-family:var(--f-data);font-size:.8rem;color:var(--muted)}
+.wall .pc dt{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.wall .pc dd{margin:0 0 6px}
+.wall dl{margin:0}
+.dist{display:grid;gap:6px}
+.dist .bar{font-size:clamp(.9rem,1.2vw,1.1rem)}
+.words{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline}
+.words span{font-family:var(--f-display);font-weight:700;color:var(--blue)}
+@media (max-width:520px){.tiles{grid-template-columns:1fr}.row3{grid-template-columns:1fr}.mini{grid-template-columns:repeat(2,1fr)}.phase{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){.fill{transition:width .6s ease}}
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <div class="weave" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="brand" id="brand">Taller de análisis de datos · Kallfü Mapu</span>
+    <button type="button" id="homeBtn" hidden>Inicio</button>
+  </div>
+</header>
+<main class="wrap" id="app"></main>
+<nav class="tabbar" id="tabbar" hidden aria-label="Secciones del grupo"><div class="wrap" role="tablist"></div></nav>
+<div id="deck" aria-label="Modo proyección"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const APP_URL = "https://loancorread.github.io/kallfumapu/taller.html";
+const DASH = "https://loancorread.github.io/kallfumapu/";
+const DATA = {"C": {"1°": {"t": {"n": 34, "prom": 6.2, "asis": 82.0, "b85": 16, "b85p": 47, "leng": 5.5, "mat": 5.9, "mat_ge5": 94, "mat_lt4": 0, "leng_ge5": 76, "leng_lt4": 2, "pie": 8}, "coh": [["2026", "1°", 82.0]], "r": {"n": 18, "c1": 0, "c2": 0, "c3": 0, "c4": 18, "acad": 0, "solo4": 18, "pie": 4, "asis": 73.5, "asisMin": 32, "asig": 2, "atrasos": 249, "retiros": 107, "mejora": 5, "estable": 3, "retroceso": 7, "nuevos": 3}, "lec": null, "mat": null, "soc": null}, "2°": {"t": {"n": 37, "prom": 6.1, "asis": 84.7, "b85": 16, "b85p": 43, "leng": 6.0, "mat": 5.9, "mat_ge5": 84, "mat_lt4": 0, "leng_ge5": 89, "leng_lt4": 0, "pie": 5}, "coh": [["2025", "1°", 82.2], ["2026", "2°", 84.7]], "r": {"n": 19, "c1": 0, "c2": 0, "c3": 0, "c4": 19, "acad": 0, "solo4": 19, "pie": 1, "asis": 72.8, "asisMin": 0, "asig": 0, "atrasos": 267, "retiros": 66, "mejora": 3, "estable": 7, "retroceso": 3, "nuevos": 6}, "lec": {"n": 37, "niv": [2.7, 83.78, 13.51], "ejes": [["Localizar", 69.59], ["Interpretar y relacionar", 72.35], ["Reflexionar", 60.14]], "items": [["P19 · OA 7", "Opinan sobre un aspecto controversial de un texto (Reflexionar)", 35.1], ["P17 · OA 7", "Localizan información explícita en un texto no literario", 40.5], ["P13 · OA 5", "Reconstruyen la secuencia de acciones en un texto narrativo", 46.0]]}, "mat": null, "soc": null}, "3°": {"t": {"n": 34, "prom": 6.2, "asis": 84.4, "b85": 13, "b85p": 38, "leng": 5.8, "mat": 5.8, "mat_ge5": 76, "mat_lt4": 0, "leng_ge5": 79, "leng_lt4": 1, "pie": 5}, "coh": [["2024", "1°", 77.9], ["2025", "2°", 80.7], ["2026", "3°", 84.4]], "r": {"n": 15, "c1": 0, "c2": 0, "c3": 0, "c4": 15, "acad": 0, "solo4": 15, "pie": 2, "asis": 73.4, "asisMin": 51, "asig": 2, "atrasos": 267, "retiros": 34, "mejora": 1, "estable": 2, "retroceso": 5, "nuevos": 7}, "lec": {"n": 32, "niv": [0, 65.63, 34.38], "ejes": [["Localizar", 68.75], ["Interpretar y relacionar", 71.21], ["Reflexionar", 48.44]], "items": [["P18 · OA 6", "Opinan sobre un texto no literario con fundamentos del texto", 12.5], ["P6 · OA 4", "Opinan sobre un aspecto controversial de un texto narrativo", 21.9], ["P22 · OA 4", "Infieren de qué trata un texto narrativo", 46.9]]}, "mat": {"n": 31, "niv": [9.68, 90.32, 0], "ejes": [["Números y operaciones", 49.54], ["Patrones y álgebra", 75.27], ["Geometría", 63.44], ["Medición", 41.29], ["Datos y probabilidades", 46.24]], "items": [["P4 · OA 6", "Problemas con operaciones combinadas (adición y sustracción) hasta 1 000", 3.2], ["P8 · OA 11", "Representan fracciones de uso común como partes de un todo", 3.2], ["P15 · OA 20", "Leen horas, medias horas y cuartos de hora en relojes análogos", 6.5]]}, "soc": null}, "4°": {"t": {"n": 37, "prom": 5.8, "asis": 83.0, "b85": 10, "b85p": 27, "leng": 5.4, "mat": 5.5, "mat_ge5": 80, "mat_lt4": 2, "leng_ge5": 69, "leng_lt4": 4, "pie": 7}, "coh": [["2024", "2°", 74.3], ["2025", "3°", 79.2], ["2026", "4°", 83.0]], "r": {"n": 18, "c1": 2, "c2": 0, "c3": 1, "c4": 17, "acad": 3, "solo4": 15, "pie": 5, "asis": 72.3, "asisMin": 17, "asig": 11, "atrasos": 376, "retiros": 55, "mejora": 3, "estable": 5, "retroceso": 5, "nuevos": 5}, "lec": {"n": 34, "niv": [14.71, 64.71, 20.59], "ejes": [["Localizar", 68.82], ["Interpretar y relacionar", 54.15], ["Reflexionar", 39.71]], "items": [["P11 · OA 6", "Opinan sobre un texto no literario integrando texto y conocimientos previos", 20.6], ["P20 · OA 4", "Opinan sobre actitudes de personajes con fundamentos del texto", 20.6], ["P3 · OA 4", "Infieren el conflicto en un texto narrativo", 23.5]]}, "mat": {"n": 35, "niv": [42.86, 54.29, 2.86], "ejes": [["Números y operaciones", 47.14], ["Patrones y álgebra", 33.33], ["Geometría", 50.71], ["Medición", 40.95], ["Datos y probabilidades", 34.29]], "items": [["P19 · OA 9", "Calculan adiciones de fracciones de igual denominador", 11.4], ["P8 · OA 11", "Ordenan números decimales", 14.3], ["P23 · OA 13", "Identifican un patrón en secuencias numéricas presentadas en tablas", 14.3]]}, "soc": {"n": 35, "dims": [["Experiencias para el bienestar", 79.29], ["Contexto escolar para el bienestar", 87.86], ["Experiencia de ansiedad ante evaluaciones", 47.43], ["Apoyos para la ansiedad ante evaluaciones", 75.43], ["Gestión de la convivencia digital", 81.43]], "items": [["«No me pongo nervioso/a antes de las pruebas»", 48.57], ["«Hablamos con los profesores sobre nuestras emociones antes de las pruebas»", 51.43], ["«Hay al menos una persona adulta a quien pedir ayuda»", 82.86], ["«En mi colegio me respetan y me aceptan tal como soy»", 74.29]]}}, "5°": {"t": {"n": 38, "prom": 6.2, "asis": 90.4, "b85": 5, "b85p": 13, "leng": 5.9, "mat": 5.6, "mat_ge5": 71, "mat_lt4": 0, "leng_ge5": 84, "leng_lt4": 1, "pie": 7}, "coh": [["2024", "3°", 83.4], ["2025", "4°", 87.6], ["2026", "5°", 90.4]], "r": {"n": 8, "c1": 0, "c2": 0, "c3": 1, "c4": 7, "acad": 1, "solo4": 7, "pie": 2, "asis": 79.4, "asisMin": 61, "asig": 4, "atrasos": 56, "retiros": 15, "mejora": 1, "estable": 2, "retroceso": 2, "nuevos": 3}, "lec": {"n": 33, "niv": [21.21, 45.45, 33.33], "ejes": [["Localizar", 68.18], ["Interpretar y relacionar", 61.14], ["Reflexionar", 48.11]], "items": [["P5 · OA 4", "Opinan sobre actitudes o acciones de personajes con fundamentos", 24.2], ["P17 · OA 6", "Opinan sobre un texto no literario con fundamentos y conocimientos previos", 24.2], ["P11 · OA 5", "Establecen conclusiones sobre distintos aspectos de un poema", 27.3]]}, "mat": {"n": 37, "niv": [56.76, 43.24, 0], "ejes": [["Números y operaciones", 33.11], ["Patrones y álgebra", 29.05], ["Geometría", 44.93], ["Medición", 42.16], ["Datos y probabilidades", 59.01]], "items": [["P2 · OA 3", "Calculan multiplicaciones de números de dos dígitos", 8.1], ["P7 · OA 9", "Calculan sustracciones de fracciones con distinto denominador", 8.1], ["P21 · OA 13", "Problemas no rutinarios con adición y sustracción de decimales", 8.1]]}, "soc": {"n": 38, "dims": [["Experiencias para el bienestar", 86.84], ["Contexto escolar para el bienestar", 89.47], ["Experiencia de ansiedad ante evaluaciones", 46.84], ["Apoyos para la ansiedad ante evaluaciones", 77.37], ["Gestión de la convivencia digital", 71.71]], "items": [["«No me pongo nervioso/a antes de las pruebas»", 42.11], ["«Hablamos con los profesores sobre nuestras emociones antes de las pruebas»", 57.89], ["«Hay al menos una persona adulta a quien pedir ayuda»", 73.68], ["«En mi colegio me respetan y me aceptan tal como soy»", 89.47]]}}, "6°": {"t": {"n": 38, "prom": 5.8, "asis": 85.5, "b85": 12, "b85p": 32, "leng": 5.5, "mat": 5.2, "mat_ge5": 54, "mat_lt4": 2, "leng_ge5": 81, "leng_lt4": 4, "pie": 8}, "coh": [["2024", "4°", 81.5], ["2025", "5°", 83.7], ["2026", "6°", 85.5]], "r": {"n": 13, "c1": 0, "c2": 1, "c3": 1, "c4": 13, "acad": 2, "solo4": 11, "pie": 2, "asis": 70.6, "asisMin": 6, "asig": 8, "atrasos": 237, "retiros": 46, "mejora": 3, "estable": 1, "retroceso": 4, "nuevos": 5}, "lec": {"n": 34, "niv": [8.82, 64.71, 26.47], "ejes": [["Localizar", 74.12], ["Interpretar y relacionar", 57.59], ["Reflexionar", 57.35]], "items": [["P5 · OA 4", "Opinan sobre un aspecto controversial de un texto narrativo", 14.7], ["P23 · OA 6", "Opinan sobre un texto no literario con fundamentos del texto", 20.6], ["P7 · OA 6", "Infieren información relevante en un texto no literario", 32.4]]}, "mat": {"n": 35, "niv": [68.57, 31.43, 0], "ejes": [["Números y operaciones", 30.0], ["Patrones y álgebra", 41.71], ["Geometría", 24.43], ["Medición", 25.71], ["Datos y probabilidades", 54.0]], "items": [["P18 · OA 24", "Comunican conclusiones a partir de gráficos de barra doble", 0.0], ["P23 · OA 7", "Calculan divisiones de números decimales", 2.9], ["P29 · OA 16", "Identifican pares de ángulos suplementarios", 5.7]]}, "soc": {"n": 36, "dims": [["Experiencias para el bienestar", 72.92], ["Contexto escolar para el bienestar", 86.11], ["Experiencia de ansiedad ante evaluaciones", 37.22], ["Apoyos para la ansiedad ante evaluaciones", 57.78], ["Gestión de la convivencia digital", 61.81]], "items": [["«No me pongo nervioso/a antes de las pruebas»", 36.11], ["«Hablamos con los profesores sobre nuestras emociones antes de las pruebas»", 33.33], ["«Hay al menos una persona adulta a quien pedir ayuda»", 63.89], ["«En mi colegio me respetan y me aceptan tal como soy»", 63.89]]}}, "7°": {"t": {"n": 35, "prom": 5.8, "asis": 82.6, "b85": 18, "b85p": 51, "leng": 5.7, "mat": 5.3, "mat_ge5": 63, "mat_lt4": 0, "leng_ge5": 74, "leng_lt4": 2, "pie": 4}, "coh": [["2024", "5°", 80.0], ["2025", "6°", 81.6], ["2026", "7°", 82.6]], "r": {"n": 19, "c1": 0, "c2": 0, "c3": 0, "c4": 19, "acad": 0, "solo4": 19, "pie": 4, "asis": 75.1, "asisMin": 59, "asig": 5, "atrasos": 553, "retiros": 132, "mejora": 4, "estable": 6, "retroceso": 6, "nuevos": 3}, "lec": {"n": 35, "niv": [14.29, 85.71, 0], "ejes": [["Localizar", 69.29], ["Interpretar y relacionar", 55.34], ["Reflexionar", 41.84]], "items": [["P30 · OA 9", "Determinan prejuicios, estereotipos y creencias en textos de los medios", 2.9], ["P28 · OA 9", "Infieren información relevante en un texto de los medios", 8.6], ["P11 · OA 8", "Distinguen un hecho de una opinión en un texto argumentativo", 25.7]]}, "mat": {"n": 33, "niv": [39.39, 60.61, 0], "ejes": [["Números", 56.06], ["Álgebra y funciones", 39.02], ["Geometría", 36.03], ["Probabilidad y estadística", 46.4]], "items": [["P15 · OA 18", "Problemas de frecuencia relativa en un experimento", 0.0], ["P20 · OA 8", "Representación gráfica de variables directamente proporcionales", 12.1], ["P24 · OA 11", "Calculan áreas de círculos", 12.1]]}, "soc": {"n": 35, "dims": [["Experiencias para el bienestar", 82.14], ["Contexto escolar para el bienestar", 86.43], ["Experiencia de ansiedad ante evaluaciones", 37.14], ["Apoyos para la ansiedad ante evaluaciones", 53.71], ["Convivencia digital: desarrollo", 81.63], ["Convivencia digital: gestión", 74.69]], "items": [["«No me pongo nervioso/a antes de las pruebas»", 48.57], ["«Hablamos con los profesores sobre nuestras emociones antes de las pruebas»", 17.14], ["«Hay al menos una persona adulta a quien pedir ayuda»", 77.14], ["«En mi colegio me respetan y me aceptan tal como soy»", 74.29]]}}, "8°": {"t": {"n": 29, "prom": 5.8, "asis": 85.5, "b85": 11, "b85p": 38, "leng": 5.9, "mat": 5.1, "mat_ge5": 46, "mat_lt4": 0, "leng_ge5": 89, "leng_lt4": 1, "pie": 8}, "coh": [["2024", "6°", 80.8], ["2025", "7°", 76.8], ["2026", "8°", 85.5]], "r": {"n": 13, "c1": 1, "c2": 0, "c3": 1, "c4": 11, "acad": 2, "solo4": 11, "pie": 4, "asis": 77.3, "asisMin": 41, "asig": 9, "atrasos": 213, "retiros": 47, "mejora": 1, "estable": 4, "retroceso": 3, "nuevos": 5}, "lec": {"n": 29, "niv": [34.48, 62.07, 3.45], "ejes": [["Localizar", 48.28], ["Interpretar y relacionar", 50.74], ["Reflexionar", 43.97]], "items": [["P20 · OA 8", "Formulan una interpretación o postura personal sobre un texto dramático", 13.8], ["P17 · OA 5", "Infieren información sobre personajes en un texto dramático", 20.7], ["P27 · OA 4", "Infieren el sentido global de un poema", 27.6]]}, "mat": {"n": 29, "niv": [89.66, 10.34, 0], "ejes": [["Números", 34.91], ["Álgebra y funciones", 26.55], ["Geometría", 29.74], ["Probabilidad y estadística", 35.47]], "items": [["P16 · OA 1", "Problemas con multiplicación de números enteros", 0.0], ["P19 · OA 4", "Problemas de la vida diaria con raíces cuadradas", 10.3], ["P7 · OA 6", "Expresiones algebraicas equivalentes por factorización", 10.3]]}, "soc": {"n": 29, "dims": [["Experiencias para el bienestar", 76.72], ["Contexto escolar para el bienestar", 78.45], ["Experiencia de ansiedad ante evaluaciones", 37.24], ["Apoyos para la ansiedad ante evaluaciones", 55.86], ["Convivencia digital: desarrollo", 71.92], ["Convivencia digital: gestión", 72.41]], "items": [["«No me pongo nervioso/a antes de las pruebas»", 41.38], ["«Hablamos con los profesores sobre nuestras emociones antes de las pruebas»", 24.14], ["«Hay al menos una persona adulta a quien pedir ayuda»", 75.86], ["«En mi colegio me respetan y me aceptan tal como soy»", 68.97]]}}}, "NT": {"NT1 A": {"n": 13, "c1": 0, "c2": 0, "c3": 0, "c4": 13, "acad": 0, "solo4": 13, "pie": 0, "asis": 73.5, "asisMin": 46, "asig": 0, "atrasos": 153, "retiros": 94, "mejora": 0, "estable": 0, "retroceso": 0, "nuevos": 13}, "NT2 A": {"n": 21, "c1": 0, "c2": 0, "c3": 0, "c4": 21, "acad": 0, "solo4": 21, "pie": 2, "asis": 71.4, "asisMin": 48, "asig": 0, "atrasos": 336, "retiros": 76, "mejora": 0, "estable": 0, "retroceso": 0, "nuevos": 21}}};
+
+const GRUPOS = {
+  g1:{n:"Grupo 1",nivel:"1° y 2° básico",cursos:["1°","2°"],
+    pistas:[
+      "37 de los 71 estudiantes de 1° y 2° (52 %) están en el registro de peligro de repitencia, todos por asistencia. ¿Qué sabemos de por qué faltan y quién está siguiendo cada caso?",
+      "En 2° básico, el 84 % de los estudiantes quedó en nivel II de Lectura. ¿Qué separa a ese grupo del nivel III? Reflexionar (60 %) es la habilidad con menor logro.",
+      "NT1 y NT2 suman 34 estudiantes en el registro, con asistencia promedio de 71–74 %. Esa es la cohorte que llega a 1° en 2027.",
+      "Lenguaje es la asignatura con menor promedio de 1° (5,5). ¿Coincide con lo que observan en el aula sobre lectura inicial?"]},
+  g2:{n:"Grupo 2",nivel:"3° y 4° básico",cursos:["3°","4°"],
+    pistas:[
+      "En 4° están 3 de los 8 estudiantes del colegio que activan criterios académicos de repitencia (1 a 3). Necesitan un plan con nombre y responsable antes de diciembre.",
+      "Matemática 4°: 43 % en nivel I. Patrones y álgebra (33 %) y Datos (34 %) son los ejes más bajos; fracciones y decimales tienen preguntas con 11–14 % de logro.",
+      "Matemática 3°: 90 % en nivel II, pero tres preguntas tienen menos de 7 % de logro (operaciones combinadas, fracciones y lectura de la hora). ¿Ya se habían enseñado esos OA?",
+      "Lectura: Reflexionar es la habilidad más baja (48 % en 3° y 40 % en 4°). Opinar con fundamentos del texto se ubica entre 12 % y 22 %.",
+      "En el registro de riesgo de 3° y 4°, 10 estudiantes retroceden y 4 mejoran respecto del registro anterior."]},
+  g3:{n:"Grupo 3",nivel:"5° y 6° básico",cursos:["5°","6°"],
+    pistas:[
+      "5° tiene la mejor asistencia promedio (90,4 %) y solo 8 estudiantes en el registro. Aun así, 57 % quedó en nivel I de Matemática. ¿Qué nos dice eso sobre la relación entre asistir y aprender?",
+      "Matemática 6°: 69 % en nivel I; Geometría (24 %) y Medición (26 %) son los ejes más bajos, con un promedio de notas de 5,2.",
+      "Lectura: en ambos cursos, las preguntas de opinar con fundamentos tienen entre 15 % y 24 % de logro.",
+      "Socioemocional 6°: 64 % reconoce a un adulto a quien pedir ayuda, 33 % dice que conversa sus emociones con profesores antes de las pruebas y la convivencia digital llega a 62 % de respuestas favorables.",
+      "En 6° hay estudiantes del registro con asistencia muy baja (la más baja, 6 %). Hay ausentismo crónico severo que no se resuelve solo desde el aula."]},
+  g4:{n:"Grupo 4",nivel:"7° y 8° básico",cursos:["7°","8°"],
+    pistas:[
+      "8° Matemática: 90 % en nivel I y nadie en nivel III, con un promedio de notas de 5,1 y ninguna nota roja. ¿Qué están midiendo nuestras evaluaciones?",
+      "7° Matemática: 39 % en nivel I. Frecuencia relativa (0 %), proporcionalidad directa y área del círculo (12 %) son los puntos críticos.",
+      "Lectura: 34 % de 8° en nivel I; ningún estudiante de 7° en nivel III. Los textos de los medios son críticos en 7° (3 % y 9 % de logro).",
+      "Socioemocional: solo 17 % (7°) y 24 % (8°) dicen que conversan sus emociones con profesores antes de las pruebas; menos de 4 de cada 10 no se ponen nerviosos.",
+      "7° tiene 19 estudiantes en el registro (54 % de su matrícula) y 553 atrasos acumulados entre ellos. 8° egresa en diciembre: lo de 2026 es su última oportunidad en la escuela."]}
+};
+
+const APUESTAS = [
+  {id:"a1",q:"De los 157 estudiantes del registro de peligro de repitencia (NT1 a 8°), ¿qué proporción está ahí SOLO por asistencia?",opts:["≈ 25 %","≈ 50 %","≈ 75 %","≈ 95 %"],ok:3,
+   r:"149 de 157 (95 %). Solo 8 estudiantes activan criterios académicos. La asistencia es nuestro principal problema de trayectoria."},
+  {id:"a2",q:"En 5°, 6° y 8°, el promedio de notas en Matemática va de 5,1 a 5,6 y casi no hay notas rojas. ¿Qué proporción de esos estudiantes quedó en nivel I del DIA de Matemática?",opts:["≈ 10 %","≈ 30 %","≈ 50 %","≈ 70 %"],ok:3,
+   r:"71 de 101 estudiantes (70 %) quedaron en nivel I. Las notas y el diagnóstico externo cuentan historias distintas."},
+  {id:"a3",q:"De 4° a 8° básico, ¿qué proporción de estudiantes dice que NO se pone nervioso/a antes de las pruebas?",opts:["≈ 20 %","≈ 45 %","≈ 70 %","≈ 90 %"],ok:1,
+   r:"43 % (75 de 173). Más de la mitad vive las pruebas con nerviosismo, y eso también es parte del dato de aprendizaje."}
+];
+
+/* ---------- utilidades ---------- */
+const $ = (s,el=document)=>el.querySelector(s);
+const esc = s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const f1 = v=>(Math.round(v*10)/10).toLocaleString("es-CL",{minimumFractionDigits:1,maximumFractionDigits:1});
+const pc = v=>Math.round(v)+" %";
+const store = {
+  get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+let DB=null, USER=null;
+const DB_READY=(async()=>{
+  try{ if(window.claude&&window.claude.use){ DB = await window.claude.use("db"); USER = await window.claude.use("user"); } }catch(e){DB=null}
+  return DB;
+})();
+
+/* ---------- componentes de datos ---------- */
+function bar(label,v,low){return `<div class="bar${low?" low":""}"><div class="t"><span>${esc(label)}</span></div><div class="track"><div class="fill" style="width:${Math.max(0,Math.min(100,v))}%"></div></div><span class="pv">${f1(v)}%</span></div>`}
+function stack(niv){
+  const [a,b,c]=niv;
+  const seg=(v,cl)=>v>0?`<div class="${cl}" style="width:${v}%">${v>=9?Math.round(v)+"%":""}</div>`:"";
+  return `<div class="stack" role="img" aria-label="Nivel I ${f1(a)}%, nivel II ${f1(b)}%, nivel III ${f1(c)}%">${seg(a,"s1")}${seg(b,"s2")}${seg(c,"s3")}</div>
+  <div class="legend"><span style="--c:var(--n1)">Nivel I · ${f1(a)}%</span><span style="--c:var(--n2)">Nivel II · ${f1(b)}%</span><span style="--c:var(--n3)">Nivel III · ${f1(c)}%</span></div>`;
+}
+function itemsList(items){return `<ul class="items">${items.map(i=>`<li><span class="q">${esc(i[0])}</span><span>${esc(i[1])}</span><span class="p">${f1(i[2])}%</span></li>`).join("")}</ul>`}
+function riskBlock(r,mat,label){
+  return `<div class="kpis">
+    <div class="kpi alert"><span class="v">${r.n}${mat?`<small style="font-size:.7em"> / ${mat}</small>`:""}</span><span class="l">estudiantes en el registro${mat?` (${Math.round(100*r.n/mat)} % de la matrícula)`:""}</span></div>
+    <div class="kpi"><span class="v">${r.solo4}</span><span class="l">solo por asistencia (criterio 4)</span></div>
+    <div class="kpi${r.acad?" alert":""}"><span class="v">${r.acad}</span><span class="l">con criterio académico (1–3)${r.acad?`: C1 ${r.c1} · C2 ${r.c2} · C3 ${r.c3}`:""}</span></div>
+    <div class="kpi"><span class="v">${f1(r.asis)}%</span><span class="l">asistencia promedio del grupo en riesgo (mín. ${r.asisMin} %)</span></div>
+    <div class="kpi"><span class="v">${r.pie}</span><span class="l">estudiantes PIE en el registro</span></div>
+    <div class="kpi"><span class="v">${r.atrasos}</span><span class="l">atrasos acumulados (estudiantes del registro)</span></div>
+  </div>
+  ${(r.mejora+r.estable+r.retroceso)>0?`<div><p class="note" style="margin-bottom:6px">Trazabilidad respecto del registro anterior</p>
+  <div class="mini"><div class="up"><b>${r.mejora}</b><small>mejoran</small></div><div><b>${r.estable}</b><small>estables</small></div><div class="down"><b>${r.retroceso}</b><small>retroceden</small></div><div><b>${r.nuevos}</b><small>ingresan</small></div></div></div>`:`<p class="note">${r.nuevos} estudiantes ingresan al registro (sin registro anterior para comparar).</p>`}`;
+}
+function cursoHTML(k){
+  const c=DATA.C[k], t=c.t, r=c.r;
+  const curso=encodeURIComponent(k+" A");
+  const minE=(arr)=>Math.min(...arr.map(e=>e[1]));
+  let h=`<details class="src-d" open><summary><div><h3>Trayectoria educativa 2026</h3><span class="tag">Informe unificado · Periodos 1 y 2 (dato parcial)</span></div></summary><div class="body">
+    <div class="kpis">
+      <div class="kpi"><span class="v">${t.n}</span><span class="l">matrícula del curso</span></div>
+      <div class="kpi"><span class="v">${f1(t.prom)}</span><span class="l">promedio general</span></div>
+      <div class="kpi${t.asis<85?" alert":""}"><span class="v">${f1(t.asis)}%</span><span class="l">asistencia promedio</span></div>
+      <div class="kpi${t.b85p>=35?" alert":""}"><span class="v">${t.b85}</span><span class="l">estudiantes bajo 85 % de asistencia (${t.b85p} %)</span></div>
+      <div class="kpi"><span class="v">${f1(t.leng)}</span><span class="l">promedio Lenguaje · ${t.leng_lt4} bajo 4,0</span></div>
+      <div class="kpi"><span class="v">${f1(t.mat)}</span><span class="l">promedio Matemática · ${t.mat_ge5} % con nota ≥ 5,0 · ${t.mat_lt4} bajo 4,0</span></div>
+    </div>
+    ${c.coh.length>1?`<div class="coh"><span class="note">Asistencia de esta cohorte:</span>${c.coh.map(x=>`<span>${x[0]} · ${x[1]} · ${f1(x[2])}%</span>`).join("")}</div>`:""}
+    <a class="lnk" href="${DASH}curso.html?curso=${curso}" target="_blank" rel="noopener">Abrir ${k} A en el panel de trayectoria ↗</a>
+  </div></details>
+  <details class="src-d" open><summary><div><h3>Peligro de repitencia</h3><span class="tag">Registro vigente 04-08-2026 · criterios MINEDUC</span></div></summary><div class="body">
+    ${riskBlock(r,t.n)}
+    <a class="lnk" href="${DASH}riesgo-repitencia.html" target="_blank" rel="noopener">Abrir panel de peligro de repitencia ↗</a>
+  </div></details>`;
+  h+=c.lec?`<details class="src-d"><summary><div><h3>DIA Lectura · intermedio</h3><span class="tag">${c.lec.n} estudiantes · OA de ${k} básico</span></div></summary><div class="body">
+    ${stack(c.lec.niv)}<div class="bars">${c.lec.ejes.map(e=>bar(e[0],e[1],e[1]===minE(c.lec.ejes))).join("")}</div>
+    <p class="note">Preguntas con menor % de respuestas correctas</p>${itemsList(c.lec.items)}</div></details>`
+    :`<details class="src-d"><summary><div><h3>DIA Lectura</h3><span class="tag">No aplica a ${k}</span></div></summary><div class="body"><p class="na">El informe DIA de Lectura disponible considera de 2° a 8° básico.</p></div></details>`;
+  h+=c.mat?`<details class="src-d"><summary><div><h3>DIA Matemática · intermedio</h3><span class="tag">${c.mat.n} estudiantes · OA de ${k} básico</span></div></summary><div class="body">
+    ${stack(c.mat.niv)}<div class="bars">${c.mat.ejes.map(e=>bar(e[0],e[1],e[1]===minE(c.mat.ejes))).join("")}</div>
+    <p class="note">Preguntas con menor % de respuestas correctas</p>${itemsList(c.mat.items)}</div></details>`
+    :`<details class="src-d"><summary><div><h3>DIA Matemática</h3><span class="tag">No aplica a ${k}</span></div></summary><div class="body"><p class="na">El informe DIA de Matemática disponible considera de 3° a 8° básico.</p></div></details>`;
+  h+=c.soc?`<details class="src-d"><summary><div><h3>DIA Socioemocional · intermedio</h3><span class="tag">${c.soc.n} estudiantes · % de respuestas favorables</span></div></summary><div class="body">
+    <div class="bars">${c.soc.dims.map(e=>bar(e[0],e[1],e[1]<60)).join("")}</div>
+    <p class="note">Frases clave (% de respuestas favorables)</p>
+    <ul class="items">${c.soc.items.map(i=>`<li><span class="q">%RF</span><span>${esc(i[0])}</span><span class="p" style="color:${i[1]<60?"var(--n1)":"var(--ink)"}">${f1(i[1])}%</span></li>`).join("")}</ul></div></details>`
+    :`<details class="src-d"><summary><div><h3>DIA Socioemocional</h3><span class="tag">No aplica a ${k}</span></div></summary><div class="body"><p class="na">El cuestionario socioemocional disponible considera de 4° a 8° básico.</p></div></details>`;
+  return h;
+}
+
+/* ---------- estado de navegación ---------- */
+let state={view:"inicio",group:null,tab:"datos",curso:null};
+const TABS=[["datos","Datos","1"],["pauta","Pauta","2"],["insumo","Insumo","3"],["plenario","Plenario","4"]];
+
+function go(view){ if(view===state.view && view!=="proyectar") {render();return;}
+  state.view=view; if(/^g[1-4]$/.test(view)){state.group=view;state.tab=store.get("tab-"+view,"datos");state.curso=GRUPOS[view].cursos[0];}
+  try{ history.replaceState(null,"",view==="inicio"?location.pathname+location.search:"#"+view) }catch(e){}
+  render(); window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",()=>{const h=location.hash.slice(1); if(h&&h!==state.view) go(h)});
+$("#homeBtn").addEventListener("click",()=>{ if(state.view==="proyectar") exitDeck(); go("inicio") });
+
+function render(){
+  const app=$("#app"), tb=$("#tabbar");
+  document.body.classList.toggle("present",state.view==="proyectar");
+  $("#homeBtn").hidden = state.view==="inicio";
+  tb.hidden=true;
+  if(state.view==="proyectar"){ buildDeck(); return; }
+  if(state.view==="apuesta"){ app.innerHTML=apuestaView(); bindApuesta(); $("#brand").textContent="Apuesta inicial"; return; }
+  if(state.view==="salida"){ app.innerHTML=salidaView(); bindSalida(); $("#brand").textContent="Ticket de salida"; return; }
+  if(/^g[1-4]$/.test(state.view)){ groupView(); return; }
+  $("#brand").textContent="Taller de análisis de datos · Kallfü Mapu";
+  app.innerHTML=inicioView();
+}
+
+/* ---------- inicio ---------- */
+function inicioView(){
+  return `<section class="view">
+    <div class="hero"><span class="eyebrow">UTP · Escuela Intercultural Kallfü Mapu · 2026</span>
+      <h1>De los datos a las decisiones</h1>
+      <p>Taller de análisis de trayectorias, peligro de repitencia y Diagnóstico Integral de Aprendizajes (DIA, monitoreo intermedio). Elige tu grupo para abrir los datos de tu nivel, la pauta y el insumo.</p></div>
+    <button class="tile wide primary" data-go="apuesta"><b>Apuesta inicial</b><span>Tres preguntas antes de mirar los datos · 2 minutos</span></button>
+    <div class="tiles">
+      ${Object.entries(GRUPOS).map(([id,g])=>`<button class="tile" data-go="${id}"><b>${g.n}</b><span>${g.nivel}</span></button>`).join("")}
+    </div>
+    <div class="card"><h2>Antes de comenzar</h2>
+      <ul style="margin:0;padding-left:1.2em;display:grid;gap:6px">
+        <li><b>Hablamos de datos, no de personas.</b> Describimos lo que muestran las cifras antes de explicarlas.</li>
+        <li><b>Los datos del DIA no se usan para calificar ni para comparar cursos.</b> Se leen según los OA trabajados en cada curso.</li>
+        <li><b>Información confidencial.</b> El panel incluye nombres de estudiantes: no se fotografía ni se comparte fuera del taller.</li>
+        <li><b>Todo hallazgo termina en una acción</b> con responsable, plazo y evidencia.</li>
+      </ul></div>
+    <div class="tiles">
+      <a class="tile" href="${DASH}index.html" target="_blank" rel="noopener"><b>Trayectoria ↗</b><span>Panel por curso y estudiante, 2024–2026</span></a>
+      <a class="tile" href="${DASH}riesgo-repitencia.html" target="_blank" rel="noopener"><b>Peligro de repitencia ↗</b><span>Registro de criterios MINEDUC y trazabilidad</span></a>
+      <button class="tile" data-go="salida"><b>Ticket de salida</b><span>Al cierre del taller</span></button>
+      <button class="tile" data-go="proyectar"><b>Modo proyección</b><span>Para el facilitador</span></button>
+    </div>
+  </section>`;
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-go]"); if(b){e.preventDefault(); go(b.dataset.go)}});
+
+/* ---------- vista de grupo ---------- */
+function groupView(){
+  const g=GRUPOS[state.group], app=$("#app"), tb=$("#tabbar");
+  $("#brand").textContent=`${g.n} · ${g.nivel}`;
+  tb.hidden=false;
+  tb.querySelector(".wrap").innerHTML=TABS.map(([id,l,n])=>`<button role="tab" aria-selected="${state.tab===id}" data-tab="${id}"><i>${n}</i>${l}</button>`).join("");
+  tb.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{state.tab=b.dataset.tab;store.set("tab-"+state.group,state.tab);groupView();window.scrollTo(0,0)});
+  let h=`<section class="view"><div class="ghead"><span class="eyebrow">${g.n}</span><h1>${g.nivel}</h1></div>`;
+  if(state.tab==="datos") h+=datosTab(g);
+  if(state.tab==="pauta") h+=pautaTab(g);
+  if(state.tab==="insumo") h+=insumoTab(g);
+  if(state.tab==="plenario") h+=plenarioTab(g);
+  app.innerHTML=h+"</section>";
+  if(state.tab==="datos"){ app.querySelectorAll("[data-curso]").forEach(b=>b.onclick=()=>{state.curso=b.dataset.curso;groupView()}) }
+  if(state.tab==="pauta") bindTimers();
+  if(state.tab==="insumo") bindInsumo(g);
+  const tg=app.querySelector("[data-tabgo]"); if(tg) tg.onclick=()=>{state.tab=tg.dataset.tabgo;store.set("tab-"+state.group,state.tab);groupView();window.scrollTo(0,0)};
+}
+function datosTab(g){
+  let nt="";
+  if(state.group==="g1"){
+    const a=DATA.NT["NT1 A"], b=DATA.NT["NT2 A"];
+    nt=`<details class="src-d"><summary><div><h3>Antesala: NT1 y NT2</h3><span class="tag">Peligro de repitencia · registro 04-08-2026</span></div></summary><div class="body">
+      <div class="kpis"><div class="kpi alert"><span class="v">${a.n}</span><span class="l">NT1 en el registro · asistencia promedio ${f1(a.asis)} %</span></div>
+      <div class="kpi alert"><span class="v">${b.n}</span><span class="l">NT2 en el registro · asistencia promedio ${f1(b.asis)} %</span></div>
+      <div class="kpi"><span class="v">${a.atrasos+b.atrasos}</span><span class="l">atrasos acumulados en el grupo</span></div></div>
+      <p class="note">El NT2 de hoy es el 1° básico de 2027. ¿Qué articulación necesitamos con Educación Parvularia?</p></div></details>`;
+  }
+  return `<div class="card"><h2>Preguntas que los datos nos hacen</h2><ol class="pistas">${g.pistas.map(p=>`<li><span>${esc(p)}</span></li>`).join("")}</ol>
+    <p class="note">Son puntos de partida. El grupo decide qué es lo más relevante a partir de los datos.</p></div>
+    <div class="seg" role="group" aria-label="Curso">${g.cursos.map(k=>`<button data-curso="${k}" aria-pressed="${state.curso===k}">${k} básico</button>`).join("")}</div>
+    ${cursoHTML(state.curso)}${nt}
+    <p class="note">Fuentes: informe unificado de trayectorias y peligro de repitencia (UTP, registros oficiales 2024–2026 y ficha de monitoreo KIMCHE del 04-08-2026); informes DIA 2026, monitoreo intermedio (Agencia de Calidad, generados el 15-08-2026).</p>`;
+}
+
+/* ---------- pauta ---------- */
+const MOMENTOS=[
+  {id:"ver",n:"Momento 1",t:"Ver: describir sin juzgar",min:10,
+   q:["Revisen las cuatro fuentes de su nivel en la pestaña Datos. Cada integrante mira una fuente distinta y la cuenta al grupo en un minuto.",
+      "Asistencia y riesgo: ¿cuántos estudiantes están en el registro y por qué criterio? ¿Mejoran o retroceden?",
+      "Aprendizajes DIA: ¿qué proporción está en nivel I? ¿Qué eje o habilidad tiene menos logro? ¿Qué preguntas concentran el error?",
+      "Triangulación: ¿las notas, la asistencia y el DIA cuentan la misma historia? ¿Dónde no coinciden?",
+      "Socioemocional (4° a 8°): ¿qué condición tiene menos respuestas favorables?"],
+   p:"Tres hallazgos escritos como dato observable (por ejemplo: «57 % de 5° está en nivel I de Matemática DIA») y el dato que más los sorprendió."},
+  {id:"pensar",n:"Momento 2",t:"Pensar: explicar desde lo que depende de nosotros",min:8,
+   q:["Elijan el hallazgo más crítico para la trayectoria de sus estudiantes. Ese es su problema priorizado.",
+      "¿Qué OA se habían enseñado al momento del DIA (agosto)? Separen lo que «aún no se enseña» de lo que «se enseñó y no se aprendió».",
+      "Propongan hipótesis sobre las causas. Al menos dos deben estar en el ámbito de la escuela: enseñanza, evaluación, tiempos, apoyos o vínculo con las familias.",
+      "Rol de la educadora diferencial y del asistente de aula: ¿qué observan ellos que los datos no muestran?"],
+   p:"Un problema priorizado y dos o tres hipótesis causales clasificadas."},
+  {id:"decidir",n:"Momento 3",t:"Decidir: estrategias con responsable y evidencia",min:12,
+   q:["Lo que queda de 2026 (≈ 7 semanas): dos acciones concretas y realistas. ¿Qué haremos, con quiénes, quién lo lidera y cómo sabremos que funcionó?",
+      "Estudiantes en peligro de repitencia: una acción focalizada para quienes tienen criterio académico y otra para el ausentismo, en coordinación con convivencia escolar y las familias.",
+      "Proyección 2027: una o dos estrategias para iniciar el año (nivelación, plan de asistencia, evaluación formativa, coherencia evaluativa, acompañamiento según el art. 12 del Decreto 67).",
+      "¿Qué apoyo necesitan de UTP o del equipo directivo para hacerlo posible?"],
+   p:"Plan breve del nivel (2026 y 2027) y una frase síntesis para el plenario."}
+];
+function pautaTab(g){
+  return `<div class="card"><h2>Ruta de trabajo · 30 minutos</h2>
+    <p>El grupo avanza en tres momentos y completa el <b>insumo</b> (pestaña 3) a medida que avanza. Al final, la voz del grupo presenta la tarjeta de <b>plenario</b> (pestaña 4).</p>
+    <div class="roles">
+      <div class="role"><b>Facilitador/a</b>Conduce la conversación y cuida que todos hablen. Idealmente un profesor/a jefe.</div>
+      <div class="role"><b>Escriba digital</b>Completa el insumo en su celular y lo envía.</div>
+      <div class="role"><b>Guardián/a del tiempo</b>Usa los cronómetros de cada momento.</div>
+      <div class="role"><b>Voz del grupo</b>Presenta en el plenario (3 minutos).</div>
+      <div class="role"><b>Defensor/a del estudiante</b>En cada momento pregunta: «¿qué significa esto para un estudiante concreto del registro?».</div>
+    </div></div>
+  ${MOMENTOS.map(m=>`<article class="card mom" id="m-${m.id}">
+    <div class="mom-h"><span class="badge">${m.min} min</span><h2>${m.n} · ${m.t}</h2></div>
+    <ol>${m.q.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>
+    <div class="callout"><b>Producto:</b> ${esc(m.p)}</div>
+    <div class="timer" data-min="${m.min}" data-id="${m.id}"><span class="clock num">${String(m.min).padStart(2,"0")}:00</span>
+      <button class="btn" type="button" data-act="start">Iniciar</button><button class="btn ghost" type="button" data-act="reset">Reiniciar</button></div>
+  </article>`).join("")}`;
+}
+const timers={};
+function bindTimers(){
+  document.querySelectorAll(".timer").forEach(el=>{
+    const id=el.dataset.id, min=+el.dataset.min, clock=$(".clock",el), b=el.querySelector('[data-act="start"]');
+    const t=timers[id]||(timers[id]={end:null,left:min*60,run:false,iv:null});
+    const paint=()=>{const left=t.run?Math.round((t.end-Date.now())/1000):t.left;const a=Math.abs(left);clock.textContent=(left<0?"+":"")+String(Math.floor(a/60)).padStart(2,"0")+":"+String(a%60).padStart(2,"0");clock.classList.toggle("over",left<0);b.textContent=t.run?"Pausar":"Iniciar"};
+    const tick=()=>{ if(!document.body.contains(clock)){clearInterval(t.iv);t.iv=null;return} paint() };
+    if(t.run&&!t.iv) t.iv=setInterval(tick,500);
+    b.onclick=()=>{ if(t.run){t.left=Math.round((t.end-Date.now())/1000);t.run=false;clearInterval(t.iv);t.iv=null} else {t.end=Date.now()+t.left*1000;t.run=true;t.iv=setInterval(tick,500)} paint() };
+    el.querySelector('[data-act="reset"]').onclick=()=>{t.run=false;clearInterval(t.iv);t.iv=null;t.left=min*60;paint()};
+    paint();
+  });
+}
+
+/* ---------- insumo ---------- */
+const FUENTES=["Trayectoria","Riesgo de repitencia","DIA Lectura","DIA Matemática","DIA Socioemocional"];
+const CAUSAS=["Enseñanza","Evaluación","Tiempo y cobertura curricular","Apoyos diferenciados / PIE","Asistencia y familias","Clima y bienestar"];
+const PLAZOS=["Semana del 26 oct","Noviembre (1ª quincena)","Noviembre (2ª quincena)","Diciembre (hasta cierre)","Todo lo que queda del año"];
+const MOM27=["Marzo (diagnóstico y nivelación)","Primer semestre","Todo el año","Antes del inicio (planificación)"];
+const PME=["Gestión pedagógica","Liderazgo","Formación y convivencia","Gestión de recursos"];
+function draftKey(){return "insumo-"+state.group}
+function v(d,k){return esc(d[k]??"")}
+function opt(list,sel){return `<option value="">Seleccionar…</option>`+list.map(o=>`<option${o===sel?" selected":""}>${esc(o)}</option>`).join("")}
+function insumoTab(g){
+  const d=store.get(draftKey(),{});
+  const hall=i=>`<div class="sub"><span class="sub-h">HALLAZGO ${i}</span>
+    <label for="h${i}">Dato observable<textarea id="h${i}" name="h${i}" placeholder="Ej.: 57 % de 5° está en nivel I de Matemática DIA; el eje más bajo es Patrones y álgebra (29 %).">${v(d,"h"+i)}</textarea></label>
+    <label for="h${i}f">Fuente<select id="h${i}f" name="h${i}f">${opt(FUENTES,d["h"+i+"f"])}</select></label></div>`;
+  const acc=(i)=>`<div class="sub"><span class="sub-h">ACCIÓN 2026 · ${i}</span>
+    <label for="a${i}">¿Qué haremos?<textarea id="a${i}" name="a${i}" placeholder="Acción concreta y observable en el aula o el nivel">${v(d,"a"+i)}</textarea></label>
+    <div class="row2"><label for="a${i}q">¿Para quiénes?<input type="text" id="a${i}q" name="a${i}q" value="${v(d,"a"+i+"q")}" placeholder="Curso, grupo o estudiantes"></label>
+    <label for="a${i}r">Responsable(s)<input type="text" id="a${i}r" name="a${i}r" value="${v(d,"a"+i+"r")}" placeholder="Docente, ed. diferencial, asistente…"></label></div>
+    <div class="row2"><label for="a${i}p">Plazo<select id="a${i}p" name="a${i}p">${opt(PLAZOS,d["a"+i+"p"])}</select></label>
+    <label for="a${i}e">Evidencia de logro<input type="text" id="a${i}e" name="a${i}e" value="${v(d,"a"+i+"e")}" placeholder="¿Cómo sabremos que funcionó?"></label></div></div>`;
+  const e27=(i)=>`<div class="sub"><span class="sub-h">ESTRATEGIA 2027 · ${i}</span>
+    <label for="p${i}">Estrategia<textarea id="p${i}" name="p${i}">${v(d,"p"+i)}</textarea></label>
+    <div class="row2"><label for="p${i}m">Momento<select id="p${i}m" name="p${i}m">${opt(MOM27,d["p"+i+"m"])}</select></label>
+    <label for="p${i}d">Dimensión PME<select id="p${i}d" name="p${i}d">${opt(PME,d["p"+i+"d"])}</select></label></div></div>`;
+  const causas=(d.causas||[]);
+  return `<div class="callout" id="sendHint">El borrador se guarda automáticamente en este celular. Al terminar, el/la escriba envía las respuestas a UTP con el botón de abajo.</div>
+  <form id="insumo" autocomplete="off">
+    <fieldset><legend>Identificación</legend>
+      <div class="row3">
+        <label for="nd">Docentes<input type="number" min="0" inputmode="numeric" id="nd" name="nd" value="${v(d,"nd")}"></label>
+        <label for="ne">Ed. diferenciales<input type="number" min="0" inputmode="numeric" id="ne" name="ne" value="${v(d,"ne")}"></label>
+        <label for="na">Asistentes de aula<input type="number" min="0" inputmode="numeric" id="na" name="na" value="${v(d,"na")}"></label>
+      </div>
+      <label for="integrantes">Integrantes <small>(opcional)</small><input type="text" id="integrantes" name="integrantes" value="${v(d,"integrantes")}"></label>
+    </fieldset>
+    <fieldset><legend>Momento 1 · Ver</legend>${hall(1)}${hall(2)}${hall(3)}
+      <label for="sorpresa">El dato que más nos sorprendió y por qué<textarea id="sorpresa" name="sorpresa">${v(d,"sorpresa")}</textarea></label></fieldset>
+    <fieldset><legend>Momento 2 · Pensar</legend>
+      <label for="problema">Problema priorizado <small>(una oración: qué, en quiénes, cuánto)</small><textarea id="problema" name="problema">${v(d,"problema")}</textarea></label>
+      <label for="oa">OA aún no enseñados al momento del DIA <small>(si corresponde)</small><input type="text" id="oa" name="oa" value="${v(d,"oa")}"></label>
+      <label for="hip">Hipótesis sobre las causas<textarea id="hip" name="hip" placeholder="1. … 2. … 3. …">${v(d,"hip")}</textarea></label>
+      <div><span class="eyebrow">Las hipótesis se relacionan con</span><div class="chips" style="margin-top:6px">${CAUSAS.map((c,i)=>`<label for="cz${i}"><input type="checkbox" id="cz${i}" name="causas" value="${esc(c)}"${causas.includes(c)?" checked":""}>${esc(c)}</label>`).join("")}</div></div>
+    </fieldset>
+    <fieldset><legend>Momento 3 · Decidir</legend>${acc(1)}${acc(2)}
+      <div class="sub"><span class="sub-h">ESTUDIANTES EN PELIGRO DE REPITENCIA</span>
+        <label for="rAcad">Acción para estudiantes con criterio académico<textarea id="rAcad" name="rAcad">${v(d,"rAcad")}</textarea></label>
+        <label for="rAsis">Acción frente al ausentismo<textarea id="rAsis" name="rAsis">${v(d,"rAsis")}</textarea></label>
+        <label for="rResp">Responsable(s) del seguimiento<input type="text" id="rResp" name="rResp" value="${v(d,"rResp")}"></label></div>
+      ${e27(1)}${e27(2)}
+      <label for="apoyo">Apoyo que necesitamos de UTP o del equipo directivo<textarea id="apoyo" name="apoyo">${v(d,"apoyo")}</textarea></label>
+    </fieldset>
+    <fieldset><legend>Para el plenario</legend>
+      <label for="frase">Frase síntesis del grupo <small>(máximo 140 caracteres)</small><input type="text" id="frase" name="frase" maxlength="140" value="${v(d,"frase")}" placeholder="Lo que queremos que la escuela recuerde"></label>
+      <span class="counter" id="fraseN">${(d.frase||"").length}/140</span>
+    </fieldset>
+    <div class="actions"><button class="btn" type="submit" id="sendBtn" hidden>Enviar al muro</button><button class="btn" type="button" id="shareBtn">Enviar a UTP (WhatsApp)</button><button class="btn ghost" type="button" id="copyBtn">Copiar respuestas</button><span class="status" id="st" role="status"></span></div>
+    <textarea id="copyFallback" hidden readonly aria-label="Respuestas para copiar"></textarea>
+  </form>`;
+}
+function readForm(f){
+  const fd=new FormData(f), o={};
+  for(const [k,val] of fd.entries()){ if(k==="causas"){(o.causas=o.causas||[]).push(val)} else o[k]=val }
+  if(!o.causas) o.causas=[];
+  return o;
+}
+function asText(g,d){
+  const L=[`TALLER DE ANÁLISIS DE DATOS · ${g.n} (${g.nivel})`,`Participantes: ${d.nd||0} docentes, ${d.ne||0} ed. diferenciales, ${d.na||0} asistentes de aula${d.integrantes?" · "+d.integrantes:""}`,"","VER"];
+  [1,2,3].forEach(i=>d["h"+i]&&L.push(`- Hallazgo ${i} (${d["h"+i+"f"]||"s/f"}): ${d["h"+i]}`));
+  d.sorpresa&&L.push(`- Sorpresa: ${d.sorpresa}`);
+  L.push("","PENSAR",`- Problema priorizado: ${d.problema||""}`); d.oa&&L.push(`- OA aún no enseñados: ${d.oa}`); L.push(`- Hipótesis: ${d.hip||""}`,`- Ámbitos: ${(d.causas||[]).join(", ")}`);
+  L.push("","DECIDIR · 2026");
+  [1,2].forEach(i=>d["a"+i]&&L.push(`- Acción ${i}: ${d["a"+i]} | Para: ${d["a"+i+"q"]||""} | Resp.: ${d["a"+i+"r"]||""} | Plazo: ${d["a"+i+"p"]||""} | Evidencia: ${d["a"+i+"e"]||""}`));
+  L.push(`- Riesgo, criterio académico: ${d.rAcad||""}`,`- Riesgo, ausentismo: ${d.rAsis||""}`,`- Seguimiento: ${d.rResp||""}`,"","PROYECCIÓN 2027");
+  [1,2].forEach(i=>d["p"+i]&&L.push(`- ${d["p"+i]} | ${d["p"+i+"m"]||""} | PME: ${d["p"+i+"d"]||""}`));
+  L.push("",`Apoyo requerido: ${d.apoyo||""}`,`Frase síntesis: ${d.frase||""}`);
+  return L.join("\n");
+}
+function bindInsumo(g){
+  const f=$("#insumo"), st=$("#st");
+  DB_READY.then(db=>{ if(db&&$("#sendBtn")){ $("#sendBtn").hidden=false; $("#shareBtn").hidden=true; $("#sendHint").innerHTML="El borrador se guarda en este celular. Al terminar, el/la escriba toca <b>Enviar al muro</b>. Si no aparece la confirmación, usa <b>Copiar respuestas</b> y envíalas a UTP."; } });
+  $("#shareBtn").onclick=async()=>{
+    const txt=asText(g,readForm(f));
+    if(navigator.share){ try{ await navigator.share({title:"Insumo "+g.n,text:txt}); st.className="status ok"; st.textContent="Listo. Si lo enviaste, UTP lo pegará en el muro."; return; }catch(e){ if(e&&e.name==="AbortError") return; } }
+    const a=document.createElement("a"); a.href="https://wa.me/?text="+encodeURIComponent(txt); a.target="_blank"; a.rel="noopener"; document.body.appendChild(a); a.click(); a.remove();
+    st.className="status"; st.textContent="Si WhatsApp no se abrió, usa «Copiar respuestas».";
+  };
+  const save=()=>{store.set(draftKey(),readForm(f))};
+  f.addEventListener("input",e=>{save(); if(e.target.id==="frase") $("#fraseN").textContent=e.target.value.length+"/140"});
+  f.addEventListener("change",save);
+  f.addEventListener("submit",async e=>{
+    e.preventDefault(); save(); const d=readForm(f);
+    if(!d.problema&&!d.h1){st.className="status err";st.textContent="Completa al menos un hallazgo y el problema priorizado antes de enviar.";return}
+    if(!DB){st.className="status err";st.textContent="El muro en vivo no está disponible en este celular. Toca «Copiar respuestas» y envíalas a UTP.";return}
+    const b=$("#sendBtn"); b.disabled=true; st.className="status"; st.textContent="Enviando…";
+    try{ await DB.collection("insumos").doc(state.group).set({...d,grupo:state.group,nombre:g.n,nivel:g.nivel,actualizado:Date.now()});
+      st.className="status ok"; st.textContent="Enviado al muro. Pueden seguir editando y volver a enviar.";
+    }catch(err){ st.className="status err"; st.textContent="No se pudo enviar ("+(err&&err.code||"error")+"). Usa «Copiar respuestas» y envíalas a UTP."; }
+    b.disabled=false;
+  });
+  $("#copyBtn").onclick=async()=>{
+    const txt=asText(g,readForm(f));
+    try{ await navigator.clipboard.writeText(txt); st.className="status ok"; st.textContent="Copiado. Pégalo en el chat o correo de UTP."; }
+    catch(e){ const ta=$("#copyFallback"); ta.hidden=false; ta.value=txt; ta.style.minHeight="220px"; ta.focus(); ta.select(); st.className="status"; st.textContent="Selecciona el texto de abajo y cópialo."; }
+  };
+}
+
+/* ---------- plenario (tarjeta del grupo) ---------- */
+function plenarioTab(g){
+  const d=store.get(draftKey(),{});
+  if(!d.problema&&!d.a1&&!d.frase) return `<div class="card"><h2>Tarjeta de plenario</h2><p class="note">Aparecerá aquí cuando el grupo complete el insumo en este celular: problema priorizado, primera acción 2026, primera estrategia 2027 y frase síntesis. La voz del grupo la lee en 3 minutos.</p><button class="btn" data-tabgo="insumo" type="button">Ir al insumo</button></div>`;
+  return `<article class="card plen"><span class="eyebrow">${g.n} · ${g.nivel}</span>
+    ${d.frase?`<p class="big">«${esc(d.frase)}»</p>`:""}
+    <dl><div><dt>Problema priorizado</dt><dd>${esc(d.problema||"—")}</dd></div>
+      <div><dt>Hallazgo clave</dt><dd>${esc(d.h1||"—")}</dd></div>
+      <div><dt>Acción inmediata 2026</dt><dd>${esc(d.a1||"—")}${d.a1r?` <span class="note">· ${esc(d.a1r)}${d.a1p?" · "+esc(d.a1p):""}</span>`:""}</dd></div>
+      <div><dt>Estrategia 2027</dt><dd>${esc(d.p1||"—")}</dd></div>
+      <div><dt>Necesitamos</dt><dd>${esc(d.apoyo||"—")}</dd></div></dl></article>
+    <p class="note">Guion sugerido de 3 minutos: 30 s para el hallazgo y la sorpresa, 1 min para el problema y sus causas, y 1 min 30 s para las acciones 2026 y 2027.</p>`;
+}
+
+/* ---------- apuesta ---------- */
+function apuestaView(){
+  const mine=store.get("apuestas",{});
+  return `<section class="view"><div class="hero"><span class="eyebrow">Antes de mirar los datos</span><h1>Apuesta inicial</h1>
+    <p>Responde con tu intuición. No hay nota: la diferencia entre lo que creemos y lo que muestran los datos es el punto de partida del taller.</p></div>
+    ${APUESTAS.map((a,i)=>{const pick=mine[a.id]; const shown=store.get("rev-"+a.id,false);
+      return `<article class="card bet" data-a="${a.id}"><span class="eyebrow">Pregunta ${i+1} de 3</span><h2 style="font-size:1.1rem">${esc(a.q)}</h2>
+      <div class="opts">${a.opts.map((o,j)=>`<button type="button" data-o="${j}" aria-pressed="${pick===j}" class="${shown&&j===a.ok?"right":""}">${esc(o)}</button>`).join("")}</div>
+      ${shown?`<p class="reveal"><b>Dato:</b> ${esc(a.r)}</p>`:`<button class="btn ghost" type="button" data-rev ${pick==null?"disabled":""}>Ver el dato</button>`}</article>`}).join("")}
+    <button class="tile primary wide" data-go="inicio"><b>Ir a mi grupo</b><span>Volver al inicio y elegir grupo</span></button></section>`;
+}
+function bindApuesta(){
+  document.querySelectorAll("[data-a]").forEach(card=>{
+    const id=card.dataset.a;
+    card.querySelectorAll("[data-o]").forEach(b=>b.onclick=async()=>{
+      const m=store.get("apuestas",{}); m[id]=+b.dataset.o; store.set("apuestas",m); render();
+      if(DB){ try{ const uid=USER&&USER.id?await USER.id():null; const ref=uid?DB.collection("apuestas").doc(id+"_"+uid):DB.collection("apuestas").doc(); await ref.set({q:id,o:+b.dataset.o,t:Date.now()}) }catch(e){} }
+    });
+    const r=card.querySelector("[data-rev]"); if(r) r.onclick=()=>{store.set("rev-"+id,true); render()};
+  });
+}
+
+/* ---------- ticket de salida ---------- */
+function salidaView(){
+  const d=store.get("salida",{});
+  return `<section class="view"><div class="hero"><span class="eyebrow">Cierre</span><h1>Ticket de salida</h1><p>Dos respuestas breves. Se leen en conjunto, sin nombres.</p></div>
+  <form id="salida" class="card">
+    <label for="palabra">Una palabra para cómo me voy de este taller<input type="text" id="palabra" name="palabra" maxlength="24" value="${esc(d.palabra||"")}"></label>
+    <label for="compromiso">Lo que haré distinto en mi próxima clase o jornada<textarea id="compromiso" name="compromiso" maxlength="200">${esc(d.compromiso||"")}</textarea></label>
+    <div class="actions"><button class="btn" type="submit">Enviar</button><span class="status" id="st2" role="status"></span></div></form></section>`;
+}
+function bindSalida(){
+  const f=$("#salida"), st=$("#st2");
+  f.addEventListener("submit",async e=>{e.preventDefault(); const d={palabra:f.palabra.value.trim(),compromiso:f.compromiso.value.trim()}; store.set("salida",d);
+    if(!d.palabra){st.className="status err";st.textContent="Escribe al menos una palabra.";return}
+    if(!DB){st.className="status ok";st.textContent="Guardado en tu celular. Compártelo en voz alta si el facilitador lo pide.";return}
+    try{ const uid=USER&&USER.id?await USER.id():null; const ref=uid?DB.collection("tickets").doc(uid):DB.collection("tickets").doc(); await ref.set({...d,t:Date.now()}); st.className="status ok"; st.textContent="Enviado. Gracias."}
+    catch(err){st.className="status err";st.textContent="No se pudo enviar. Quedó guardado en tu celular."}
+  });
+}
+
+/* ---------- modo proyección ---------- */
+let slide=0, deckBuilt=false, unsubs=[], bigT={left:30*60,run:false,end:0,iv:null};
+function link(h){ return (APP_URL||location.href.split("#")[0])+(h?"#"+h:"") }
+function slides(){
+  return [
+  `<span class="eyebrow">Unidad Técnico-Pedagógica · Escuela Intercultural Kallfü Mapu</span>
+   <h1>De los datos a las decisiones</h1>
+   <p class="lead">Taller de análisis de trayectorias educativas, peligro de repitencia y Diagnóstico Integral de Aprendizajes (monitoreo intermedio 2026).</p>
+   <div class="grid3">
+     <div class="pc"><h3>Objetivo</h3><p>Analizar colaborativamente, por nivel, los datos de trayectoria, riesgo de repitencia y DIA para acordar estrategias para lo que queda de 2026 y para 2027.</p></div>
+     <div class="pc"><h3>Productos</h3><ul><li>Problema priorizado por nivel</li><li>Plan de acción 2026 con responsables</li><li>Estrategias 2027 para el PME</li></ul></div>
+     <div class="pc"><h3>Participan</h3><p>Docentes, educadoras diferenciales y asistentes de aula, organizados en cuatro grupos por nivel.</p></div>
+   </div>`,
+  `<div class="split"><div style="display:grid;gap:12px"><span class="eyebrow">Apuesta inicial · 2 minutos</span><h2>Antes de mirar los datos: ¿qué creemos que dicen?</h2>
+   <p class="lead">Escaneen el código, respondan con su intuición y luego revelamos cada dato.</p></div>
+   <div class="qr"><div class="code" data-qr="apuesta"></div><b>Apuesta inicial</b></div></div>
+   <div class="grid3" id="betSlides">${APUESTAS.map((a,i)=>`<div class="pc" data-ba="${a.id}"><span class="eyebrow">Pregunta ${i+1}</span><p style="font-weight:600">${esc(a.q)}</p><div class="dist" id="dist-${a.id}"></div>
+     <div class="reveal" hidden id="rv-${a.id}"><b>${esc(a.opts[a.ok])}.</b> ${esc(a.r)}</div><button class="btn ghost" type="button" data-show="${a.id}">Revelar</button></div>`).join("")}</div>
+`,
+  `<span class="eyebrow">Tres fuentes, una mirada</span><h2>Triangular para comprender la trayectoria</h2>
+   <div class="grid3">
+     <div class="pc"><h3>Trayectoria educativa</h3><p>Notas, asistencia e historia 2024–2026 por curso y estudiante.</p><p class="note">Datos parciales 2026 (periodos 1 y 2).</p></div>
+     <div class="pc"><h3>Peligro de repitencia</h3><p>Criterios MINEDUC: (1) tres o más asignaturas reprobadas, (2) una bajo 4,0 y promedio menor a 4,5, (3) dos bajo 4,0 y promedio menor a 5,0, (4) asistencia bajo 85 %.</p><p class="note">Registro vigente: 04-08-2026.</p></div>
+     <div class="pc"><h3>DIA intermedio</h3><p>Lectura (2° a 8°), Matemática (3° a 8°) y Socioemocional (4° a 8°).</p><p class="note">No se usa para calificar ni comparar cursos: se lee según los OA trabajados.</p></div>
+   </div>
+   <div class="grid4">
+     <div class="pc alert"><span class="bignum">149/157</span><p>estudiantes del registro están ahí solo por asistencia</p></div>
+     <div class="pc alert"><span class="bignum">51 %</span><p>de 3° a 8° en nivel I de Matemática DIA (102 de 200)</p></div>
+     <div class="pc"><span class="bignum">7/7</span><p>cursos con Reflexionar como la habilidad lectora de menor logro</p></div>
+     <div class="pc alert"><span class="bignum">35 / 21</span><p>estudiantes del registro (1° a 8°) que retroceden / que mejoran</p></div>
+   </div>`,
+  `<span class="eyebrow">Ruta de trabajo · 30 minutos</span><h2>Ver, pensar, decidir</h2>
+   <div class="grid3">${MOMENTOS.map(m=>`<div class="pc"><span class="eyebrow">${m.n} · ${m.min} min</span><h3>${esc(m.t)}</h3><p>${esc(m.p)}</p></div>`).join("")}</div>
+   <div class="grid4">
+     <div class="pc"><h3>Roles</h3><p>Facilitador/a · escriba digital · guardián/a del tiempo · voz del grupo · defensor/a del estudiante.</p></div>
+     <div class="pc"><h3>Acuerdos</h3><p>Datos antes que opiniones. Hablamos de prácticas, no de personas. Todo hallazgo termina en una acción.</p></div>
+     <div class="pc"><h3>Confidencialidad</h3><p>Los paneles incluyen nombres de estudiantes: no se fotografían ni se comparten fuera del taller.</p></div>
+   </div>`,
+  `<span class="eyebrow">Grupos de trabajo</span><h2>Escaneen el código de su grupo</h2>
+   <div class="qrs">${Object.entries(GRUPOS).map(([id,g])=>`<div class="qr"><div class="code" data-qr="${id}"></div><b>${g.n}</b><small>${g.nivel}</small></div>`).join("")}</div>
+   <p class="lead">Cada código abre los datos del nivel, la pauta y el insumo. El/la escriba envía el insumo al muro al finalizar.</p>`,
+  `<span class="eyebrow">Trabajo en grupos</span>
+   <div class="phase" id="phase">${MOMENTOS.map(m=>`<div data-ph="${m.id}"><b>${m.n.replace("Momento ","")} · ${m.t.split(":")[0]}</b><span>${m.min} min</span></div>`).join("")}</div>
+   <div class="bigtimer" id="bigClock">30:00</div>
+   <div class="actions"><button class="btn" type="button" id="bigStart">Iniciar</button><button class="btn ghost" type="button" id="bigReset">Reiniciar</button><span class="note" id="bigHint">Avisaré el cambio de momento en pantalla.</span></div>`,
+  `<span class="eyebrow">Plenario · 3 minutos por grupo</span><h2>Muro de acuerdos</h2>
+   <div class="wall" id="wall"></div>
+   <details class="pc" id="pasteBox"><summary style="cursor:pointer;font-weight:700">Agregar un insumo recibido por chat</summary>
+     <div style="display:grid;gap:10px;margin-top:10px">
+       <label for="pasteG">Grupo<select id="pasteG">${Object.entries(GRUPOS).map(([id,g])=>`<option value="${id}">${g.n} · ${g.nivel}</option>`).join("")}</select></label>
+       <label for="pasteT">Texto copiado desde «Copiar respuestas»<textarea id="pasteT" style="min-height:120px"></textarea></label>
+       <div class="actions"><button class="btn" type="button" id="pasteBtn">Agregar al muro</button><span class="status" id="pasteSt" role="status"></span></div></div></details>`,
+  `<span class="eyebrow">Síntesis UTP</span><h2>Lo que vemos como escuela</h2>
+   <div class="grid4">
+     <div class="pc"><h3>La asistencia es el primer riesgo</h3><p>95 % del registro de peligro de repitencia se explica por asistencia bajo 85 %. En 1° a 8°, 35 estudiantes retroceden y 21 mejoran.</p></div>
+     <div class="pc"><h3>Notas y aprendizajes no coinciden</h3><p>En Matemática, el DIA ubica a la mitad de 3° a 8° en nivel I, mientras los promedios van de 5,1 a 5,8. Necesitamos revisar qué evaluamos y con qué criterios.</p></div>
+     <div class="pc"><h3>Leer para opinar con fundamentos</h3><p>Reflexionar es la habilidad lectora de menor logro en los siete cursos evaluados. Es una prioridad transversal a todas las asignaturas.</p></div>
+     <div class="pc"><h3>Bienestar ante la evaluación</h3><p>Menos de la mitad de 4° a 8° llega tranquilo a una prueba, y en 7° y 8° pocos conversan sus emociones con un adulto antes de rendirla.</p></div>
+   </div>`,
+  `<span class="eyebrow">Cierre</span><h2>Próximos pasos</h2>
+   <div class="grid3">
+     <div class="pc"><h3>Esta semana</h3><p>UTP consolida los cuatro insumos en un plan de acción remedial noviembre–diciembre y lo devuelve a cada nivel.</p></div>
+     <div class="pc"><h3>Antes del cierre del año</h3><p>Seguimiento en consejo de profesores; análisis de casos según el Decreto 67/2018 con informe técnico-pedagógico.</p></div>
+     <div class="pc"><h3>2027</h3><p>Las estrategias de cada nivel alimentan la planificación anual del PME y el acompañamiento pedagógico (art. 12).</p></div>
+   </div>
+   <div class="grid3" style="align-items:start"><div class="qr"><div class="code" data-qr="salida"></div><b>Ticket de salida</b><small>Una palabra y un compromiso</small></div>
+   <div class="pc" style="grid-column:span 2"><h3>Cómo nos vamos</h3><div class="words" id="words"><span class="note" style="font-family:var(--f-body);font-weight:400;color:var(--muted)">Las palabras aparecerán aquí a medida que lleguen los tickets.</span></div></div></div>`
+  ];
+}
+function buildDeck(){
+  const deck=$("#deck");
+  if(!deckBuilt){
+    const S=slides();
+    deck.innerHTML=`<div class="deck-top"><span class="brand">De los datos a las decisiones · Kallfü Mapu</span><span class="clockmini" id="miniClock"></span><button class="btn ghost" style="color:var(--blue-ink);border-color:currentColor" type="button" id="exitDeck">Salir</button></div>
+      <div style="min-height:0;display:grid">${S.map((s,i)=>`<section class="slide" data-i="${i}">${s}</section>`).join("")}</div>
+      <div class="deck-nav"><button class="btn ghost" type="button" id="prevS">←</button><div class="dots">${S.map((_,i)=>`<button type="button" data-dot="${i}" aria-label="Diapositiva ${i+1}"></button>`).join("")}</div><button class="btn" type="button" id="nextS">→</button></div>`;
+    deckBuilt=true;
+    $("#exitDeck").onclick=()=>{exitDeck();go("inicio")};
+    $("#prevS").onclick=()=>show(slide-1); $("#nextS").onclick=()=>show(slide+1);
+    deck.querySelectorAll("[data-dot]").forEach(b=>b.onclick=()=>show(+b.dataset.dot));
+    deck.querySelectorAll("[data-show]").forEach(b=>b.onclick=()=>{$("#rv-"+b.dataset.show).hidden=false;b.hidden=true});
+    deck.querySelectorAll("[data-qr]").forEach(el=>{try{ new QRCode(el,{text:link(el.dataset.qr==="inicio"?"":el.dataset.qr),width:300,height:300,correctLevel:QRCode.CorrectLevel.M}) }catch(e){ el.innerHTML='<span style="color:#132033;font-size:.8rem;line-height:1.3">'+esc(link(el.dataset.qr))+'</span>' }});
+    bindBig(); liveWall();
+  }
+  show(slide);
+}
+function show(i){ const n=document.querySelectorAll(".slide").length; slide=Math.max(0,Math.min(n-1,i));
+  document.querySelectorAll(".slide").forEach(s=>s.classList.toggle("on",+s.dataset.i===slide));
+  document.querySelectorAll("[data-dot]").forEach(b=>b.setAttribute("aria-current",String(+b.dataset.dot===slide))); }
+function exitDeck(){ document.body.classList.remove("present") }
+document.addEventListener("keydown",e=>{ if(state.view!=="proyectar") return; if(e.target.closest("input,textarea,select")) return;
+  if(e.key==="ArrowRight"||e.key==="PageDown"||e.key===" "){e.preventDefault();show(slide+1)} if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();show(slide-1)} });
+function bindBig(){
+  const clock=$("#bigClock"), mini=$("#miniClock"), b=$("#bigStart");
+  const paint=()=>{const left=bigT.run?Math.round((bigT.end-Date.now())/1000):bigT.left; const a=Math.abs(left);
+    const txt=(left<0?"+":"")+String(Math.floor(a/60)).padStart(2,"0")+":"+String(a%60).padStart(2,"0");
+    clock.textContent=txt; clock.style.color=left<0?"var(--n1)":""; mini.textContent=(bigT.run||bigT.left<1800)?"Trabajo grupal "+txt:"";
+    const used=1800-left; const ph=used<600?"ver":used<1080?"pensar":"decidir";
+    document.querySelectorAll("[data-ph]").forEach(d=>d.classList.toggle("on",(bigT.run||bigT.left<1800)&&d.dataset.ph===ph));
+    $("#bigHint").textContent= left<=0?"Tiempo cumplido: preparen la tarjeta de plenario.": ph==="ver"?"Momento 1: describir los datos.":ph==="pensar"?"Momento 2: priorizar y explicar.":"Momento 3: acordar acciones y completar el insumo.";
+    b.textContent=bigT.run?"Pausar":"Iniciar"};
+  b.onclick=()=>{ if(bigT.run){bigT.left=Math.round((bigT.end-Date.now())/1000);bigT.run=false;clearInterval(bigT.iv)} else {bigT.end=Date.now()+bigT.left*1000;bigT.run=true;bigT.iv=setInterval(paint,500)} paint() };
+  $("#bigReset").onclick=()=>{bigT.run=false;clearInterval(bigT.iv);bigT.left=1800;paint()};
+  paint();
+}
+function wallCard(d){
+  return `<article class="pc"><span class="who">${esc(d.nombre||"")} · ${esc(d.nivel||"")}</span>${d.frase?`<h3>«${esc(d.frase)}»</h3>`:""}
+   <dl><dt>Problema priorizado</dt><dd>${esc(d.problema||"—")}</dd><dt>Acción 2026</dt><dd>${esc(d.a1||"—")}${d.a1r?" · "+esc(d.a1r):""}</dd>
+   <dt>Estrategia 2027</dt><dd>${esc(d.p1||"—")}</dd>${d.apoyo?`<dt>Necesitan</dt><dd>${esc(d.apoyo)}</dd>`:""}</dl></article>`;
+}
+let wallDb={}, wallLocal={};
+function paintWall(){
+  const wall=$("#wall"); if(!wall) return;
+  wall.innerHTML=Object.entries(GRUPOS).map(([id,g])=>{const d=wallDb[id]||wallLocal[id]; return d?wallCard(d):`<article class="pc"><span class="who">${g.n} · ${g.nivel}</span><p class="note">Esperando el insumo del grupo.</p></article>`}).join("");
+}
+function parsePasted(t,g){
+  const o={nombre:g.n,nivel:g.nivel}; const lines=t.split(/\r?\n/).map(x=>x.trim());
+  const after=(pre)=>{const l=lines.find(x=>x.startsWith(pre)); return l?l.slice(pre.length).trim():""};
+  o.problema=after("- Problema priorizado:"); o.apoyo=after("Apoyo requerido:"); o.frase=after("Frase síntesis:");
+  const h=lines.find(x=>/^- Hallazgo 1/.test(x)); if(h) o.h1=h.replace(/^- Hallazgo 1( \([^)]*\))?:\s*/,"");
+  const a=lines.find(x=>x.startsWith("- Acción 1:")); if(a){const parts=a.slice(11).split(" | "); o.a1=parts[0].trim(); const r=parts.find(p=>p.startsWith("Resp.:")); if(r) o.a1r=r.slice(6).trim();}
+  const i27=lines.indexOf("PROYECCIÓN 2027"); if(i27>=0){const p=lines.slice(i27+1).find(x=>x.startsWith("- ")); if(p) o.p1=p.slice(2).split(" | ")[0].trim();}
+  if(!o.problema&&!o.a1&&!o.frase) o.problema=t.trim().slice(0,400);
+  o.raw=t.slice(0,8000); o.actualizado=Date.now(); return o;
+}
+function liveWall(){
+  const wall=$("#wall");
+  paintWall();
+  $("#pasteBtn").onclick=async()=>{ const id=$("#pasteG").value, g=GRUPOS[id], t=$("#pasteT").value, st=$("#pasteSt");
+    if(!t.trim()){st.className="status err";st.textContent="Pega el texto del grupo primero.";return}
+    const d=parsePasted(t,g); d.grupo=id; wallLocal[id]=d; delete wallDb[id]; paintWall(); $("#pasteT").value=""; $("#pasteBox").open=false;
+    if(DB){ try{ await DB.collection("insumos").doc(id).set(d); st.className="status ok"; st.textContent="Agregado y guardado."; }catch(e){ st.className="status"; st.textContent="Agregado en esta pantalla (no se pudo guardar en línea)."; } }
+    else { st.className="status"; st.textContent="Agregado en esta pantalla."; } };
+  const start=()=>{
+    if(!DB){ wall.insertAdjacentHTML("beforebegin",`<p class="note">El envío en vivo no está disponible en esta pantalla. Pega abajo los insumos que lleguen por chat, o cada voz del grupo presenta desde la pestaña Plenario.</p>`); return; }
+    try{
+      unsubs.push(DB.collection("insumos").onSnapshot(s=>{
+        wallDb={}; s.docs.forEach(d=>wallDb[d.id]=d.data()); paintWall();
+      },()=>{}));
+      unsubs.push(DB.collection("apuestas").onSnapshot(s=>{
+        APUESTAS.forEach(a=>{ const c=[0,0,0,0]; s.docs.forEach(d=>{const x=d.data(); if(x.q===a.id&&x.o>=0&&x.o<4) c[x.o]++}); const tot=c.reduce((p,q)=>p+q,0);
+          const el=$("#dist-"+a.id); if(el) el.innerHTML= tot?a.opts.map((o,j)=>bar(o+" · "+c[j],100*c[j]/tot,false)).join("")+`<p class="note">${tot} respuestas</p>`:""; });
+      },()=>{}));
+      unsubs.push(DB.collection("tickets").onSnapshot(s=>{
+        const w={}; s.docs.forEach(d=>{const p=(d.data().palabra||"").trim().toLowerCase(); if(p) w[p]=(w[p]||0)+1});
+        const el=$("#words"); const e=Object.entries(w); if(el&&e.length) el.innerHTML=e.sort((a,b)=>b[1]-a[1]).map(([p,n])=>`<span style="font-size:${1+Math.min(n,6)*.35}rem">${esc(p)}</span>`).join("");
+      },()=>{}));
+    }catch(e){}
+  };
+  DB_READY.then(start);
+}
+
+/* ---------- arranque ---------- */
+(function boot(){ const h=location.hash.slice(1); if(h&&(/^g[1-4]$/.test(h)||["apuesta","salida","proyectar"].includes(h))) go(h); else render(); })();
+</script>
+
+</body>
+</html>
