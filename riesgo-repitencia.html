@@ -7,7 +7,8 @@
 <meta name="description" content="Monitoreo de criterios de riesgo de repitencia MINEDUC de la Escuela Intercultural Kallfü Mapu." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="js/theme.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
@@ -15,30 +16,33 @@
     theme: {
       extend: {
         colors: {
-          'kallfu-blue': '#1c4587',
-          'kallfu-green': '#5bcb96',
-          'kallfu-blue-light': '#eef2f9',
-          'kallfu-green-light': '#e6f7ef',
+          'kallfu-blue': '#234779',
+          'kallfu-green': '#36765e',
+          'kallfu-blue-light': '#edf2f8',
+          'kallfu-green-light': '#eaf3ee',
         }
       }
     }
   }
 </script>
 <script src="https://unpkg.com/lucide@latest"></script>
+<link rel="icon" type="image/png" href="assets/insignia.png">
+<meta name="theme-color" content="#234779">
 <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body class="con-sidebar text-gray-800 dark:text-slate-100 antialiased">
 <div id="sidebar-mount"></div>
 
-<main class="contenido-principal">
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<main class="contenido-principal" id="contenido" tabindex="-1">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-    <div class="mb-2">
+    <div class="risk-heading mb-2"><span class="section-eyebrow">ACOMPAÑAMIENTO EDUCATIVO</span><h1>Peligro de Repitencia</h1>
       <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-300 text-xs font-bold uppercase tracking-wider border border-red-100 dark:border-red-500/30">
         <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i> Peligro de Repitencia
       </span>
     </div>
   </div>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-2 flex gap-3">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 risk-tabs pb-2 flex gap-3">
 <button id="tab-btn-actual" class="tab-btn active flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm">
       <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Diagnóstico Actual
     </button>
@@ -401,8 +405,8 @@
 
 <script>window.PAGINA_ACTUAL = "riesgo";</script>
 <script src="js/config.js"></script>
-<script src="js/theme.js"></script>
 <script src="js/sidebar.js"></script>
+<script src="js/interface.js"></script>
 <script src="js/aviso-privacidad.js"></script>
 <script src="js/riesgo.js"></script>
 </body>
