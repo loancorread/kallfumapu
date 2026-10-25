@@ -158,7 +158,7 @@ legend{font-family:var(--f-display);font-weight:700;padding:0 6px;font-size:1.05
 label{display:grid;gap:4px;font-weight:600;font-size:.92rem}
 label small{font-weight:400;color:var(--muted)}
 input[type=text],input[type=number],select,textarea{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:9px 10px;font-weight:400}
-textarea{min-height:72px;resize:vertical}
+textarea{min-height:56px;resize:vertical}
 .row2{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
 .row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
@@ -537,6 +537,7 @@ function insumoTab(g){
     <label for="p${i}d">Dimensión PME<select id="p${i}d" name="p${i}d">${opt(PME,d["p"+i+"d"])}</select></label></div></div>`;
   const causas=(d.causas||[]);
   return `<div class="callout" id="sendHint">El borrador se guarda automáticamente en este celular. Al terminar, el/la escriba envía las respuestas por correo a UTP (km.utp@edununoa.cl) con el botón de abajo.</div>
+  <div class="callout" style="border-left-color:var(--n2);background:var(--n2-tint)"><b>Respuestas breves y concisas:</b> una o dos líneas por campo, con la cifra o la idea central. Cada campo tiene un máximo de caracteres para que el correo llegue completo.</div>
   <form id="insumo" autocomplete="off">
     <fieldset><legend>Identificación</legend>
       <div class="row3">
@@ -590,6 +591,8 @@ function asText(g,d){
 }
 function bindInsumo(g){
   const f=$("#insumo"), st=$("#st");
+  f.querySelectorAll("textarea:not([hidden])").forEach(t=>{ if(t.id!=="copyFallback"){ t.maxLength = t.id==="hip"?250:160; t.rows=2; } });
+  f.querySelectorAll('input[type="text"]').forEach(t=>{ if(t.id!=="frase") t.maxLength=100; });
   DB_READY.then(db=>{ if(db&&$("#sendBtn")){ $("#sendBtn").hidden=false; $("#shareBtn").hidden=true; $("#sendHint").innerHTML="El borrador se guarda en este celular. Al terminar, el/la escriba toca <b>Enviar al muro</b>. Si no aparece la confirmación, usa <b>Copiar respuestas</b> y envíalas a UTP."; } });
   $("#shareBtn").onclick=async()=>{
     const txt=asText(g,readForm(f));
