@@ -79,8 +79,8 @@ section.view{display:grid;gap:18px}
 .ghead{display:grid;gap:4px}
 .ghead h1{font-size:1.7rem;font-weight:800}
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
-.tabbar .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding-block:6px}
-.tabbar button{border:0;background:transparent;border-radius:8px;padding:8px 4px;font-weight:600;font-size:.85rem;color:var(--muted);cursor:pointer;display:grid;justify-items:center;gap:2px}
+.tabbar .wrap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;padding-block:6px}
+.tabbar button{border:0;background:transparent;border-radius:8px;padding:8px 2px;font-weight:600;font-size:.8rem;min-width:0;color:var(--muted);cursor:pointer;display:grid;justify-items:center;gap:2px}
 .tabbar button i{font-style:normal;font-family:var(--f-data);font-size:.7rem}
 .tabbar button[aria-selected="true"]{background:var(--blue-soft);color:var(--blue)}
 .seg{display:flex;gap:6px;flex-wrap:wrap}
@@ -371,7 +371,7 @@ function cursoHTML(k){
 
 /* ---------- estado de navegación ---------- */
 let state={view:"inicio",group:null,tab:"datos",curso:null};
-const TABS=[["datos","Datos","1"],["pauta","Pauta","2"],["insumo","Insumo","3"],["plenario","Plenario","4"]];
+const TABS=[["datos","Datos","1"],["pauta","Pauta","2"],["insumo","Insumo","3"],["plenario","Plenario","4"],["salida","Ticket","5"]];
 
 function go(view){ if(view===state.view && view!=="proyectar") {render();return;}
   state.view=view; if(/^g[1-4]$/.test(view)){state.group=view;state.tab=store.get("tab-"+view,"datos");state.curso=GRUPOS[view].cursos[0];}
@@ -414,8 +414,6 @@ function inicioView(){
     <div class="tiles">
       <a class="tile" href="${DASH}index.html" target="_blank" rel="noopener"><b>Trayectoria ↗</b><span>Panel por curso y estudiante, 2024–2026</span></a>
       <a class="tile" href="${DASH}riesgo-repitencia.html" target="_blank" rel="noopener"><b>Peligro de repitencia ↗</b><span>Registro de criterios MINEDUC y trazabilidad</span></a>
-      <button class="tile" data-go="salida"><b>Ticket de salida</b><span>Al cierre del taller</span></button>
-      <button class="tile" data-go="proyectar"><b>Modo proyección</b><span>Para el facilitador</span></button>
     </div>
   </section>`;
 }
@@ -433,10 +431,12 @@ function groupView(){
   if(state.tab==="pauta") h+=pautaTab(g);
   if(state.tab==="insumo") h+=insumoTab(g);
   if(state.tab==="plenario") h+=plenarioTab(g);
+  if(state.tab==="salida") h+=salidaForm();
   app.innerHTML=h+"</section>";
   if(state.tab==="datos"){ app.querySelectorAll("[data-curso]").forEach(b=>b.onclick=()=>{state.curso=b.dataset.curso;groupView()}) }
   if(state.tab==="pauta") bindTimers();
   if(state.tab==="insumo") bindInsumo(g);
+  if(state.tab==="salida") bindSalida();
   const tg=app.querySelector("[data-tabgo]"); if(tg) tg.onclick=()=>{state.tab=tg.dataset.tabgo;store.set("tab-"+state.group,state.tab);groupView();window.scrollTo(0,0)};
 }
 function datosTab(g){
@@ -639,7 +639,7 @@ function apuestaView(){
       return `<article class="card bet" data-a="${a.id}"><span class="eyebrow">Pregunta ${i+1} de 3</span><h2 style="font-size:1.1rem">${esc(a.q)}</h2>
       <div class="opts">${a.opts.map((o,j)=>`<button type="button" data-o="${j}" aria-pressed="${pick===j}" class="${shown&&j===a.ok?"right":""}">${esc(o)}</button>`).join("")}</div>
       ${shown?`<p class="reveal"><b>Dato:</b> ${esc(a.r)}</p>`:`<button class="btn ghost" type="button" data-rev ${pick==null?"disabled":""}>Ver el dato</button>`}</article>`}).join("")}
-    <button class="tile primary wide" data-go="inicio"><b>Ir a mi grupo</b><span>Volver al inicio y elegir grupo</span></button></section>`;
+    <button class="tile primary wide" data-go="inicio"><b>Elegir mi grupo</b><span>Volver al inicio para entrar a los datos de tu nivel</span></button></section>`;
 }
 function bindApuesta(){
   document.querySelectorAll("[data-a]").forEach(card=>{
@@ -654,19 +654,21 @@ function bindApuesta(){
 
 /* ---------- ticket de salida ---------- */
 function salidaView(){
+  return `<section class="view"><div class="hero"><span class="eyebrow">Cierre</span><h1>Ticket de salida</h1><p>Dos respuestas breves. Se leen en conjunto, sin nombres.</p></div>${salidaForm()}</section>`;
+}
+function salidaForm(){
   const d=store.get("salida",{});
-  return `<section class="view"><div class="hero"><span class="eyebrow">Cierre</span><h1>Ticket de salida</h1><p>Dos respuestas breves. Se leen en conjunto, sin nombres.</p></div>
-  <form id="salida" class="card">
+  return `<form id="salida" class="card"><h2>Ticket de salida</h2><p class="note">Al cierre del taller. Dos respuestas breves, sin nombres.</p>
     <label for="palabra">Una palabra para cómo me voy de este taller<input type="text" id="palabra" name="palabra" maxlength="24" value="${esc(d.palabra||"")}"></label>
     <label for="compromiso">Lo que haré distinto en mi próxima clase o jornada<textarea id="compromiso" name="compromiso" maxlength="200">${esc(d.compromiso||"")}</textarea></label>
-    <div class="actions"><button class="btn" type="submit">Enviar</button><span class="status" id="st2" role="status"></span></div></form></section>`;
+    <div class="actions"><button class="btn" type="submit">Enviar</button><span class="status" id="st2" role="status"></span></div></form>`;
 }
 function bindSalida(){
   const f=$("#salida"), st=$("#st2");
   f.addEventListener("submit",async e=>{e.preventDefault(); const d={palabra:f.palabra.value.trim(),compromiso:f.compromiso.value.trim()}; store.set("salida",d);
     if(!d.palabra){st.className="status err";st.textContent="Escribe al menos una palabra.";return}
-    if(!DB){st.className="status ok";st.textContent="Guardado en tu celular. Compártelo en voz alta si el facilitador lo pide.";return}
-    try{ const uid=USER&&USER.id?await USER.id():null; const ref=uid?DB.collection("tickets").doc(uid):DB.collection("tickets").doc(); await ref.set({...d,t:Date.now()}); st.className="status ok"; st.textContent="Enviado. Gracias."}
+    if(!DB){st.className="status ok";st.textContent="Guardado. Tenlo a mano: el facilitador pedirá leer algunas palabras en voz alta.";return}
+    try{ const uid=USER&&USER.id?await USER.id():null; const ref=uid?DB.collection("tickets").doc(uid):DB.collection("tickets").doc(); await ref.set({...d,grupo:state.group||null,t:Date.now()}); st.className="status ok"; st.textContent="Enviado. Gracias."}
     catch(err){st.className="status err";st.textContent="No se pudo enviar. Quedó guardado en tu celular."}
   });
 }
