@@ -16,6 +16,7 @@
     const btn = document.getElementById("theme-toggle");
     if (btn) {
       btn.setAttribute("aria-pressed", tema === "oscuro");
+      btn.setAttribute("aria-label", tema === "oscuro" ? "Activar modo claro" : "Activar modo oscuro");
       btn.innerHTML =
         tema === "oscuro"
           ? `${iconoSol()}<span>Modo claro</span>`
@@ -25,10 +26,9 @@
   }
 
   function temaGuardado() {
-    const guardado = sessionStorage.getItem(STORAGE_KEY);
-    const prefiereOscuro =
-      window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-    return guardado || (prefiereOscuro ? "oscuro" : "claro");
+    try {
+      return sessionStorage.getItem(STORAGE_KEY) === "oscuro" ? "oscuro" : "claro";
+    } catch (_) { return "claro"; }
   }
 
   function initTheme() {
@@ -38,7 +38,7 @@
   function toggleTema() {
     const actual = document.documentElement.getAttribute("data-theme");
     const nuevo = actual === "oscuro" ? "claro" : "oscuro";
-    sessionStorage.setItem(STORAGE_KEY, nuevo);
+    try { sessionStorage.setItem(STORAGE_KEY, nuevo); } catch (_) { /* Sin almacenamiento, el toggle sigue funcionando. */ }
     aplicarTema(nuevo);
   }
 

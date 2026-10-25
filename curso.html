@@ -6,7 +6,8 @@
 <title>Curso — Escuela Intercultural Kallfü Mapu</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="js/theme.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
@@ -14,10 +15,10 @@
     theme: {
       extend: {
         colors: {
-          'kallfu-blue': '#1c4587',
-          'kallfu-green': '#5bcb96',
-          'kallfu-blue-light': '#eef2f9',
-          'kallfu-green-light': '#e6f7ef',
+          'kallfu-blue': '#234779',
+          'kallfu-green': '#36765e',
+          'kallfu-blue-light': '#edf2f8',
+          'kallfu-green-light': '#eaf3ee',
         }
       }
     }
@@ -25,14 +26,18 @@
 </script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="icon" type="image/png" href="assets/insignia.png">
+<meta name="theme-color" content="#234779">
 <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body class="con-sidebar text-gray-800 dark:text-slate-100 antialiased">
 <div id="sidebar-mount"></div>
 
-<main class="contenido-principal">
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<main class="contenido-principal" id="contenido" tabindex="-1">
   <div class="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
 
+    <a class="back-link" href="index.html"><i data-lucide="arrow-left"></i> Todos los cursos</a>
     <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
       <h1 id="titulo-curso" class="text-2xl font-bold text-kallfu-blue dark:text-blue-300">Curso</h1>
       <select id="select-curso" aria-label="Cambiar de curso" class="border border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 rounded-lg py-2 pl-3 pr-8 text-sm focus:ring-kallfu-blue focus:border-kallfu-blue"></select>
@@ -43,13 +48,13 @@
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <i data-lucide="search" class="h-4 w-4 text-gray-400"></i>
         </div>
-        <input id="buscador" type="text" placeholder="Buscar por nombre…" autocomplete="off"
+        <input id="buscador" aria-label="Buscar estudiante por nombre" type="search" placeholder="Buscar por nombre…" autocomplete="off"
           class="pl-10 w-full border border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 rounded-lg py-2 focus:ring-kallfu-blue focus:border-kallfu-blue text-sm" />
       </div>
       <span class="text-sm text-gray-500 dark:text-slate-400 whitespace-nowrap" id="contador-resultados"></span>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-[minmax(360px,620px)_1fr] gap-5 items-start">
+    <div class="course-workspace grid grid-cols-1 xl:grid-cols-[minmax(300px,0.85fr)_1.15fr] gap-5 items-start">
       <div id="lista-estudiantes" class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 overflow-hidden overflow-y-auto custom-scrollbar" style="max-height:74vh;"></div>
       <div id="panel-contenedor">
         <div class="panel-vacio flex flex-col items-center justify-center gap-3 text-center text-gray-400 dark:text-slate-500 border border-dashed border-gray-200 dark:border-slate-700 rounded-xl bg-gray-50 dark:bg-slate-800/40" style="height:74vh;">
@@ -73,8 +78,8 @@
 
 <script>window.PAGINA_ACTUAL = "trayectoria";</script>
 <script src="js/config.js"></script>
-<script src="js/theme.js"></script>
 <script src="js/sidebar.js"></script>
+<script src="js/interface.js"></script>
 <script src="js/aviso-privacidad.js"></script>
 <script src="js/data-loader.js"></script>
 <script src="js/normativa.js"></script>
