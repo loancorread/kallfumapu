@@ -22,11 +22,9 @@
   --f-data:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   --r:10px;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0c1422; --surface:#132036; --sunk:#0f1a2c; --ink:#e6edf7; --muted:#9aa9bf; --line:#263752;
-  --blue:#7ea4ea; --blue-ink:#0c1422; --blue-soft:#1b2c4a; --green:#5bcb96; --green-soft:#5bcb96; --green-tint:#143528;
-  --n1:#f08a5d; --n1-tint:#3a2016; --n2:#e0b55e; --n2-tint:#352a14; --n3:#5bcb96; --focus:#93b4ff; color-scheme:dark}}
-:root[data-theme="dark"]{
+/* Tema: claro por defecto; el botón de la app cambia a oscuro (atributo propio data-km) */
+:root{color-scheme:light}
+:root[data-km="dark"]{
   --bg:#0c1422; --surface:#132036; --sunk:#0f1a2c; --ink:#e6edf7; --muted:#9aa9bf; --line:#263752;
   --blue:#7ea4ea; --blue-ink:#0c1422; --blue-soft:#1b2c4a; --green:#5bcb96; --green-soft:#5bcb96; --green-tint:#143528;
   --n1:#f08a5d; --n1-tint:#3a2016; --n2:#e0b55e; --n2-tint:#352a14; --n3:#5bcb96; --focus:#93b4ff; color-scheme:dark}
@@ -99,8 +97,8 @@ section.view{display:grid;gap:18px}
 .stack{display:flex;height:26px;border-radius:6px;overflow:hidden;background:var(--sunk)}
 .stack div{display:flex;align-items:center;justify-content:center;font-family:var(--f-data);font-size:.75rem;font-weight:600;color:#fff;min-width:0;overflow:hidden;white-space:nowrap}
 .stack .s1{background:var(--n1)} .stack .s2{background:var(--n2)} .stack .s3{background:var(--n3)}
-:root[data-theme="dark"] .stack div{color:#0c1422}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .stack div{color:#0c1422}}
+:root[data-km="dark"] .stack div{color:#0c1422}
+.themebtn{min-width:2.4em;font-size:1rem!important;line-height:1}
 .legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
 .legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px;background:var(--c)}
 .bars{display:grid;gap:7px}
@@ -240,12 +238,14 @@ body.present #deck{display:grid;grid-template-rows:auto 1fr auto}
 </style>
 </head>
 <body>
+<script>try{document.documentElement.setAttribute("data-km",localStorage.getItem("km-theme")==="dark"?"dark":"light")}catch(e){document.documentElement.setAttribute("data-km","light")}</script>
 
 <header class="top" id="top">
   <div class="weave" aria-hidden="true"></div>
   <div class="wrap">
     <span class="brand" id="brand">Taller de análisis de datos · Kallfü Mapu</span>
     <button type="button" id="homeBtn" hidden>Inicio</button>
+    <button type="button" class="themebtn" data-theme-toggle aria-label="Cambiar a modo oscuro" title="Cambiar a modo oscuro">☾</button>
   </div>
 </header>
 <main class="wrap" id="app"></main>
@@ -299,6 +299,9 @@ const APUESTAS = [
 ];
 
 /* ---------- utilidades ---------- */
+function currentTheme(){return document.documentElement.getAttribute("data-km")==="dark"?"dark":"light"}
+function paintThemeButtons(){const dark=currentTheme()==="dark";document.querySelectorAll("[data-theme-toggle]").forEach(b=>{b.textContent=dark?"☀":"☾";const l=dark?"Cambiar a modo claro":"Cambiar a modo oscuro";b.setAttribute("aria-label",l);b.title=l;b.setAttribute("aria-pressed",String(dark))})}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-theme-toggle]");if(!b)return;const t=currentTheme()==="dark"?"light":"dark";document.documentElement.setAttribute("data-km",t);try{localStorage.setItem("km-theme",t)}catch(err){}paintThemeButtons()});
 const $ = (s,el=document)=>el.querySelector(s);
 const esc = s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const f1 = v=>(Math.round(v*10)/10).toLocaleString("es-CL",{minimumFractionDigits:1,maximumFractionDigits:1});
@@ -749,10 +752,10 @@ function buildDeck(){
   const deck=$("#deck");
   if(!deckBuilt){
     const S=slides();
-    deck.innerHTML=`<div class="deck-top"><span class="brand">De los datos a las decisiones · Kallfü Mapu</span><span class="clockmini" id="miniClock"></span><button class="btn ghost" style="color:var(--blue-ink);border-color:currentColor" type="button" id="exitDeck">Salir</button></div>
+    deck.innerHTML=`<div class="deck-top"><span class="brand">De los datos a las decisiones · Kallfü Mapu</span><span class="clockmini" id="miniClock"></span><button class="btn ghost themebtn" style="color:var(--blue-ink);border-color:currentColor" type="button" data-theme-toggle aria-label="Cambiar a modo oscuro" title="Cambiar a modo oscuro">☾</button><button class="btn ghost" style="color:var(--blue-ink);border-color:currentColor" type="button" id="exitDeck">Salir</button></div>
       <div style="min-height:0;display:grid">${S.map((s,i)=>`<section class="slide" data-i="${i}">${s}</section>`).join("")}</div>
       <div class="deck-nav"><button class="btn ghost" type="button" id="prevS">←</button><div class="dots">${S.map((_,i)=>`<button type="button" data-dot="${i}" aria-label="Diapositiva ${i+1}"></button>`).join("")}</div><button class="btn" type="button" id="nextS">→</button></div>`;
-    deckBuilt=true;
+    deckBuilt=true; paintThemeButtons();
     $("#exitDeck").onclick=()=>{exitDeck();go("inicio")};
     $("#prevS").onclick=()=>show(slide-1); $("#nextS").onclick=()=>show(slide+1);
     deck.querySelectorAll("[data-dot]").forEach(b=>b.onclick=()=>show(+b.dataset.dot));
@@ -829,7 +832,7 @@ function liveWall(){
 }
 
 /* ---------- arranque ---------- */
-(function boot(){ const h=location.hash.slice(1); if(h&&(/^g[1-4]$/.test(h)||["apuesta","salida","proyectar"].includes(h))) go(h); else render(); })();
+(function boot(){ paintThemeButtons(); const h=location.hash.slice(1); if(h&&(/^g[1-4]$/.test(h)||["apuesta","salida","proyectar"].includes(h))) go(h); else render(); })();
 </script>
 
 </body>
