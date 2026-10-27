@@ -272,6 +272,8 @@ body.present #deck{display:grid;grid-template-rows:auto 1fr auto}
 const APP_URL = "https://loancorread.github.io/kallfumapu/taller.html";
 const DASH = "https://loancorread.github.io/kallfumapu/";
 const UTP_MAIL = "km.utp@edununoa.cl";
+const FORM_URL = "https://forms.gle/hbtWjRoATaKNjxYE6";
+const FORM_PREFILL = ""; /* enlace prellenado con "Grupo+1" en la pregunta de grupo */
 const STAFF = [{"id":"s1","n":"Camilo Aguilera","r":"d"},{"id":"s2","n":"Ignacia Alarcón","r":"d"},{"id":"s3","n":"Felipe Avendaño","r":"d"},{"id":"s4","n":"Beatriz Bascur","r":"d"},{"id":"s5","n":"Susan Bravo","r":"a"},{"id":"s6","n":"Maria Bustamante","r":"a"},{"id":"s7","n":"José Calistro","r":"a"},{"id":"s8","n":"Catalina Campillay","r":"d"},{"id":"s9","n":"Ivette Campos","r":"e"},{"id":"s10","n":"Claudio Canales","r":"a"},{"id":"s11","n":"José Caroca","r":"d"},{"id":"s12","n":"Francisco Chávez","r":"d"},{"id":"s13","n":"Almendra Contarini","r":"e"},{"id":"s14","n":"Natalia Contreras","r":"e"},{"id":"s15","n":"Ignacio Correa","r":"d"},{"id":"s16","n":"Catalina Del Real","r":"d"},{"id":"s17","n":"Jocelyn Durán","r":"a"},{"id":"s18","n":"Cecilia Espíndola","r":"a"},{"id":"s19","n":"Jennifer Fernández","r":"a"},{"id":"s20","n":"Leticia González","r":"d"},{"id":"s21","n":"Angie Guíñez","r":"d"},{"id":"s22","n":"Carla Herrera","r":"d"},{"id":"s23","n":"Marjorie Huaiqui","r":"d"},{"id":"s24","n":"Sujey Inzunza","r":"d"},{"id":"s25","n":"Catherina Jara","r":"d"},{"id":"s26","n":"Gabriela Leiva","r":"e"},{"id":"s27","n":"Darío Lorca","r":"d"},{"id":"s28","n":"Daniel Loyola","r":"d"},{"id":"s29","n":"Debora Maldonado","r":"e"},{"id":"s30","n":"Constanza Molina","r":"d"},{"id":"s31","n":"María Montecinos","r":"a"},{"id":"s32","n":"Rocío Moya","r":"a"},{"id":"s33","n":"Odulia Núñez","r":"d"},{"id":"s34","n":"Tamara Ormazabal","r":"e"},{"id":"s35","n":"Patricia Ortiz","r":"a"},{"id":"s36","n":"Carolina Osses","r":"e"},{"id":"s37","n":"Yohana Oyarzún","r":"a"},{"id":"s38","n":"Susana Pastene","r":"a"},{"id":"s39","n":"Héctor Pastene","r":"a"},{"id":"s40","n":"Alfredo Pavez","r":"d"},{"id":"s41","n":"Camila Perez de Valenzuela","r":"a"},{"id":"s42","n":"Poulette Reveco","r":"d"},{"id":"s43","n":"Jeannette Riquelme","r":"d"},{"id":"s44","n":"Danitza Roa","r":"a"},{"id":"s45","n":"Diana Rojas","r":"a"},{"id":"s46","n":"Francisco Segovia","r":"d"},{"id":"s47","n":"Claudio Silva","r":"a"},{"id":"s48","n":"Claudia Valderas","r":"a"},{"id":"s49","n":"Alexia Varas","r":"e"}];
 const ROLES = [["d","Docentes","docente","docentes"],["e","Educación diferencial","ed. diferencial","ed. diferenciales"],["a","Asistentes de la educación","asistente de la educación","asistentes de la educación"]];
 const STAFF_BY = Object.fromEntries(STAFF.map(p=>[p.id,p]));
@@ -708,22 +710,17 @@ function bindApuesta(){
 function salidaView(){
   return `<section class="view"><div class="hero"><span class="eyebrow">Cierre</span><h1>Ticket de salida</h1><p>Dos respuestas breves. Se leen en conjunto, sin nombres.</p></div>${salidaForm()}</section>`;
 }
+function ticketUrl(){
+  const gi=state.group&&GRUPOS[state.group]?GRUPOS[state.group].n:"";
+  return (FORM_PREFILL&&gi)?FORM_PREFILL.replace("Grupo+1",encodeURIComponent(gi).replace(/%20/g,"+")):FORM_URL;
+}
 function salidaForm(){
-  const d=store.get("salida",{});
-  return `<form id="salida" class="card"><h2>Ticket de salida</h2><p class="note">Al cierre del taller. Dos respuestas breves, sin nombres.</p>
-    <label for="palabra">Una palabra para cómo me voy de este taller<input type="text" id="palabra" name="palabra" maxlength="24" value="${esc(d.palabra||"")}"></label>
-    <label for="compromiso">Lo que haré distinto en mi próxima clase o jornada<textarea id="compromiso" name="compromiso" maxlength="200">${esc(d.compromiso||"")}</textarea></label>
-    <div class="actions"><button class="btn" type="submit">Enviar</button><span class="status" id="st2" role="status"></span></div></form>`;
+  return `<div class="card"><h2>Ticket de salida</h2>
+    <p>Al cierre del taller, responde un formulario breve (menos de un minuto): tu grupo, tu estamento, una palabra para cómo te vas, lo que harás distinto y dos preguntas de valoración.</p>
+    <p class="note">Es anónimo: no se registra tu nombre ni tu correo. Las respuestas quedan registradas para el análisis de UTP.</p>
+    <a class="btn" style="text-align:center;text-decoration:none" href="${ticketUrl()}" target="_blank" rel="noopener">Responder el ticket de salida ↗</a></div>`;
 }
-function bindSalida(){
-  const f=$("#salida"), st=$("#st2");
-  f.addEventListener("submit",async e=>{e.preventDefault(); const d={palabra:f.palabra.value.trim(),compromiso:f.compromiso.value.trim()}; store.set("salida",d);
-    if(!d.palabra){st.className="status err";st.textContent="Escribe al menos una palabra.";return}
-    if(!DB){st.className="status ok";st.textContent="Guardado. Tenlo a mano: el facilitador pedirá leer algunas palabras en voz alta.";return}
-    try{ const uid=USER&&USER.id?await USER.id():null; const ref=uid?DB.collection("tickets").doc(uid):DB.collection("tickets").doc(); await ref.set({...d,grupo:state.group||null,t:Date.now()}); st.className="status ok"; st.textContent="Enviado. Gracias."}
-    catch(err){st.className="status err";st.textContent="No se pudo enviar. Quedó guardado en tu celular."}
-  });
-}
+function bindSalida(){}
 
 /* ---------- modo proyección ---------- */
 let slide=0, deckBuilt=false, unsubs=[], bigT={left:30*60,run:false,end:0,iv:null};
@@ -790,8 +787,8 @@ function slides(){
      <div class="pc"><h3>Antes del cierre del año</h3><p>Seguimiento en consejo de profesores; análisis de casos según el Decreto 67/2018 con informe técnico-pedagógico.</p></div>
      <div class="pc"><h3>2027</h3><p>Las estrategias de cada nivel alimentan la planificación anual del PME y el acompañamiento pedagógico (art. 12).</p></div>
    </div>
-   <div class="grid3" style="align-items:start"><div class="qr"><div class="code" data-qr="salida"></div><b>Ticket de salida</b><small>Una palabra y un compromiso</small></div>
-   <div class="pc" style="grid-column:span 2"><h3>Cómo nos vamos</h3><div class="words" id="words"><span class="note" style="font-family:var(--f-body);font-weight:400;color:var(--muted)">Las palabras aparecerán aquí a medida que lleguen los tickets.</span></div></div></div>`
+   <div class="grid3" style="align-items:start"><div class="qr"><div class="code" data-qr="ticket"></div><b>Ticket de salida</b><small>Formulario anónimo · 1 minuto</small></div>
+   <div class="pc" style="grid-column:span 2"><h3>Cómo nos vamos</h3><p>Escaneen el código o abran la pestaña 5 · Ticket de su grupo. Las respuestas quedan registradas en la hoja del formulario para el análisis posterior.</p><p class="note">Para comentar en vivo: abre las respuestas del formulario en el notebook y lee algunas palabras en voz alta.</p></div></div>`
   ];
 }
 function buildDeck(){
@@ -806,7 +803,7 @@ function buildDeck(){
     $("#prevS").onclick=()=>show(slide-1); $("#nextS").onclick=()=>show(slide+1);
     deck.querySelectorAll("[data-dot]").forEach(b=>b.onclick=()=>show(+b.dataset.dot));
     deck.querySelectorAll("[data-show]").forEach(b=>b.onclick=()=>{$("#rv-"+b.dataset.show).hidden=false;b.hidden=true});
-    deck.querySelectorAll("[data-qr]").forEach(el=>{try{ new QRCode(el,{text:link(el.dataset.qr==="inicio"?"":el.dataset.qr),width:300,height:300,correctLevel:QRCode.CorrectLevel.M}) }catch(e){ el.innerHTML='<span style="color:#132033;font-size:.8rem;line-height:1.3">'+esc(link(el.dataset.qr))+'</span>' }});
+    deck.querySelectorAll("[data-qr]").forEach(el=>{try{ new QRCode(el,{text:el.dataset.qr==="ticket"?FORM_URL:link(el.dataset.qr==="inicio"?"":el.dataset.qr),width:300,height:300,correctLevel:QRCode.CorrectLevel.M}) }catch(e){ el.innerHTML='<span style="color:#132033;font-size:.8rem;line-height:1.3">'+esc(el.dataset.qr==="ticket"?FORM_URL:link(el.dataset.qr))+'</span>' }});
     bindBig(); liveWall();
   }
   show(slide);
