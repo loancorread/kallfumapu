@@ -273,7 +273,7 @@ const APP_URL = "https://loancorread.github.io/kallfumapu/taller.html";
 const DASH = "https://loancorread.github.io/kallfumapu/";
 const UTP_MAIL = "km.utp@edununoa.cl";
 const FORM_URL = "https://forms.gle/hbtWjRoATaKNjxYE6";
-const FORM_PREFILL = ""; /* enlace prellenado con "Grupo+1" en la pregunta de grupo */
+const FORM_PREFILL = "https://docs.google.com/forms/d/e/1FAIpQLSc1kppPMx9ejY4i8CMyHennACF5INRlt_XQnHZT0dxjmbL7LA/viewform?usp=pp_url&entry.552170982=Grupo+1"; /* enlace prellenado con "Grupo+1" en la pregunta de grupo */
 const STAFF = [{"id":"s1","n":"Camilo Aguilera","r":"d"},{"id":"s2","n":"Ignacia Alarcón","r":"d"},{"id":"s3","n":"Felipe Avendaño","r":"d"},{"id":"s4","n":"Beatriz Bascur","r":"d"},{"id":"s5","n":"Susan Bravo","r":"a"},{"id":"s6","n":"Maria Bustamante","r":"a"},{"id":"s7","n":"José Calistro","r":"a"},{"id":"s8","n":"Catalina Campillay","r":"d"},{"id":"s9","n":"Ivette Campos","r":"e"},{"id":"s10","n":"Claudio Canales","r":"a"},{"id":"s11","n":"José Caroca","r":"d"},{"id":"s12","n":"Francisco Chávez","r":"d"},{"id":"s13","n":"Almendra Contarini","r":"e"},{"id":"s14","n":"Natalia Contreras","r":"e"},{"id":"s15","n":"Ignacio Correa","r":"d"},{"id":"s16","n":"Catalina Del Real","r":"d"},{"id":"s17","n":"Jocelyn Durán","r":"a"},{"id":"s18","n":"Cecilia Espíndola","r":"a"},{"id":"s19","n":"Jennifer Fernández","r":"a"},{"id":"s20","n":"Leticia González","r":"d"},{"id":"s21","n":"Angie Guíñez","r":"d"},{"id":"s22","n":"Carla Herrera","r":"d"},{"id":"s23","n":"Marjorie Huaiqui","r":"d"},{"id":"s24","n":"Sujey Inzunza","r":"d"},{"id":"s25","n":"Catherina Jara","r":"d"},{"id":"s26","n":"Gabriela Leiva","r":"e"},{"id":"s27","n":"Darío Lorca","r":"d"},{"id":"s28","n":"Daniel Loyola","r":"d"},{"id":"s29","n":"Debora Maldonado","r":"e"},{"id":"s30","n":"Constanza Molina","r":"d"},{"id":"s31","n":"María Montecinos","r":"a"},{"id":"s32","n":"Rocío Moya","r":"a"},{"id":"s33","n":"Odulia Núñez","r":"d"},{"id":"s34","n":"Tamara Ormazabal","r":"e"},{"id":"s35","n":"Patricia Ortiz","r":"a"},{"id":"s36","n":"Carolina Osses","r":"e"},{"id":"s37","n":"Yohana Oyarzún","r":"a"},{"id":"s38","n":"Susana Pastene","r":"a"},{"id":"s39","n":"Héctor Pastene","r":"a"},{"id":"s40","n":"Alfredo Pavez","r":"d"},{"id":"s41","n":"Camila Perez de Valenzuela","r":"a"},{"id":"s42","n":"Poulette Reveco","r":"d"},{"id":"s43","n":"Jeannette Riquelme","r":"d"},{"id":"s44","n":"Danitza Roa","r":"a"},{"id":"s45","n":"Diana Rojas","r":"a"},{"id":"s46","n":"Francisco Segovia","r":"d"},{"id":"s47","n":"Claudio Silva","r":"a"},{"id":"s48","n":"Claudia Valderas","r":"a"},{"id":"s49","n":"Alexia Varas","r":"e"}];
 const ROLES = [["d","Docentes","docente","docentes"],["e","Educación diferencial","ed. diferencial","ed. diferenciales"],["a","Asistentes de la educación","asistente de la educación","asistentes de la educación"]];
 const STAFF_BY = Object.fromEntries(STAFF.map(p=>[p.id,p]));
@@ -711,7 +711,7 @@ function salidaView(){
   return `<section class="view"><div class="hero"><span class="eyebrow">Cierre</span><h1>Ticket de salida</h1><p>Dos respuestas breves. Se leen en conjunto, sin nombres.</p></div>${salidaForm()}</section>`;
 }
 function ticketUrl(){
-  const gi=state.group&&GRUPOS[state.group]?GRUPOS[state.group].n:"";
+  const gi=/^g[1-4]$/.test(state.view)?GRUPOS[state.view].n:"";
   return (FORM_PREFILL&&gi)?FORM_PREFILL.replace("Grupo+1",encodeURIComponent(gi).replace(/%20/g,"+")):FORM_URL;
 }
 function salidaForm(){
