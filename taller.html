@@ -613,16 +613,28 @@ function readForm(f){
   if(!o.causas) o.causas=[]; if(!o.int) o.int=[];
   return o;
 }
+function bold(t){
+  const ac={"Á":"A\u0301","É":"E\u0301","Í":"I\u0301","Ó":"O\u0301","Ú":"U\u0301","Ñ":"N\u0303","á":"a\u0301","é":"e\u0301","í":"i\u0301","ó":"o\u0301","ú":"u\u0301","ñ":"n\u0303"};
+  let out=""; for(const ch of t){ const x=ac[ch]||ch; for(const c of x){ const k=c.codePointAt(0);
+    out+= k>=65&&k<=90?String.fromCodePoint(0x1D5D4+k-65): k>=97&&k<=122?String.fromCodePoint(0x1D5EE+k-97): k>=48&&k<=57?String.fromCodePoint(0x1D7EC+k-48): c; } }
+  return out;
+}
 function asText(g,d){
-  const L=[`TALLER DE ANÁLISIS DE DATOS · ${g.n} (${g.nivel})`,`Participantes: ${tally(d.int||[])}`,`Integrantes: ${namesOf(d.int||[])||"—"}`,"","VER"];
-  [1,2,3].forEach(i=>d["h"+i]&&L.push(`- Hallazgo ${i} (${d["h"+i+"f"]||"s/f"}): ${d["h"+i]}`));
-  d.sorpresa&&L.push(`- Sorpresa: ${d.sorpresa}`);
-  L.push("","PENSAR",`- Problema priorizado: ${d.problema||""}`); d.oa&&L.push(`- OA aún no enseñados: ${d.oa}`); L.push(`- Hipótesis: ${d.hip||""}`,`- Ámbitos: ${(d.causas||[]).join(", ")}`);
-  L.push("","DECIDIR · 2026");
-  [1,2].forEach(i=>d["a"+i]&&L.push(`- Acción ${i}: ${d["a"+i]} | Para: ${d["a"+i+"q"]||""} | Resp.: ${d["a"+i+"r"]||""} | Plazo: ${d["a"+i+"p"]||""} | Evidencia: ${d["a"+i+"e"]||""}`));
-  L.push(`- Riesgo, criterio académico: ${d.rAcad||""}`,`- Riesgo, ausentismo: ${d.rAsis||""}`,`- Seguimiento: ${d.rResp||""}`,"","PROYECCIÓN 2027");
-  [1,2].forEach(i=>d["p"+i]&&L.push(`- ${d["p"+i]} | ${d["p"+i+"m"]||""} | PME: ${d["p"+i+"d"]||""}`));
-  L.push("",`Apoyo requerido: ${d.apoyo||""}`,`Frase síntesis: ${d.frase||""}`);
+  const L=[], H=t=>{L.push("",bold(t))}, it=(k,v)=>{ if(v) L.push(`- ${k}: ${v}`) };
+  L.push(bold("Insumo · Taller de análisis de datos"),`${g.n} · ${g.nivel}`);
+  H("IDENTIFICACIÓN"); L.push(`Participantes: ${tally(d.int||[])}`,`Integrantes: ${namesOf(d.int||[])||"—"}`);
+  H("1. VER");
+  [1,2,3].forEach(i=>d["h"+i]&&L.push(`- Hallazgo ${i} (${d["h"+i+"f"]||"s/f"}): ${d["h"+i]}`)); it("Sorpresa",d.sorpresa);
+  H("2. PENSAR"); it("Problema priorizado",d.problema); it("OA aún no enseñados",d.oa); it("Hipótesis",d.hip); it("Ámbitos",(d.causas||[]).join(", "));
+  H("3. DECIDIR · ACCIONES 2026");
+  [1,2].forEach(i=>{ if(!d["a"+i]) return; L.push(`- Acción ${i}: ${d["a"+i]}`);
+    const sub=[["Para",d["a"+i+"q"]],["Responsable(s)",d["a"+i+"r"]],["Plazo",d["a"+i+"p"]],["Evidencia",d["a"+i+"e"]]].filter(x=>x[1]).map(x=>`${x[0]}: ${x[1]}`).join(" · ");
+    if(sub) L.push(`   ${sub}`); });
+  H("ESTUDIANTES EN PELIGRO DE REPITENCIA"); it("Criterio académico",d.rAcad); it("Ausentismo",d.rAsis); it("Seguimiento",d.rResp);
+  H("PROYECCIÓN 2027");
+  [1,2].forEach(i=>{ if(!d["p"+i]) return; L.push(`- Estrategia ${i}: ${d["p"+i]}`);
+    const sub=[["Momento",d["p"+i+"m"]],["PME",d["p"+i+"d"]]].filter(x=>x[1]).map(x=>`${x[0]}: ${x[1]}`).join(" · "); if(sub) L.push(`   ${sub}`); });
+  H("APOYO Y SÍNTESIS"); it("Apoyo requerido",d.apoyo); it("Frase síntesis",d.frase);
   return L.join("\n");
 }
 function bindInsumo(g){
@@ -632,7 +644,7 @@ function bindInsumo(g){
   DB_READY.then(db=>{ if(db&&$("#sendBtn")){ $("#sendBtn").hidden=false; $("#shareBtn").hidden=true; $("#sendHint").innerHTML="El borrador se guarda en este celular. Al terminar, el/la escriba toca <b>Enviar al muro</b>. Si no aparece la confirmación, usa <b>Copiar respuestas</b> y envíalas a UTP."; } });
   $("#shareBtn").onclick=async()=>{
     const txt=asText(g,readForm(f));
-    const a=document.createElement("a"); a.href="mailto:"+UTP_MAIL+"?subject="+encodeURIComponent("Insumo taller de análisis de datos · "+g.n+" ("+g.nivel+")")+"&body="+encodeURIComponent(txt); document.body.appendChild(a); a.click(); a.remove();
+    const a=document.createElement("a"); a.href="mailto:"+UTP_MAIL+"?subject="+encodeURIComponent("Insumo taller de análisis de datos · "+g.n+" ("+g.nivel+")")+"&body="+encodeURIComponent(txt.replace(/\n/g,"\r\n")); document.body.appendChild(a); a.click(); a.remove();
     st.className="status"; st.innerHTML="Se abrió tu aplicación de correo con el insumo listo para enviar a <b>"+UTP_MAIL+"</b>. Si no se abrió, toca «Copiar respuestas» y envíalo a esa dirección.";
   };
   const save=()=>{store.set(draftKey(),readForm(f))};
@@ -830,11 +842,13 @@ function paintWall(){
 }
 function parsePasted(t,g){
   const o={nombre:g.n,nivel:g.nivel}; const lines=t.split(/\r?\n/).map(x=>x.trim());
-  const after=(pre)=>{const l=lines.find(x=>x.startsWith(pre)); return l?l.slice(pre.length).trim():""};
-  o.problema=after("- Problema priorizado:"); o.apoyo=after("Apoyo requerido:"); const it=after("Integrantes:"); if(it&&it!=="—") o.integrantesTxt=it; o.frase=after("Frase síntesis:");
+  const after=(...pres)=>{for(const pre of pres){const l=lines.find(x=>x.startsWith(pre)); if(l) return l.slice(pre.length).trim()} return ""};
+  o.problema=after("- Problema priorizado:"); o.apoyo=after("- Apoyo requerido:","Apoyo requerido:"); const it=after("Integrantes:"); if(it&&it!=="—") o.integrantesTxt=it; o.frase=after("- Frase síntesis:","Frase síntesis:");
   const h=lines.find(x=>/^- Hallazgo 1/.test(x)); if(h) o.h1=h.replace(/^- Hallazgo 1( \([^)]*\))?:\s*/,"");
-  const a=lines.find(x=>x.startsWith("- Acción 1:")); if(a){const parts=a.slice(11).split(" | "); o.a1=parts[0].trim(); const r=parts.find(p=>p.startsWith("Resp.:")); if(r) o.a1r=r.slice(6).trim();}
-  const i27=lines.indexOf("PROYECCIÓN 2027"); if(i27>=0){const p=lines.slice(i27+1).find(x=>x.startsWith("- ")); if(p) o.p1=p.slice(2).split(" | ")[0].trim();}
+  const ai=lines.findIndex(x=>x.startsWith("- Acción 1:"));
+  if(ai>=0){const a=lines[ai]; const parts=a.slice(11).split(" | "); o.a1=parts[0].trim(); let r=parts.find(p=>p.startsWith("Resp.:")); if(r) o.a1r=r.slice(6).trim();
+    const nx=lines[ai+1]||""; if(!o.a1r&&!nx.startsWith("-")){ r=nx.split(" · ").find(p=>p.startsWith("Responsable(s):")); if(r) o.a1r=r.slice(15).trim(); } }
+  const e1=after("- Estrategia 1:"); if(e1) o.p1=e1; else { const i27=lines.findIndex(x=>x==="PROYECCIÓN 2027"); if(i27>=0){const p=lines.slice(i27+1).find(x=>x.startsWith("- ")); if(p) o.p1=p.slice(2).split(" | ")[0].trim();} }
   if(!o.problema&&!o.a1&&!o.frase) o.problema=t.trim().slice(0,400);
   o.raw=t.slice(0,8000); o.actualizado=Date.now(); return o;
 }
