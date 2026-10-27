@@ -231,6 +231,11 @@ body.present #deck{display:grid;grid-template-rows:auto 1fr auto}
 .qr{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:8px;justify-items:center;text-align:center}
 .qr .code{background:#fff;padding:10px;border-radius:8px;line-height:0}
 .qr .code img,.qr .code canvas{width:150px;height:150px}
+.qr.big{justify-self:center;padding:clamp(16px,2.4vw,28px);gap:10px}
+.qr.big .code{padding:14px}
+.qr.big .code img,.qr.big .code canvas{width:min(48vh,360px);height:min(48vh,360px)}
+.qr.big b{font-size:clamp(1.3rem,2.2vw,1.8rem)}
+.qr.big small{font-size:1rem}
 .qr b{font-family:var(--f-display);font-size:1.2rem}
 .qr small{color:var(--muted)}
 .bigtimer{font-family:var(--f-data);font-size:clamp(4rem,14vw,11rem);font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
@@ -482,20 +487,20 @@ function datosTab(g){
 
 /* ---------- pauta ---------- */
 const MOMENTOS=[
-  {id:"ver",n:"Momento 1",t:"Ver: describir sin juzgar",min:10,
+  {id:"ver",n:"Momento 1",t:"Ver: describir sin juzgar",min:20,
    q:["Revisen las cuatro fuentes de su nivel en la pestaña Datos. Cada integrante mira una fuente distinta y la cuenta al grupo en un minuto.",
       "Asistencia y riesgo: ¿cuántos estudiantes están en el registro y por qué criterio? ¿Mejoran o retroceden?",
       "Aprendizajes DIA: ¿qué proporción está en nivel I? ¿Qué eje o habilidad tiene menos logro? ¿Qué preguntas concentran el error?",
       "Triangulación: ¿las notas, la asistencia y el DIA cuentan la misma historia? ¿Dónde no coinciden?",
       "Socioemocional (4° a 8°): ¿qué condición tiene menos respuestas favorables?"],
    p:"Tres hallazgos escritos como dato observable (por ejemplo: «57 % de 5° está en nivel I de Matemática DIA») y el dato que más los sorprendió."},
-  {id:"pensar",n:"Momento 2",t:"Pensar: explicar desde lo que depende de nosotros",min:8,
+  {id:"pensar",n:"Momento 2",t:"Pensar: explicar desde lo que depende de nosotros",min:15,
    q:["Elijan el hallazgo más crítico para la trayectoria de sus estudiantes. Ese es su problema priorizado.",
       "¿Qué OA se habían enseñado al momento del DIA (agosto)? Separen lo que «aún no se enseña» de lo que «se enseñó y no se aprendió».",
       "Propongan hipótesis sobre las causas. Al menos dos deben estar en el ámbito de la escuela: enseñanza, evaluación, tiempos, apoyos o vínculo con las familias.",
       "Rol de la educadora diferencial y del asistente de aula: ¿qué observan ellos que los datos no muestran?"],
    p:"Un problema priorizado y dos o tres hipótesis causales clasificadas."},
-  {id:"decidir",n:"Momento 3",t:"Decidir: estrategias con responsable y evidencia",min:12,
+  {id:"decidir",n:"Momento 3",t:"Decidir: estrategias con responsable y evidencia",min:25,
    q:["Lo que queda de 2026 (≈ 7 semanas): dos acciones concretas y realistas. ¿Qué haremos, con quiénes, quién lo lidera y cómo sabremos que funcionó?",
       "Estudiantes en peligro de repitencia: una acción focalizada para quienes tienen criterio académico y otra para el ausentismo, en coordinación con convivencia escolar y las familias.",
       "Proyección 2027: una o dos estrategias para iniciar el año (nivelación, plan de asistencia, evaluación formativa, coherencia evaluativa, acompañamiento según el art. 12 del Decreto 67).",
@@ -503,13 +508,13 @@ const MOMENTOS=[
    p:"Plan breve del nivel (2026 y 2027) y una frase síntesis para el plenario."}
 ];
 function pautaTab(g){
-  return `<div class="card"><h2>Ruta de trabajo · 30 minutos</h2>
+  return `<div class="card"><h2>Ruta de trabajo · 60 minutos aprox.</h2>
     <p>El grupo avanza en tres momentos y completa el <b>insumo</b> (pestaña 3) a medida que avanza. Al final, la voz del grupo presenta la tarjeta de <b>plenario</b> (pestaña 4).</p>
     <div class="roles">
       <div class="role"><b>Facilitador/a</b>Conduce la conversación y cuida que todos hablen. Idealmente un profesor/a jefe.</div>
       <div class="role"><b>Escriba digital</b>Completa el insumo en su celular y lo envía.</div>
       <div class="role"><b>Guardián/a del tiempo</b>Usa los cronómetros de cada momento.</div>
-      <div class="role"><b>Voz del grupo</b>Presenta en el plenario (3 minutos).</div>
+      <div class="role"><b>Voz del grupo</b>Presenta en el plenario (4 minutos).</div>
       <div class="role"><b>Defensor/a del estudiante</b>En cada momento pregunta: «¿qué significa esto para un estudiante concreto del registro?».</div>
     </div></div>
   ${MOMENTOS.map(m=>`<article class="card mom" id="m-${m.id}">
@@ -673,7 +678,7 @@ function bindInsumo(g){
 /* ---------- plenario (tarjeta del grupo) ---------- */
 function plenarioTab(g){
   const d=store.get(draftKey(),{});
-  if(!d.problema&&!d.a1&&!d.frase) return `<div class="card"><h2>Tarjeta de plenario</h2><p class="note">Aparecerá aquí cuando el grupo complete el insumo en este celular: problema priorizado, primera acción 2026, primera estrategia 2027 y frase síntesis. La voz del grupo la lee en 3 minutos.</p><button class="btn" data-tabgo="insumo" type="button">Ir al insumo</button></div>`;
+  if(!d.problema&&!d.a1&&!d.frase) return `<div class="card"><h2>Tarjeta de plenario</h2><p class="note">Aparecerá aquí cuando el grupo complete el insumo en este celular: problema priorizado, primera acción 2026, primera estrategia 2027 y frase síntesis. La voz del grupo la lee en 4 minutos.</p><button class="btn" data-tabgo="insumo" type="button">Ir al insumo</button></div>`;
   return `<article class="card plen"><span class="eyebrow">${g.n} · ${g.nivel}</span>
     ${d.frase?`<p class="big">«${esc(d.frase)}»</p>`:""}
     <dl><div><dt>Problema priorizado</dt><dd>${esc(d.problema||"—")}</dd></div>
@@ -681,7 +686,7 @@ function plenarioTab(g){
       <div><dt>Acción inmediata 2026</dt><dd>${esc(d.a1||"—")}${d.a1r?` <span class="note">· ${esc(d.a1r)}${d.a1p?" · "+esc(d.a1p):""}</span>`:""}</dd></div>
       <div><dt>Estrategia 2027</dt><dd>${esc(d.p1||"—")}</dd></div>
       <div><dt>Necesitamos</dt><dd>${esc(d.apoyo||"—")}</dd></div></dl></article>
-    <p class="note">Guion sugerido de 3 minutos: 30 s para el hallazgo y la sorpresa, 1 min para el problema y sus causas, y 1 min 30 s para las acciones 2026 y 2027.</p>`;
+    <p class="note">Guion sugerido de 4 minutos: 1 min para el hallazgo y la sorpresa, 1 min para el problema y sus causas, y 2 min para las acciones 2026 y 2027.</p>`;
 }
 
 /* ---------- apuesta ---------- */
@@ -735,45 +740,15 @@ function slides(){
      <div class="pc"><h3>Productos</h3><ul><li>Problema priorizado por nivel</li><li>Plan de acción 2026 con responsables</li><li>Estrategias 2027 para el PME</li></ul></div>
      <div class="pc"><h3>Participan</h3><p>Docentes, educadoras diferenciales y asistentes de aula, organizados en cuatro grupos por nivel.</p></div>
    </div>`,
-  `<div class="split"><div style="display:grid;gap:12px"><span class="eyebrow">Apuesta inicial · 2 minutos</span><h2>Antes de mirar los datos: ¿qué creemos que dicen?</h2>
-   <p class="lead">Escaneen el código, respondan con su intuición y luego revelamos cada dato.</p></div>
-   <div class="qr"><div class="code" data-qr="apuesta"></div><b>Apuesta inicial</b></div></div>
-   <div class="grid3" id="betSlides">${APUESTAS.map((a,i)=>`<div class="pc" data-ba="${a.id}"><span class="eyebrow">Pregunta ${i+1}</span><p style="font-weight:600">${esc(a.q)}</p><div class="dist" id="dist-${a.id}"></div>
-     <div class="reveal" hidden id="rv-${a.id}"><b>${esc(a.opts[a.ok])}.</b> ${esc(a.r)}</div><button class="btn ghost" type="button" data-show="${a.id}">Revelar</button></div>`).join("")}</div>
-`,
-  `<span class="eyebrow">Tres fuentes, una mirada</span><h2>Triangular para comprender la trayectoria</h2>
-   <div class="grid3">
-     <div class="pc"><h3>Trayectoria educativa</h3><p>Notas, asistencia e historia 2024–2026 por curso y estudiante.</p><p class="note">Datos parciales 2026 (periodos 1 y 2).</p></div>
-     <div class="pc"><h3>Peligro de repitencia</h3><p>Criterios MINEDUC: (1) tres o más asignaturas reprobadas, (2) una bajo 4,0 y promedio menor a 4,5, (3) dos bajo 4,0 y promedio menor a 5,0, (4) asistencia bajo 85 %.</p><p class="note">Registro vigente: 04-08-2026.</p></div>
-     <div class="pc"><h3>DIA intermedio</h3><p>Lectura (2° a 8°), Matemática (3° a 8°) y Socioemocional (4° a 8°).</p><p class="note">No se usa para calificar ni comparar cursos: se lee según los OA trabajados.</p></div>
-   </div>
-   <div class="grid4">
-     <div class="pc alert"><span class="bignum">149/157</span><p>estudiantes del registro están ahí solo por asistencia</p></div>
-     <div class="pc alert"><span class="bignum">51 %</span><p>de 3° a 8° en nivel I de Matemática DIA (102 de 200)</p></div>
-     <div class="pc"><span class="bignum">7/7</span><p>cursos con Reflexionar como la habilidad lectora de menor logro</p></div>
-     <div class="pc alert"><span class="bignum">35 / 21</span><p>estudiantes del registro (1° a 8°) que retroceden / que mejoran</p></div>
-   </div>`,
-  `<span class="eyebrow">Ruta de trabajo · 30 minutos</span><h2>Ver, pensar, decidir</h2>
+  `<span class="eyebrow">Apuesta inicial · 2 minutos</span><h2>Antes de mirar los datos: ¿qué creemos que dicen?</h2>
+   <div class="qr big"><div class="code" data-qr="apuesta"></div><b>Apuesta inicial</b><small>Escanea el código con la cámara de tu celular</small></div>`,
+  `<span class="eyebrow">Ruta de trabajo · 60 minutos aprox.</span><h2>Ver, pensar, decidir</h2>
    <div class="grid3">${MOMENTOS.map(m=>`<div class="pc"><span class="eyebrow">${m.n} · ${m.min} min</span><h3>${esc(m.t)}</h3><p>${esc(m.p)}</p></div>`).join("")}</div>
    <div class="grid4">
      <div class="pc"><h3>Roles</h3><p>Facilitador/a · escriba digital · guardián/a del tiempo · voz del grupo · defensor/a del estudiante.</p></div>
      <div class="pc"><h3>Acuerdos</h3><p>Datos antes que opiniones. Hablamos de prácticas, no de personas. Todo hallazgo termina en una acción.</p></div>
      <div class="pc"><h3>Confidencialidad</h3><p>Los paneles incluyen nombres de estudiantes: no se fotografían ni se comparten fuera del taller.</p></div>
    </div>`,
-  `<span class="eyebrow">Grupos de trabajo</span><h2>Escaneen el código de su grupo</h2>
-   <div class="qrs">${Object.entries(GRUPOS).map(([id,g])=>`<div class="qr"><div class="code" data-qr="${id}"></div><b>${g.n}</b><small>${g.nivel}</small></div>`).join("")}</div>
-   <p class="lead">Cada código abre los datos del nivel, la pauta y el insumo. El/la escriba envía el insumo al muro al finalizar.</p>`,
-  `<span class="eyebrow">Trabajo en grupos</span>
-   <div class="phase" id="phase">${MOMENTOS.map(m=>`<div data-ph="${m.id}"><b>${m.n.replace("Momento ","")} · ${m.t.split(":")[0]}</b><span>${m.min} min</span></div>`).join("")}</div>
-   <div class="bigtimer" id="bigClock">30:00</div>
-   <div class="actions"><button class="btn" type="button" id="bigStart">Iniciar</button><button class="btn ghost" type="button" id="bigReset">Reiniciar</button><span class="note" id="bigHint">Avisaré el cambio de momento en pantalla.</span></div>`,
-  `<span class="eyebrow">Plenario · 3 minutos por grupo</span><h2>Muro de acuerdos</h2>
-   <div class="wall" id="wall"></div>
-   <details class="pc" id="pasteBox"><summary style="cursor:pointer;font-weight:700">Agregar un insumo recibido por correo</summary>
-     <div style="display:grid;gap:10px;margin-top:10px">
-       <label for="pasteG">Grupo<select id="pasteG">${Object.entries(GRUPOS).map(([id,g])=>`<option value="${id}">${g.n} · ${g.nivel}</option>`).join("")}</select></label>
-       <label for="pasteT">Texto copiado desde «Copiar respuestas»<textarea id="pasteT" style="min-height:120px"></textarea></label>
-       <div class="actions"><button class="btn" type="button" id="pasteBtn">Agregar al muro</button><span class="status" id="pasteSt" role="status"></span></div></div></details>`,
   `<span class="eyebrow">Síntesis UTP</span><h2>Lo que vemos como escuela</h2>
    <div class="grid4">
      <div class="pc"><h3>La asistencia es el primer riesgo</h3><p>95 % del registro de peligro de repitencia se explica por asistencia bajo 85 %. En 1° a 8°, 35 estudiantes retroceden y 21 mejoran.</p></div>
@@ -781,14 +756,8 @@ function slides(){
      <div class="pc"><h3>Leer para opinar con fundamentos</h3><p>Reflexionar es la habilidad lectora de menor logro en los siete cursos evaluados. Es una prioridad transversal a todas las asignaturas.</p></div>
      <div class="pc"><h3>Bienestar ante la evaluación</h3><p>Menos de la mitad de 4° a 8° llega tranquilo a una prueba, y en 7° y 8° pocos conversan sus emociones con un adulto antes de rendirla.</p></div>
    </div>`,
-  `<span class="eyebrow">Cierre</span><h2>Próximos pasos</h2>
-   <div class="grid3">
-     <div class="pc"><h3>Esta semana</h3><p>UTP consolida los cuatro insumos en un plan de acción remedial noviembre–diciembre y lo devuelve a cada nivel.</p></div>
-     <div class="pc"><h3>Antes del cierre del año</h3><p>Seguimiento en consejo de profesores; análisis de casos según el Decreto 67/2018 con informe técnico-pedagógico.</p></div>
-     <div class="pc"><h3>2027</h3><p>Las estrategias de cada nivel alimentan la planificación anual del PME y el acompañamiento pedagógico (art. 12).</p></div>
-   </div>
-   <div class="grid3" style="align-items:start"><div class="qr"><div class="code" data-qr="ticket"></div><b>Ticket de salida</b><small>Formulario anónimo · 1 minuto</small></div>
-   <div class="pc" style="grid-column:span 2"><h3>Cómo nos vamos</h3><p>Escaneen el código o abran la pestaña 5 · Ticket de su grupo. Las respuestas quedan registradas en la hoja del formulario para el análisis posterior.</p><p class="note">Para comentar en vivo: abre las respuestas del formulario en el notebook y lee algunas palabras en voz alta.</p></div></div>`
+  `<span class="eyebrow">Cierre</span><h2>Ticket de salida</h2>
+   <div class="qr big"><div class="code" data-qr="ticket"></div><b>Ticket de salida</b><small>Formulario anónimo · 1 minuto</small></div>`
   ];
 }
 function buildDeck(){
@@ -804,7 +773,7 @@ function buildDeck(){
     deck.querySelectorAll("[data-dot]").forEach(b=>b.onclick=()=>show(+b.dataset.dot));
     deck.querySelectorAll("[data-show]").forEach(b=>b.onclick=()=>{$("#rv-"+b.dataset.show).hidden=false;b.hidden=true});
     deck.querySelectorAll("[data-qr]").forEach(el=>{try{ new QRCode(el,{text:el.dataset.qr==="ticket"?FORM_URL:link(el.dataset.qr==="inicio"?"":el.dataset.qr),width:300,height:300,correctLevel:QRCode.CorrectLevel.M}) }catch(e){ el.innerHTML='<span style="color:#132033;font-size:.8rem;line-height:1.3">'+esc(el.dataset.qr==="ticket"?FORM_URL:link(el.dataset.qr))+'</span>' }});
-    bindBig(); liveWall();
+    if($("#bigClock")) bindBig(); if($("#wall")) liveWall();
   }
   show(slide);
 }
