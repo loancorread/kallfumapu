@@ -520,6 +520,25 @@ const APUESTAS = [
   {id:"a3",q:"De 4° a 8° básico, ¿qué proporción de estudiantes dice que NO se pone nervioso/a antes de las pruebas?",opts:["≈ 20 %","≈ 45 %","≈ 70 %","≈ 90 %"],ok:1,
    r:"43 % (75 de 173). Más de la mitad vive las pruebas con nerviosismo, y eso también es parte del dato de aprendizaje."}
 ];
+/* Variantes por pregunta: al reiniciar, cada pregunta pasa a su siguiente versión (dispositivos compartidos). */
+const APUESTAS_POOL = [
+  [APUESTAS[0],
+   {id:"a1b",q:"¿Cuántos estudiantes de NT1 y NT2 están en el registro de peligro de repitencia por asistencia?",opts:["≈ 10","≈ 20","≈ 35","≈ 50"],ok:2,
+    r:"34 estudiantes (13 de NT1 y 21 de NT2), con asistencia promedio de 71 a 74 %. Son quienes llegan a 1° y 2° básico en 2027."},
+   {id:"a1c",q:"De los 157 estudiantes del registro de peligro de repitencia, ¿cuántos están ahí por notas (asignaturas reprobadas o promedio), y no solo por asistencia?",opts:["≈ 8","≈ 25","≈ 50","≈ 90"],ok:0,
+    r:"Solo 8 estudiantes activan criterios académicos (en 4°, 5°, 6° y 8°). Los otros 149 están en el registro únicamente por asistencia bajo 85 %."}],
+  [APUESTAS[1],
+   {id:"a2b",q:"En el DIA de Matemática de 3° a 8° básico (200 estudiantes), ¿cuántos alcanzaron el nivel III, de logro satisfactorio?",opts:["1","15","40","80"],ok:0,
+    r:"1 de 200 estudiantes (en 4° básico). En cambio, 102 (51 %) quedaron en nivel I."},
+   {id:"a2c",q:"En el DIA de Lectura de 2° a 8° básico, ¿qué habilidad tiene el menor logro en la mayoría de los cursos?",opts:["Localizar","Interpretar y relacionar","Reflexionar","Las tres por igual"],ok:2,
+    r:"Reflexionar es la habilidad más baja en los 7 cursos evaluados. Opinar con fundamentos del texto concentra las preguntas con menor logro."}],
+  [APUESTAS[2],
+   {id:"a3b",q:"En 7° y 8° básico, ¿qué proporción de estudiantes dice que conversa con sus profesores sobre sus emociones antes de las pruebas?",opts:["≈ 20 %","≈ 40 %","≈ 60 %","≈ 80 %"],ok:0,
+    r:"20 % (13 de 64): 17 % en 7° y 24 % en 8°. De 4° a 8°, la cifra llega a 38 %."},
+   {id:"a3c",q:"De 4° a 8° básico, ¿qué proporción de estudiantes reconoce tener al menos una persona adulta a quien pedir ayuda?",opts:["≈ 25 %","≈ 50 %","≈ 75 %","≈ 95 %"],ok:2,
+    r:"75 % (129 de 173). Uno de cada cuatro no identifica a un adulto de confianza; en 6° básico es uno de cada tres."}]
+];
+function currentBets(){ const r=store.get("apuesta-ronda",0)||0; return APUESTAS_POOL.map(v=>v[r%v.length]); }
 
 /* ---------- utilidades ---------- */
 function currentTheme(){return document.documentElement.getAttribute("data-km")==="dark"?"dark":"light"}
@@ -894,13 +913,18 @@ function apuestaView(){
   const mine=store.get("apuestas",{});
   return `<section class="view"><div class="hero"><span class="eyebrow">Antes de mirar los datos</span><h1>Apuesta inicial</h1>
     <p>Responde con tu intuición. No hay nota: la diferencia entre lo que creemos y lo que muestran los datos es el punto de partida del taller.</p></div>
-    ${APUESTAS.map((a,i)=>{const pick=mine[a.id]; const shown=store.get("rev-"+a.id,false);
+    ${currentBets().map((a,i)=>{const pick=mine[a.id]; const shown=store.get("rev-"+a.id,false);
       return `<article class="card bet" data-a="${a.id}"><span class="eyebrow">Pregunta ${i+1} de 3</span><h2 style="font-size:1.1rem">${esc(a.q)}</h2>
       <div class="opts">${a.opts.map((o,j)=>`<button type="button" data-o="${j}" aria-pressed="${pick===j}" class="${shown&&j===a.ok?"right":""}">${esc(o)}</button>`).join("")}</div>
       ${shown?`<p class="reveal"><b>Dato:</b> ${esc(a.r)}</p>`:`<button class="btn ghost" type="button" data-rev ${pick==null?"disabled":""}>Ver el dato</button>`}</article>`}).join("")}
+    <div class="card"><h2>¿Comparten este dispositivo?</h2><p class="note">Cuando termines, toca el botón para que la siguiente persona responda. Se borran tus respuestas y aparecen otras tres preguntas basadas en los datos.</p>
+      <button class="btn ghost" type="button" id="betReset">Reiniciar para otra persona</button></div>
     <button class="tile primary wide" data-go="inicio"><b>Elegir mi grupo</b><span>Volver al inicio para entrar a los datos de tu nivel</span></button></section>`;
 }
 function bindApuesta(){
+  const rb=document.getElementById("betReset");
+  if(rb) rb.onclick=()=>{ APUESTAS_POOL.flat().forEach(a=>{ try{localStorage.removeItem("rev-"+a.id)}catch(e){} });
+    store.set("apuestas",{}); store.set("apuesta-ronda",(store.get("apuesta-ronda",0)||0)+1); render(); window.scrollTo(0,0); };
   document.querySelectorAll("[data-a]").forEach(card=>{
     const id=card.dataset.a;
     card.querySelectorAll("[data-o]").forEach(b=>b.onclick=async()=>{
