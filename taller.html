@@ -491,7 +491,7 @@ const GRUPOS = {
       "Lenguaje es la asignatura con menor promedio de 1° (5,5). ¿Coincide con lo que observan en el aula sobre lectura inicial?"]},
   g2:{n:"Grupo 2",nivel:"3° y 4° básico",cursos:["3°","4°"],
     pistas:[
-      "En 4° están 3 de los 8 estudiantes del colegio que activan criterios académicos de repitencia (1 a 3). Necesitan un plan con nombre y responsable antes de diciembre.",
+      "En 4° están 3 de los 8 estudiantes del colegio que activan criterios académicos de repitencia (1 a 3). Su situación debe quedar resuelta y con acompañamiento definido para 2027.",
       "Matemática 4°: 43 % en nivel I. Patrones y álgebra (33 %) y Datos (34 %) son los ejes más bajos; fracciones y decimales tienen preguntas con 11–14 % de logro.",
       "Matemática 3°: 90 % en nivel II, pero tres preguntas tienen menos de 7 % de logro (operaciones combinadas, fracciones y lectura de la hora). ¿Ya se habían enseñado esos OA?",
       "Lectura: Reflexionar es la habilidad más baja (48 % en 3° y 40 % en 4°). Opinar con fundamentos del texto se ubica entre 12 % y 22 %.",
@@ -509,7 +509,7 @@ const GRUPOS = {
       "7° Matemática: 39 % en nivel I. Frecuencia relativa (0 %), proporcionalidad directa y área del círculo (12 %) son los puntos críticos.",
       "Lectura: 34 % de 8° en nivel I; ningún estudiante de 7° en nivel III. Los textos de los medios son críticos en 7° (3 % y 9 % de logro).",
       "Socioemocional: solo 17 % (7°) y 24 % (8°) dicen que conversan sus emociones con profesores antes de las pruebas; menos de 4 de cada 10 no se ponen nerviosos.",
-      "7° tiene 19 estudiantes en el registro (54 % de su matrícula) y 553 atrasos acumulados entre ellos. 8° egresa en diciembre: lo de 2026 es su última oportunidad en la escuela."]}
+      "7° tiene 19 estudiantes en el registro (54 % de su matrícula) y 553 atrasos acumulados entre ellos. 8° egresa en diciembre y 7° será el 8° de 2027: ¿qué debe saber el equipo que lo recibe?"]}
 };
 
 const APUESTAS = [
@@ -700,12 +700,12 @@ const MOMENTOS=[
       "Propongan hipótesis sobre las causas. Al menos dos deben estar en el ámbito de la escuela: enseñanza, evaluación, tiempos, apoyos o vínculo con las familias.",
       "Rol de la educadora diferencial y del asistente de aula: ¿qué observan ellos que los datos no muestran?"],
    p:"Un problema priorizado y dos o tres hipótesis causales clasificadas."},
-  {id:"decidir",n:"Momento 3",t:"Decidir: estrategias con responsable y evidencia",min:25,
-   q:["Lo que queda de 2026 (≈ 7 semanas): dos acciones concretas y realistas. ¿Qué haremos, con quiénes, quién lo lidera y cómo sabremos que funcionó?",
-      "Estudiantes en peligro de repitencia: una acción focalizada para quienes tienen criterio académico y otra para el ausentismo, en coordinación con convivencia escolar y las familias.",
-      "Proyección 2027: una o dos estrategias para iniciar el año (nivelación, plan de asistencia, evaluación formativa, coherencia evaluativa, acompañamiento según el art. 12 del Decreto 67).",
+  {id:"decidir",n:"Momento 3",t:"Decidir: plan 2027 con responsable y evidencia",min:25,
+   q:["Acciones 2027 del nivel: dos acciones concretas para iniciar el próximo año (planificación, marzo o primer semestre). ¿Qué haremos, con quiénes, quién lo lidera y cómo sabremos que funcionó?",
+      "Traspaso y acompañamiento 2027: ¿qué debe saber el equipo que recibe a estos estudiantes? Definan el acompañamiento para quienes terminan el año en peligro de repitencia (art. 12, Decreto 67) y una acción frente al ausentismo desde el primer día de clases.",
+      "Estrategias institucionales 2027: una o dos estrategias que la escuela debería incorporar al PME (nivelación, plan de asistencia, evaluación formativa, coherencia evaluativa).",
       "¿Qué apoyo necesitan de UTP o del equipo directivo para hacerlo posible?"],
-   p:"Plan breve del nivel (2026 y 2027) y una frase síntesis para el plenario."}
+   p:"Plan 2027 del nivel (acciones, traspaso y acompañamiento, estrategias institucionales) y una frase síntesis para el plenario."}
 ];
 function pautaTab(g){
   return `<div class="card"><h2>Ruta de trabajo · 60 minutos aprox.</h2>
@@ -741,7 +741,7 @@ function bindTimers(){
 /* ---------- insumo ---------- */
 const FUENTES=["Trayectoria","Riesgo de repitencia","DIA Lectura","DIA Matemática","DIA Socioemocional"];
 const CAUSAS=["Enseñanza","Evaluación","Tiempo y cobertura curricular","Apoyos diferenciados / PIE","Asistencia y familias","Clima y bienestar"];
-const PLAZOS=["Semana del 26 oct","Noviembre (1ª quincena)","Noviembre (2ª quincena)","Diciembre (hasta cierre)","Todo lo que queda del año"];
+const PLAZOS=["Antes del inicio de clases (planificación)","Marzo (diagnóstico y nivelación)","Primer semestre","Segundo semestre","Todo el año 2027"];
 const MOM27=["Marzo (diagnóstico y nivelación)","Primer semestre","Todo el año","Antes del inicio (planificación)"];
 const PME=["Gestión pedagógica","Liderazgo","Formación y convivencia","Gestión de recursos"];
 function draftKey(){return "insumo-"+state.group}
@@ -752,13 +752,13 @@ function insumoTab(g){
   const hall=i=>`<div class="sub"><span class="sub-h">HALLAZGO ${i}</span>
     <label for="h${i}">Dato observable<textarea id="h${i}" name="h${i}" placeholder="Ej.: 57 % de 5° está en nivel I de Matemática DIA; el eje más bajo es Patrones y álgebra (29 %).">${v(d,"h"+i)}</textarea></label>
     <label for="h${i}f">Fuente<select id="h${i}f" name="h${i}f">${opt(FUENTES,d["h"+i+"f"])}</select></label></div>`;
-  const acc=(i)=>`<div class="sub"><span class="sub-h">ACCIÓN 2026 · ${i}</span>
+  const acc=(i)=>`<div class="sub"><span class="sub-h">ACCIÓN 2027 · ${i}</span>
     <label for="a${i}">¿Qué haremos?<textarea id="a${i}" name="a${i}" placeholder="Acción concreta y observable en el aula o el nivel">${v(d,"a"+i)}</textarea></label>
     <div class="row2"><label for="a${i}q">¿Para quiénes?<input type="text" id="a${i}q" name="a${i}q" value="${v(d,"a"+i+"q")}" placeholder="Curso, grupo o estudiantes"></label>
     <label for="a${i}r">Responsable(s)<input type="text" id="a${i}r" name="a${i}r" value="${v(d,"a"+i+"r")}" placeholder="Docente, ed. diferencial, asistente…"></label></div>
     <div class="row2"><label for="a${i}p">Plazo<select id="a${i}p" name="a${i}p">${opt(PLAZOS,d["a"+i+"p"])}</select></label>
     <label for="a${i}e">Evidencia de logro<input type="text" id="a${i}e" name="a${i}e" value="${v(d,"a"+i+"e")}" placeholder="¿Cómo sabremos que funcionó?"></label></div></div>`;
-  const e27=(i)=>`<div class="sub"><span class="sub-h">ESTRATEGIA 2027 · ${i}</span>
+  const e27=(i)=>`<div class="sub"><span class="sub-h">ESTRATEGIA INSTITUCIONAL 2027 · ${i}</span>
     <label for="p${i}">Estrategia<textarea id="p${i}" name="p${i}">${v(d,"p"+i)}</textarea></label>
     <div class="row2"><label for="p${i}m">Momento<select id="p${i}m" name="p${i}m">${opt(MOM27,d["p"+i+"m"])}</select></label>
     <label for="p${i}d">Dimensión PME<select id="p${i}d" name="p${i}d">${opt(PME,d["p"+i+"d"])}</select></label></div></div>`;
@@ -783,9 +783,10 @@ function insumoTab(g){
       <div><span class="eyebrow">Las hipótesis se relacionan con</span><div class="chips" style="margin-top:6px">${CAUSAS.map((c,i)=>`<label for="cz${i}"><input type="checkbox" id="cz${i}" name="causas" value="${esc(c)}"${causas.includes(c)?" checked":""}>${esc(c)}</label>`).join("")}</div></div>
     </fieldset>
     <fieldset><legend>Momento 3 · Decidir</legend>${acc(1)}${acc(2)}
-      <div class="sub"><span class="sub-h">ESTUDIANTES EN PELIGRO DE REPITENCIA</span>
-        <label for="rAcad">Acción para estudiantes con criterio académico<textarea id="rAcad" name="rAcad">${v(d,"rAcad")}</textarea></label>
-        <label for="rAsis">Acción frente al ausentismo<textarea id="rAsis" name="rAsis">${v(d,"rAsis")}</textarea></label>
+      <div class="sub"><span class="sub-h">TRASPASO Y ACOMPAÑAMIENTO 2027</span>
+        <label for="tras">Lo que debe saber el equipo que recibe a estos estudiantes en 2027<textarea id="tras" name="tras">${v(d,"tras")}</textarea></label>
+        <label for="rAcad">Acompañamiento 2027 para estudiantes que terminan el año en peligro de repitencia <small>(art. 12, Decreto 67)</small><textarea id="rAcad" name="rAcad">${v(d,"rAcad")}</textarea></label>
+        <label for="rAsis">Acción frente al ausentismo desde el primer día de clases<textarea id="rAsis" name="rAsis">${v(d,"rAsis")}</textarea></label>
         <label for="rResp">Responsable(s) del seguimiento<input type="text" id="rResp" name="rResp" value="${v(d,"rResp")}"></label></div>
       ${e27(1)}${e27(2)}
       <label for="apoyo">Apoyo que necesitamos de UTP o del equipo directivo<textarea id="apoyo" name="apoyo">${v(d,"apoyo")}</textarea></label>
@@ -832,12 +833,12 @@ function asText(g,d){
   H("1. VER");
   [1,2,3].forEach(i=>d["h"+i]&&L.push(`- Hallazgo ${i} (${d["h"+i+"f"]||"s/f"}): ${d["h"+i]}`)); it("Sorpresa",d.sorpresa);
   H("2. PENSAR"); it("Problema priorizado",d.problema); it("OA aún no enseñados",d.oa); it("Hipótesis",d.hip); it("Ámbitos",(d.causas||[]).join(", "));
-  H("3. DECIDIR · ACCIONES 2026");
+  H("3. DECIDIR · ACCIONES 2027");
   [1,2].forEach(i=>{ if(!d["a"+i]) return; L.push(`- Acción ${i}: ${d["a"+i]}`);
     const sub=[["Para",d["a"+i+"q"]],["Responsable(s)",d["a"+i+"r"]],["Plazo",d["a"+i+"p"]],["Evidencia",d["a"+i+"e"]]].filter(x=>x[1]).map(x=>`${x[0]}: ${x[1]}`).join(" · ");
     if(sub) L.push(`   ${sub}`); });
-  H("ESTUDIANTES EN PELIGRO DE REPITENCIA"); it("Criterio académico",d.rAcad); it("Ausentismo",d.rAsis); it("Seguimiento",d.rResp);
-  H("PROYECCIÓN 2027");
+  H("TRASPASO Y ACOMPAÑAMIENTO 2027"); it("Traspaso",d.tras); it("Acompañamiento (peligro de repitencia)",d.rAcad); it("Ausentismo",d.rAsis); it("Seguimiento",d.rResp);
+  H("ESTRATEGIAS INSTITUCIONALES 2027");
   [1,2].forEach(i=>{ if(!d["p"+i]) return; L.push(`- Estrategia ${i}: ${d["p"+i]}`);
     const sub=[["Momento",d["p"+i+"m"]],["PME",d["p"+i+"d"]]].filter(x=>x[1]).map(x=>`${x[0]}: ${x[1]}`).join(" · "); if(sub) L.push(`   ${sub}`); });
   H("APOYO Y SÍNTESIS"); it("Apoyo requerido",d.apoyo); it("Frase síntesis",d.frase);
@@ -877,15 +878,15 @@ function bindInsumo(g){
 /* ---------- plenario (tarjeta del grupo) ---------- */
 function plenarioTab(g){
   const d=store.get(draftKey(),{});
-  if(!d.problema&&!d.a1&&!d.frase) return `<div class="card"><h2>Tarjeta de plenario</h2><p class="note">Aparecerá aquí cuando el grupo complete el insumo en este celular: problema priorizado, primera acción 2026, primera estrategia 2027 y frase síntesis. La voz del grupo la lee en 4 minutos.</p><button class="btn" data-tabgo="insumo" type="button">Ir al insumo</button></div>`;
+  if(!d.problema&&!d.a1&&!d.frase) return `<div class="card"><h2>Tarjeta de plenario</h2><p class="note">Aparecerá aquí cuando el grupo complete el insumo en este celular: problema priorizado, primera acción 2027, primera estrategia 2027 y frase síntesis. La voz del grupo la lee en 4 minutos.</p><button class="btn" data-tabgo="insumo" type="button">Ir al insumo</button></div>`;
   return `<article class="card plen"><span class="eyebrow">${g.n} · ${g.nivel}</span>
     ${d.frase?`<p class="big">«${esc(d.frase)}»</p>`:""}
     <dl><div><dt>Problema priorizado</dt><dd>${esc(d.problema||"—")}</dd></div>
       <div><dt>Hallazgo clave</dt><dd>${esc(d.h1||"—")}</dd></div>
-      <div><dt>Acción inmediata 2026</dt><dd>${esc(d.a1||"—")}${d.a1r?` <span class="note">· ${esc(d.a1r)}${d.a1p?" · "+esc(d.a1p):""}</span>`:""}</dd></div>
-      <div><dt>Estrategia 2027</dt><dd>${esc(d.p1||"—")}</dd></div>
+      <div><dt>Primera acción 2027</dt><dd>${esc(d.a1||"—")}${d.a1r?` <span class="note">· ${esc(d.a1r)}${d.a1p?" · "+esc(d.a1p):""}</span>`:""}</dd></div>
+      <div><dt>Estrategia institucional 2027</dt><dd>${esc(d.p1||"—")}</dd></div>
       <div><dt>Necesitamos</dt><dd>${esc(d.apoyo||"—")}</dd></div></dl></article>
-    <p class="note">Guion sugerido de 4 minutos: 1 min para el hallazgo y la sorpresa, 1 min para el problema y sus causas, y 2 min para las acciones 2026 y 2027.</p>`;
+    <p class="note">Guion sugerido de 4 minutos: 1 min para el hallazgo y la sorpresa, 1 min para el problema y sus causas, y 2 min para el plan 2027.</p>`;
 }
 
 /* ---------- apuesta ---------- */
@@ -935,8 +936,8 @@ function slides(){
    <h1>De los datos a las decisiones</h1>
    <p class="lead">Taller de análisis de trayectorias educativas, peligro de repitencia y Diagnóstico Integral de Aprendizajes (monitoreo intermedio 2026).</p>
    <div class="grid3">
-     <div class="pc"><h3>Objetivo</h3><p>Analizar colaborativamente, por nivel, los datos de trayectoria, riesgo de repitencia y DIA para acordar estrategias para lo que queda de 2026 y para 2027.</p></div>
-     <div class="pc"><h3>Productos</h3><ul><li>Problema priorizado por nivel</li><li>Plan de acción 2026 con responsables</li><li>Estrategias 2027 para el PME</li></ul></div>
+     <div class="pc"><h3>Objetivo</h3><p>Analizar colaborativamente, por nivel, los datos de trayectoria, riesgo de repitencia y DIA para acordar acciones y estrategias para 2027.</p></div>
+     <div class="pc"><h3>Productos</h3><ul><li>Problema priorizado por nivel</li><li>Plan de acción 2027 con responsables</li><li>Traspaso y acompañamiento de estudiantes en riesgo</li><li>Estrategias 2027 para el PME</li></ul></div>
      <div class="pc"><h3>Participan</h3><p>Docentes, educadoras diferenciales y asistentes de aula, organizados en cuatro grupos por nivel.</p></div>
    </div>
    <div class="sign lg"><img src="${INS_C}" alt="Insignia de la Escuela Intercultural Kallfü Mapu"><div><b>${FIRMA.n}</b><span>${FIRMA.r}</span></div></div>`,
@@ -993,7 +994,7 @@ function bindBig(){
 }
 function wallCard(d){
   return `<article class="pc"><span class="who">${esc(d.nombre||"")} · ${esc(d.nivel||"")}</span>${d.frase?`<h3>«${esc(d.frase)}»</h3>`:""}
-   <dl><dt>Problema priorizado</dt><dd>${esc(d.problema||"—")}</dd><dt>Acción 2026</dt><dd>${esc(d.a1||"—")}${d.a1r?" · "+esc(d.a1r):""}</dd>
+   <dl><dt>Problema priorizado</dt><dd>${esc(d.problema||"—")}</dd><dt>Acción 2027</dt><dd>${esc(d.a1||"—")}${d.a1r?" · "+esc(d.a1r):""}</dd>
    <dt>Estrategia 2027</dt><dd>${esc(d.p1||"—")}</dd>${d.apoyo?`<dt>Necesitan</dt><dd>${esc(d.apoyo)}</dd>`:""}${(d.int&&d.int.length)||d.integrantesTxt?`<dt>Integrantes</dt><dd class="note">${esc(d.int&&d.int.length?namesOf(d.int):d.integrantesTxt)}</dd>`:""}</dl></article>`;
 }
 let wallDb={}, wallLocal={};
